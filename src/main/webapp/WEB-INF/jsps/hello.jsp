@@ -8,5 +8,8 @@
 </head>
 <body>
 	<h1>Hello World!</h1>
+	<form onsubmit="return foo()">
+		
+	</form>
 </body>
 </html>
