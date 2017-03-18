@@ -8,14 +8,43 @@
 <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
 <script>
 
-function foo(username) {
+function download() {
+	console.log("Inside download!");
+    var textToWrite = document.getElementById("testdata").value;
+	var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+	var fileNameToSaveAs = "testcases.txt";
+
+	var downloadLink = document.createElement("a");
+   	downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    if (window.URL != null) {
+    	// Chrome allows the link to be clicked
+    	// without actually adding it to the DOM.
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+	}
+    else {
+    	// Firefox requires the link to be added to the DOM
+    	// before it can be clicked.
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+    }
+	downloadLink.click();
+	return true;
+}
+function foo(min,max) {
 	
 	$.ajax({
         type: "POST",
         url: "/numbers",
-        data: {name: username.value},
+        data: {min: min.value, max: max.value},
         success: function(data) {
-            console.log("Success");
+            console.log("Success!");
+            var result = document.getElementById("results");
+            result.innerHTML = data.status + ": " + data.description;
+            var testdata = document.getElementById("testdata");
+            testdata.value = data.testdata;
         }
     });
 	
@@ -25,10 +54,13 @@ function foo(username) {
 </script>
 </head>
 <body>
-	<h1>Hello World!</h1>
-	<form onsubmit="return foo(username)">
-		Name: <input type="text" name="username"/><br/>
-		<input type="submit" value = "Submit" />
-	</form>
+	<form onsubmit="return foo(min,max)">
+		Min: <input type="text" name="min"/><br/>
+		Max: <input type="text" name="max"/><br/>
+		<input type="submit" value = "Submit" /><br/>
+	</form><br/>
+	<span id="results"></span><br/>
+	<textarea id="testdata" rows="10"></textarea><br/>
+	<input type="submit" value="Download" onclick="return download()" />
 </body>
 </html>
