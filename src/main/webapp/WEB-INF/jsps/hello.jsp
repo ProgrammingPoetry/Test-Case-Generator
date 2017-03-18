@@ -42,7 +42,8 @@ function foo(min,max) {
             console.log("Success!");
             var result = document.getElementById("results");
             result.innerHTML = data.status + ": " + data.description;
-            download(data.testdata);
+            if(data.hasOwnProperty('testData'))
+            	download(data.testdata);
         }
     });
 	

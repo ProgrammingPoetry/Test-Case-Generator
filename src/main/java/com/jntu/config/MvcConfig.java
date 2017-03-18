@@ -8,6 +8,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+// This class is used to configure our application as Spring MVC
+// It is a java equivalent to web.xml
+
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = { "com.jntu" })
