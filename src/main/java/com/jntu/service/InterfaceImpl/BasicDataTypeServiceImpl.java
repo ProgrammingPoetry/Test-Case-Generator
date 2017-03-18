@@ -1,4 +1,4 @@
-package com.jntu.service;
+package com.jntu.service.InterfaceImpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,24 +12,29 @@ import org.springframework.stereotype.Service;
 
 import com.jntu.constants.ApplicationConstants;
 import com.jntu.random.RandomNumberGenerator;
+import com.jntu.service.Interface.BasicDataTypeServiceInterface;
 import com.jntu.util.Utility;
 
 // This is the service which we use for handling the business logic pertaining to "Basic-Data-Type" category
 @Service
-public class BasicDataTypeService {
+public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 
 	// The randomNumberGenerator which is used to generate randomNumbers
 	@Autowired
 	RandomNumberGenerator generator;
 	
 	// Logger is used to generate logs in the console for debugging purposes
-	private static Logger log = Logger.getLogger(BasicDataTypeService.class.getName());
+	private static Logger log = Logger.getLogger(BasicDataTypeServiceImpl.class.getName());
 
 	/*
 	 * The controller calls this method to determine the sub-category. Each sub-category
 	 * (numbers,characters and strings) are separate functions which will be called
 	 * depending upon the selected category by the user
 	 * */
+	/* (non-Javadoc)
+	 * @see com.jntu.service.BasicDataTypeServiceInterface#getResponse(java.util.Map)
+	 */
+	@Override
 	public Map<String, String> getResponse(Map<String, Object> requestParams) {
 
 		Map<String,String> jsonResponse = new HashMap<>();
@@ -59,6 +64,10 @@ public class BasicDataTypeService {
 	/*
 	 * This method is used to process numbers sub-category
 	 * */
+	/* (non-Javadoc)
+	 * @see com.jntu.service.BasicDataTypeServiceInterface#processNumberRequest(java.util.Map)
+	 */
+	@Override
 	public Map<String, String> processNumberRequest(Map<String, Object> requestParams) {
 
 		log.info("Numbers subcategory has been selected");

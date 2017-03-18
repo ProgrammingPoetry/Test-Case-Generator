@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jntu.constants.ApplicationConstants;
-import com.jntu.service.BasicDataTypeService;
+import com.jntu.service.Interface.BasicDataTypeServiceInterface;
 
 /*
  * This class handles all the endpoints for "Basic-Data-Type" category
@@ -24,7 +24,7 @@ public class BasicDataTypeController {
 
 	// This is the service which will handle our business logic pertaining to "Basic-Data-Type" category
 	@Autowired
-	BasicDataTypeService service;
+	BasicDataTypeServiceInterface service;
 	
 	// Logger is used for showing debugging statements in the console
 	private static Logger log = Logger.getLogger(BasicDataTypeController.class.getName());
