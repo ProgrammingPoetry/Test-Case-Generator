@@ -8,9 +8,8 @@
 <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
 <script>
 
-function download() {
+function download(textToWrite) {
 	console.log("Inside download!");
-    var textToWrite = document.getElementById("testdata").value;
 	var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
 	var fileNameToSaveAs = "testcases.txt";
 
@@ -43,8 +42,7 @@ function foo(min,max) {
             console.log("Success!");
             var result = document.getElementById("results");
             result.innerHTML = data.status + ": " + data.description;
-            var testdata = document.getElementById("testdata");
-            testdata.value = data.testdata;
+            download(data.testdata);
         }
     });
 	
@@ -60,7 +58,5 @@ function foo(min,max) {
 		<input type="submit" value = "Submit" /><br/>
 	</form><br/>
 	<span id="results"></span><br/>
-	<textarea id="testdata" rows="10"></textarea><br/>
-	<input type="submit" value="Download" onclick="return download()" />
 </body>
 </html>
