@@ -4,7 +4,8 @@ package com.jntu.random;
 // Our application is coded-for-interface (not for implementation)
 public interface RandomNumberGenerator {
 
-	// This method is used to generate Random number within the range [lower,upper]
+	// This method is used to generate Random number within the range
+	// [lower,upper]
 	long getRandomNumber(long lower, long upper);
-	
+
 }

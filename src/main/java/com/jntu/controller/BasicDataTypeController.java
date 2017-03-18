@@ -22,38 +22,41 @@ import com.jntu.service.Interface.BasicDataTypeServiceInterface;
 @Controller
 public class BasicDataTypeController {
 
-	// This is the service which will handle our business logic pertaining to "Basic-Data-Type" category
+	// This is the service which will handle our business logic pertaining to
+	// "Basic-Data-Type" category
 	@Autowired
 	BasicDataTypeServiceInterface service;
-	
+
 	// Logger is used for showing debugging statements in the console
 	private static Logger log = Logger.getLogger(BasicDataTypeController.class.getName());
-	
+
 	@RequestMapping(value = "/datatype", method = RequestMethod.POST)
-	public @ResponseBody Map<String,String> numbers(@RequestParam Map<String,Object> requestParams) {
-		
+	public @ResponseBody Map<String, String> numbers(@RequestParam Map<String, Object> requestParams) {
+
 		log.info("'/numbers' Controller has been hit");
 		log.info("Request params are: " + requestParams);
-		
+
 		// Measure the time taken by the user's request
 		long startTime = System.currentTimeMillis();
-		Map<String,String> jsonResponse = service.getResponse(requestParams);
+		Map<String, String> jsonResponse = service.getResponse(requestParams);
 		long endTime = System.currentTimeMillis();
-		
+
 		long timeTaken = endTime - startTime;
-		
+
 		// Show the timetaken to the user only when the 'status' is 'success'
-		// Otherwise (if there is an exception or some error) it is pointless to show the timetaken
-		if(jsonResponse.get(ApplicationConstants.STATUS).equals(ApplicationConstants.SUCCESS_STATUS))
+		// Otherwise (if there is an exception or some error) it is pointless to
+		// show the timetaken
+		if (jsonResponse.get(ApplicationConstants.STATUS).equals(ApplicationConstants.SUCCESS_STATUS))
 			jsonResponse.put(ApplicationConstants.TIME_TAKEN, String.valueOf(timeTaken) + " ms");
-		
+
 		log.info("Returning jsonResponse, Status is : " + jsonResponse.get(ApplicationConstants.STATUS));
-		
+
 		/*
-		 * The jsonResponse(which is of type Map<String,String>) will  automatically
-		 * be converted into actual JSON format which can then be parsed at the front-end
-		 * */ 
+		 * The jsonResponse(which is of type Map<String,String>) will
+		 * automatically be converted into actual JSON format which can then be
+		 * parsed at the front-end
+		 */
 		return jsonResponse;
 	}
-	
+
 }

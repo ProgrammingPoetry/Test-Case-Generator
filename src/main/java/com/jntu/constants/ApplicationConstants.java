@@ -11,12 +11,12 @@ public class ApplicationConstants {
 	// Constants related to JSON response
 	public static final String STATUS = "status";
 	public static final String DESCRIPTION = "description";
-	public static final String TIME_TAKEN = "timeTaken"; // This is true only when STATUS equal to SUCCESS_STATUS
+	public static final String TIME_TAKEN = "timeTaken"; 
 	public static final String TEST_DATA = "testData";
 	public static final String SUCCESS_STATUS = "Success";
 	public static final String FAILURE_STATUS = "Failure";
 	public static final String SUCCESS_DESC = "Successfully completed the operation";
-	
+
 	// Constants related to JSON request
 	public static final String CATEGORY = "category";
 	public static final String TEST_CASES = "testCases";
@@ -25,12 +25,14 @@ public class ApplicationConstants {
 	public static final String MULTIPLE_OF = "multipleOf";
 	public static final String IS_PRIME = "prime";
 	public static final String IS_DISTINCT = "distinct";
-	
-	// Constants which denote the sub-categories in our application (Such as: Numbers, Characters etc)
+
+	// Constants which denote the sub-categories in our application (Such as:
+	// Numbers, Characters etc)
 	public static final String NUMBERS = "numbers";
 	public static final String CHARACTERS = "characters";
 	public static final String STRINGS = "strings";
-	
+	public static final String ARRAYS = "arrays";
+
 	// Other constants
 	public static final long NOT_PRESENT = -1L;
 }
