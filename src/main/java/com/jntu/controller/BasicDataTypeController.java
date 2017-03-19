@@ -31,9 +31,9 @@ public class BasicDataTypeController {
 	private static Logger log = Logger.getLogger(BasicDataTypeController.class.getName());
 
 	@RequestMapping(value = "/datatype", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> numbers(@RequestParam Map<String, Object> requestParams) {
+	public @ResponseBody Map<String, String> datatypeController(@RequestParam Map<String, Object> requestParams) {
 
-		log.info("'/numbers' Controller has been hit");
+		log.info("'/datatype' Controller has been hit");
 		log.info("Request params are: " + requestParams);
 
 		// Measure the time taken by the user's request

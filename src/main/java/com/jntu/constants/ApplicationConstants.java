@@ -29,6 +29,13 @@ public class ApplicationConstants {
 	public static final String UPPER_CASE = "upper";
 	public static final String LOWER_CASE = "lower";
 	public static final String MIXED_CASE = "mixed";
+	public static final String MIN_STRING_LENGTH = "minStringLength";
+	public static final String MAX_STRING_LENGTH = "maxStringLength";
+	public static final String IS_PALINDROME = "palindrome";
+	public static final String PRINT_STRING_LENGTH = "printStringLength";
+	public static final String WHITE_SPACE_CHARACTER = "whiteSpaceCharacter";
+	public static final String NEW_LINE_CHARACTER = "newLine";
+	public static final String SPACE_CHARACTER = "space";
 	
 	// Constants which denote the sub-categories in our application (Such as:
 	// Numbers, Characters etc)
