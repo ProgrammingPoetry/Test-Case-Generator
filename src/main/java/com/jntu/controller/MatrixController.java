@@ -23,7 +23,7 @@ public class MatrixController {
 	private static Logger log = Logger.getLogger(BasicDataTypeController.class.getName());
 
 	@RequestMapping(value = "/matrices", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> numbers(@RequestParam Map<String, Object> requestParams) {
+	public @ResponseBody Map<String, String> getMatrices(@RequestParam Map<String, Object> requestParams) {
 
 		log.info("'/matrices' Controller has been hit");
 		log.info("Request params are: " + requestParams);

@@ -31,7 +31,7 @@ public class ArrayController {
 	private static Logger log = Logger.getLogger(BasicDataTypeController.class.getName());
 
 	@RequestMapping(value = "/arrays", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> numbers(@RequestParam Map<String, Object> requestParams) {
+	public @ResponseBody Map<String, String> getArrays(@RequestParam Map<String, Object> requestParams) {
 
 		log.info("'/arrays' Controller has been hit");
 		log.info("Request params are: " + requestParams);

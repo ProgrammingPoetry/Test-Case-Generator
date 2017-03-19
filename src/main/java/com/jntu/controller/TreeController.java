@@ -23,7 +23,7 @@ public class TreeController {
 	private static Logger log = Logger.getLogger(BasicDataTypeController.class.getName());
 
 	@RequestMapping(value = "/trees", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> numbers(@RequestParam Map<String, Object> requestParams) {
+	public @ResponseBody Map<String, String> getTrees(@RequestParam Map<String, Object> requestParams) {
 
 		log.info("'/trees' Controller has been hit");
 		log.info("Request params are: " + requestParams);

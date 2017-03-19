@@ -23,7 +23,7 @@ public class MiscController {
 	private static Logger log = Logger.getLogger(BasicDataTypeController.class.getName());
 
 	@RequestMapping(value = "/Miscellaneous", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> numbers(@RequestParam Map<String, Object> requestParams) {
+	public @ResponseBody Map<String, String> getMiscellaneous(@RequestParam Map<String, Object> requestParams) {
 
 		log.info("'/Miscellaneous' Controller has been hit");
 		log.info("Request params are: " + requestParams);
