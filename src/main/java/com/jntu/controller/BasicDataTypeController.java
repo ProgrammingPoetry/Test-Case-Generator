@@ -30,7 +30,7 @@ public class BasicDataTypeController {
 	// Logger is used for showing debugging statements in the console
 	private static Logger log = Logger.getLogger(BasicDataTypeController.class.getName());
 
-	@RequestMapping(value = "/datatype", method = RequestMethod.POST)
+	@RequestMapping(value = "/datatypeService", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> datatypeController(@RequestParam Map<String, Object> requestParams) {
 
 		log.info("'/datatype' Controller has been hit");
