@@ -51,6 +51,8 @@ public class ApplicationConstants {
 	public static final String INDEXED_FROM = "indexedFrom";
 	public static final String MIN_WEIGHT = "minWeight";
 	public static final String MAX_WEIGHT = "maxWeight";
+	public static final String DISTINCT_WEIGHT = "distinctWeight";
+	public static final String DISTINCT_VALUE = "distinctValue";
 	
 	// Constants which denote the sub-categories in our application (Such as:
 	// Numbers, Characters etc)
