@@ -25,13 +25,14 @@ public class ApplicationConstants {
 	public static final String MULTIPLE_OF = "multipleOf";
 	public static final String IS_PRIME = "prime";
 	public static final String IS_DISTINCT = "distinct";
+	public static final String MIN_SIZE = "minSize";
+	public static final String MAX_SIZE = "maxSize";
 
 	// Constants which denote the sub-categories in our application (Such as:
 	// Numbers, Characters etc)
 	public static final String NUMBERS = "numbers";
 	public static final String CHARACTERS = "characters";
 	public static final String STRINGS = "strings";
-	public static final String ARRAYS = "arrays";
 
 	// Other constants
 	public static final long NOT_PRESENT = -1L;
