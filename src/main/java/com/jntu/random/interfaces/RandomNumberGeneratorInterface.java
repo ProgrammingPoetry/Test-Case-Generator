@@ -9,7 +9,6 @@ public interface RandomNumberGeneratorInterface {
 	long getRandomNumber(long lower, long upper);
 
 	long[] getArrayOfNumbers(long size, long minValue, long maxValue, boolean isDistinct, boolean isPrime,
-			long multipleOf , String seperatedBy);
-
+			long multipleOf, boolean printSize, String sorted, String seperatedBy);
 
 }

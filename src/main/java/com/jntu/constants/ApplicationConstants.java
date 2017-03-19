@@ -11,7 +11,7 @@ public class ApplicationConstants {
 	// Constants related to JSON response
 	public static final String STATUS = "status";
 	public static final String DESCRIPTION = "description";
-	public static final String TIME_TAKEN = "timeTaken"; 
+	public static final String TIME_TAKEN = "timeTaken";
 	public static final String TEST_DATA = "testData";
 	public static final String SUCCESS_STATUS = "Success";
 	public static final String FAILURE_STATUS = "Failure";
@@ -31,7 +31,15 @@ public class ApplicationConstants {
 	public static final String UPPER_CASE = "upper";
 	public static final String LOWER_CASE = "lower";
 	public static final String MIXED_CASE = "mixed";
-	
+	public static final String PRINT_SIZE = "printSize";
+	public static final String SPECIAL_CHARACTERS_ALLOWED ="specialCharactersAllowed";
+	public static final String SORTED = "sorted";
+	public static final String INDIVIDUALLY_SORTED = "individuallySorted";
+	public static final String MIN_CHAR_VALUE = "minCharValue";
+	public static final String MAX_CHAR_VALUE = "maxCharValue";
+	public static final String PRINT_LENGTH ="printLength";
+	public static final String IS_PALINDROME = "isPalindrome";
+
 	// Constants which denote the sub-categories in our application (Such as:
 	// Numbers, Characters etc)
 	public static final String NUMBERS = "numbers";
@@ -39,26 +47,20 @@ public class ApplicationConstants {
 	public static final String STRINGS = "strings";
 
 	// Other constants are below (which do not fall into any specific category)
-	
+
 	/*
-	 * The below variable serves as an Indicator (as a flag variable) for multipleOf
-	 * request Parameter.
-	 * */
+	 * The below variable serves as an Indicator (as a flag variable) for
+	 * multipleOf request Parameter.
+	 */
 	public static final long NOT_PRESENT = -1L;
-	
+
 	/*
-	 * The below 2 character arrays hold the list of characters in English alphabet.
-	 * Other functions generate a random index, and that index is used select appropriate
-	 * character from the below arrays
-	 * */
-	public static final char[] LOWER_CASE_CHARACTER_LITERALS = {
-			'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
-			'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-			's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-	};
-	public static final char[] UPPER_CASE_CHARACTER_LITERALS = {
-			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
-			'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
-			'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-	};
+	 * The below 2 character arrays hold the list of characters in English
+	 * alphabet. Other functions generate a random index, and that index is used
+	 * select appropriate character from the below arrays
+	 */
+	public static final char[] LOWER_CASE_CHARACTER_LITERALS = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+			'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+	public static final char[] UPPER_CASE_CHARACTER_LITERALS = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+			'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 }

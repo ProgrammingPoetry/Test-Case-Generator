@@ -7,4 +7,11 @@ import com.jntu.random.interfaces.RandomCharacterGeneratorInterface;
 @Component
 public class RandomCharacterGeneratorImpl implements RandomCharacterGeneratorInterface {
 
+	@Override
+	public char[] getArrayOfCharacters(long size, char minValue, char maxValue, boolean isDistinct, String charCase,
+			boolean specialCharactersAllowed, boolean printSize,String sorted, String seperatedBy) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
