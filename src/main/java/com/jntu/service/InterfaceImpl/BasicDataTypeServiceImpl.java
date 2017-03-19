@@ -497,8 +497,20 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 			
 			long j = 0;
 			
-			// The below loop keeps generating random characters 'stringLength' number-of-times
-			while(j < stringLength) {
+			/*
+			 * If the user chooses to generate palindromic strings, then we generate a randomString of length
+			 * which is half of the given length. Let's call this type of string 'randomString'
+			 * Later on, we reverse this string, let's call it 'reversedString'. We then append those 2 together
+			 * to get a palindromic string.
+			 * When the input length of the string is odd, we need to add another character in between 'randomString'
+			 * and 'reversedString'. For implementation, see the end of this method.
+			 * */
+			long count = stringLength;
+			if(isPalindrome)
+				count /= 2;
+			
+			// The below loop keeps generating random characters 'count' number-of-times
+			while(j < count) {
 				
 				// 'index' is used index over into the arrays present in ApplicationConstants
 				int index = (int)generator.getRandomNumber(minValue, maxValue);
@@ -530,6 +542,29 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 				randomString += ch;
 				j++;
 				
+			}
+			
+			// If the user chooses to generate palindromic strings follow the below procedure
+			if(isPalindrome) {
+				String reversedString = new StringBuilder(randomString).reverse().toString();
+				if(stringLength % 2 != 0) {
+					int index = (int)generator.getRandomNumber(minValue, maxValue);
+					char ch = '\0';
+					if(characterCase.equals(ApplicationConstants.LOWER_CASE))	
+						ch = ApplicationConstants.LOWER_CASE_CHARACTER_LITERALS[index];
+					else if(characterCase.equals(ApplicationConstants.UPPER_CASE))
+						ch = ApplicationConstants.UPPER_CASE_CHARACTER_LITERALS[index];
+					else if(characterCase.equals(ApplicationConstants.MIXED_CASE)) {
+						int upperOrLower = (int)generator.getRandomNumber(0, 1);
+						if(upperOrLower == 0)
+							ch = ApplicationConstants.UPPER_CASE_CHARACTER_LITERALS[index];
+						else
+							ch = ApplicationConstants.LOWER_CASE_CHARACTER_LITERALS[index];
+					}
+					randomString += ch + reversedString;	
+				}
+				else
+					randomString += reversedString;
 			}
 			
 			// After generating a randomString, append it to our testData
