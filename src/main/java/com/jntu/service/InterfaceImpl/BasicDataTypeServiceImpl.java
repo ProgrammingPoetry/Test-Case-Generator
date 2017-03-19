@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jntu.constants.ApplicationConstants;
-import com.jntu.random.RandomNumberGenerator;
+import com.jntu.random.interfaces.RandomNumberGeneratorInterface;
 import com.jntu.service.Interface.BasicDataTypeServiceInterface;
 import com.jntu.util.Utility;
 
@@ -20,7 +20,7 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 
 	// The randomNumberGenerator which is used to generate randomNumbers
 	@Autowired
-	RandomNumberGenerator generator;
+	RandomNumberGeneratorInterface generator;
 
 	// Logger is used to generate logs in the console for debugging purposes
 	private static Logger log = Logger.getLogger(BasicDataTypeServiceImpl.class.getName());

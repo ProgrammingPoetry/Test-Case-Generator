@@ -25,6 +25,8 @@ public class ApplicationConstants {
 	public static final String MULTIPLE_OF = "multipleOf";
 	public static final String IS_PRIME = "prime";
 	public static final String IS_DISTINCT = "distinct";
+	public static final String MIN_SIZE = "minSize";
+	public static final String MAX_SIZE = "maxSize";
 	public static final String CHARACTER_CASE = "case";
 	public static final String UPPER_CASE = "upper";
 	public static final String LOWER_CASE = "lower";
@@ -42,7 +44,6 @@ public class ApplicationConstants {
 	public static final String NUMBERS = "numbers";
 	public static final String CHARACTERS = "characters";
 	public static final String STRINGS = "strings";
-	public static final String ARRAYS = "arrays";
 
 	// Other constants are below (which do not fall into any specific category)
 	
