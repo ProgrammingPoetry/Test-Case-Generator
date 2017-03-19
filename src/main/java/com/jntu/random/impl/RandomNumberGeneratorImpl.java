@@ -116,10 +116,7 @@ public class RandomNumberGeneratorImpl implements RandomNumberGeneratorInterface
 		for (int i = 0; i < size; i++){
 			output[i] = this.getRandomNumber((long) Math.ceil(minValue / multipleOf),
 					(long) Math.floor(maxValue / multipleOf)) * multipleOf + "";
-			log.info(output[i]);
 		}
-			
-		log.info("RETURNING VALUE : "+output);
 		return output;
 	}
 
