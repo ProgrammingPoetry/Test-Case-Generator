@@ -20,7 +20,7 @@ public class MatrixController {
 	MatrixServiceInterface service;
 
 	// Logger is used for showing debugging statements in the console
-	private static Logger log = Logger.getLogger(BasicDataTypeController.class.getName());
+	private static Logger log = Logger.getLogger(MatrixController.class.getName());
 
 	@RequestMapping(value = "/matrices", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> getMatrices(@RequestParam Map<String, Object> requestParams) {

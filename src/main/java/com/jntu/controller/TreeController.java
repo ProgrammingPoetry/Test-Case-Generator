@@ -20,7 +20,7 @@ public class TreeController {
 	TreeServiceInterface service;
 
 	// Logger is used for showing debugging statements in the console
-	private static Logger log = Logger.getLogger(BasicDataTypeController.class.getName());
+	private static Logger log = Logger.getLogger(TreeController.class.getName());
 
 	@RequestMapping(value = "/trees", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> getTrees(@RequestParam Map<String, Object> requestParams) {

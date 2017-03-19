@@ -20,7 +20,7 @@ public class MiscController {
 	MiscServiceInterface service;
 	
 	// Logger is used for showing debugging statements in the console
-	private static Logger log = Logger.getLogger(BasicDataTypeController.class.getName());
+	private static Logger log = Logger.getLogger(MiscController.class.getName());
 
 	@RequestMapping(value = "/Miscellaneous", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> getMiscellaneous(@RequestParam Map<String, Object> requestParams) {

@@ -28,7 +28,7 @@ public class ArrayController {
 	ArrayServiceInterface service;
 
 	// Logger is used for showing debugging statements in the console
-	private static Logger log = Logger.getLogger(BasicDataTypeController.class.getName());
+	private static Logger log = Logger.getLogger(ArrayController.class.getName());
 
 	@RequestMapping(value = "/arrays", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> getArrays(@RequestParam Map<String, Object> requestParams) {
