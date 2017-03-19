@@ -46,12 +46,23 @@ public class ApplicationConstants {
 	public static final String NEW_LINE_CHARACTER = "newLine";
 	public static final String SPACE_CHARACTER = "space";
 	public static final String IS_SORTED = "sorted";
+	public static final String NODES = "nodes";
+	public static final String IS_WEIGHTED = "weighted";
+	public static final String INDEXED_FROM = "indexedFrom";
+	public static final String MIN_WEIGHT = "minWeight";
+	public static final String MAX_WEIGHT = "maxWeight";
 	
 	// Constants which denote the sub-categories in our application (Such as:
 	// Numbers, Characters etc)
 	public static final String NUMBERS = "numbers";
 	public static final String CHARACTERS = "characters";
 	public static final String STRINGS = "strings";
+	public static final String NUMERIC_TREE = "numericTree";
+	public static final String FULL_BINARY_TREE = "fullBinaryTree";
+	public static final String SKEW_TREE = "skewTree";
+	public static final String BINARY_SEARCH_TREE = "binarySearchTree";
+	public static final String BALANCED_BINARY_SEARCH_TREE = "balancedBinarySearchTree";
+	public static final String NUMBER_OF_LEVELS = "numberOfLevels";
 
 	// Other constants are below (which do not fall into any specific category)
 
