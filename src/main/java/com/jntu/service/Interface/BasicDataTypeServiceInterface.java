@@ -2,6 +2,7 @@ package com.jntu.service.Interface;
 
 import java.util.Map;
 
+//This is the service which we use for handling the business logic pertaining to "Basic-Data-Type" category
 public interface BasicDataTypeServiceInterface {
 
 	/*
@@ -15,5 +16,15 @@ public interface BasicDataTypeServiceInterface {
 	 * This method is used to process numbers sub-category
 	 */
 	Map<String, String> processNumberRequest(Map<String, Object> requestParams);
+	
+	/*
+	 * This method is used to process characters sub-category
+	 */
+	Map<String, String> processCharacterRequest(Map<String, Object> requestParams);
+	
+	/*
+	 * This method is used to process strings sub-category
+	 */
+	Map<String, String> processStringRequest(Map<String, Object> requestParams);
 
 }

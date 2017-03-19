@@ -15,7 +15,6 @@ import com.jntu.random.RandomNumberGenerator;
 import com.jntu.service.Interface.BasicDataTypeServiceInterface;
 import com.jntu.util.Utility;
 
-// This is the service which we use for handling the business logic pertaining to "Basic-Data-Type" category
 @Service
 public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 
@@ -26,17 +25,6 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 	// Logger is used to generate logs in the console for debugging purposes
 	private static Logger log = Logger.getLogger(BasicDataTypeServiceImpl.class.getName());
 
-	/*
-	 * The controller calls this method to determine the sub-category. Each
-	 * sub-category (numbers,characters and strings) are separate functions
-	 * which will be called depending upon the selected category by the user
-	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.jntu.service.BasicDataTypeServiceInterface#getResponse(java.util.Map)
-	 */
 	@Override
 	public Map<String, String> getResponse(Map<String, Object> requestParams) {
 
@@ -64,16 +52,6 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		return jsonResponse;
 	}
 
-	/*
-	 * This method is used to process numbers sub-category
-	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.jntu.service.BasicDataTypeServiceInterface#processNumberRequest(java.
-	 * util.Map)
-	 */
 	@Override
 	public Map<String, String> processNumberRequest(Map<String, Object> requestParams) {
 
@@ -120,6 +98,18 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		return jsonResponse;
 	}
 
+	@Override
+	public Map<String, String> processCharacterRequest(Map<String, Object> requestParams) {
+		
+		return null;
+	}
+
+	@Override
+	public Map<String, String> processStringRequest(Map<String, Object> requestParams) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	// This function is used to generate random numbers given testCases,
 	// minValue and maxValue
 	private Map<String, String> generateRandomNumbers(long testCases, long minValue, long maxValue) {
@@ -128,6 +118,7 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		for (long i = 0; i < testCases; ++i) {
 			testData += Long.valueOf(generator.getRandomNumber(minValue, maxValue)).toString() + "\n";
 		}
+		System.out.println("Done!");
 		Map<String, String> jsonResponse = new HashMap<>();
 		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
 		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
@@ -315,14 +306,6 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
 		jsonResponse.put(ApplicationConstants.TEST_DATA, testData);
 		return jsonResponse;
-	}
-
-	private Map<String, String> processCharacterRequest(Map<String, Object> requestParams) {
-		return null;
-	}
-
-	private Map<String, String> processStringRequest(Map<String, Object> requestParams) {
-		return null;
 	}
 
 }
