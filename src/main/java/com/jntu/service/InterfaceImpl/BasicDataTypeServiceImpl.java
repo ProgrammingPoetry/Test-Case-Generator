@@ -100,13 +100,43 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 
 	@Override
 	public Map<String, String> processCharacterRequest(Map<String, Object> requestParams) {
+		log.info("Characters subcategory has been selected");
 		
-		return null;
+		// Retrieve all the values from the request parameters
+
+		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
+		
+		/*
+		 * In the request, minValue and maxValue are English letters.
+		 * We parse them into numbers within the range [0,25]
+		 * */
+		int minValue, maxValue;
+		char ch;
+		ch = requestParams.get(ApplicationConstants.MIN_VALUE).toString().charAt(0);
+		if(Character.isUpperCase(ch))
+			minValue = ch - 'A';
+		else
+			minValue = ch - 'a';
+		ch = requestParams.get(ApplicationConstants.MAX_VALUE).toString().charAt(0);
+		if(Character.isUpperCase(ch))
+			maxValue = ch - 'A';
+		else
+			maxValue = ch - 'a';
+		
+		String characterCase = requestParams.get(ApplicationConstants.CHARACTER_CASE).toString();
+		boolean isDistinct = Boolean.valueOf(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
+
+		/*
+		 * The below function handles all cases which may arise depending upon the user's form input.
+		 * Unlike processNumberRequest() which calls several other routines to accomplish its task,
+		 * processCharacterRequest() does everything using the below routine itself.
+		 * */
+		return generateRandomCharacters(testCases, minValue, maxValue, characterCase, isDistinct);
 	}
 
 	@Override
 	public Map<String, String> processStringRequest(Map<String, Object> requestParams) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	
@@ -308,4 +338,96 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		return jsonResponse;
 	}
 
+	// This function generates random characters, given testCases, range, characterCase and isDistinct
+	private Map<String, String> generateRandomCharacters(long testCases, int minValue, int maxValue,
+			String characterCase, boolean isDistinct) {
+		log.info("Random Characters is being executed");
+		Map<String, String> jsonResponse = new HashMap<>();
+		String testData = testCases + "\n";
+		
+		/*
+		 * Since we have to generate distinct characters if isDistinct is true,
+		 * we need some mechanism to keep track of previously generated characters.
+		 * Here we use 'Set' collection is used to keep track of previously generated
+		 * characters.
+		 */
+		Set<Character> set = new HashSet<Character>();
+		
+		if(isDistinct) {
+			
+			/*
+			 * If the number of testCases required are more than the range of
+			 * [minValue,maxValue], then we cannot generate DISTINCT characters
+			 * with the specified case. Hence we need to return failure status with
+			 * appropriate message. We perform these checks below.
+			 */
+			
+			if((characterCase.equals(ApplicationConstants.LOWER_CASE)
+					&& (testCases > ApplicationConstants.LOWER_CASE_CHARACTER_LITERALS.length))
+				|| (characterCase.equals(ApplicationConstants.UPPER_CASE)
+						&& (testCases > ApplicationConstants.UPPER_CASE_CHARACTER_LITERALS.length))
+				|| (characterCase.equals(ApplicationConstants.MIXED_CASE)
+						&& (testCases > (ApplicationConstants.LOWER_CASE_CHARACTER_LITERALS.length
+								+ ApplicationConstants.UPPER_CASE_CHARACTER_LITERALS.length)))) {
+				jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+				jsonResponse.put(ApplicationConstants.DESCRIPTION,
+						"Distinct characters with the given case (lower,upper, or mixed)"
+						+ " and testCases cannot be generated");
+				return jsonResponse;
+			}
+		}
+		
+		// Start generating random characters upto the given testCases
+		for(long i = 0;i < testCases;++i) {
+			
+			// 'index' is used index over into the arrays present in ApplicationConstants
+			int index = (int)generator.getRandomNumber(minValue, maxValue);
+			/*
+			 * 'ch' is used to hold the character which is extracted from the array present
+			 * in ApplicationConstants
+			 * */
+			char ch;
+			
+			// Determine the characterCase and generate the random character appropriately
+			if(characterCase.equals(ApplicationConstants.LOWER_CASE))	
+				ch = ApplicationConstants.LOWER_CASE_CHARACTER_LITERALS[index];
+			else if(characterCase.equals(ApplicationConstants.UPPER_CASE))
+				ch = ApplicationConstants.UPPER_CASE_CHARACTER_LITERALS[index];
+			else if(characterCase.equals(ApplicationConstants.MIXED_CASE)) {
+				int upperOrLower = (int)generator.getRandomNumber(0, 1);
+				if(upperOrLower == 0)
+					ch = ApplicationConstants.UPPER_CASE_CHARACTER_LITERALS[index];
+				else
+					ch = ApplicationConstants.LOWER_CASE_CHARACTER_LITERALS[index];
+			} else {
+				// If the character case doesn't match lower, upper or mixed, then return an error response
+				jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+				jsonResponse.put(ApplicationConstants.DESCRIPTION, "Invalid character case has been sent"
+						+ " from the request. Please send a valid one.");
+				return jsonResponse;
+			}
+			
+			if(isDistinct) {
+				// If isDistinct is true, then check whether the character 'ch' has already been generated or not
+				if(set.contains(ch)) {
+					// If yes, regenerate again
+					i--;
+					continue;
+				}
+				else
+					testData += ch + "\n"; // Add it into the testData
+				set.add(ch);
+			}
+			else
+				testData += ch + "\n";
+			
+		}
+		
+		// Return successful response along with testData
+		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
+		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
+		jsonResponse.put(ApplicationConstants.TEST_DATA, testData);
+		return jsonResponse;
+	}
+	
 }
