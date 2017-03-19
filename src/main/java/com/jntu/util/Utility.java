@@ -1,6 +1,7 @@
 package com.jntu.util;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 /*
  * This class contains all the utility functions which we will be using in our application
@@ -59,5 +60,40 @@ public class Utility {
 			System.out.print(list.get(i) + " ");
 		}
 	}
+	
+	/*
+	 * The below 3 functions are used in Union-Find Data structure.
+	 * This data structure is used to generate spanning tree
+	 * */
+	
+	public static void initializeNodes(int[] allNodes) {
+		for(int i = 0;i < allNodes.length;++i)
+			allNodes[i] = i;
+	}
+	
+	public static int getRootNode(int[] allNodes, int x) {
+		while(allNodes[x] != x)
+			x = allNodes[x];
+		
+		return x;
+	}
+	
+	public static boolean connectNodes(int x,int y,int[] allNodes) {
+		int rootX = getRootNode(allNodes, x);
+		int rootY = getRootNode(allNodes, y);
+		
+		if(rootX == rootY)
+			return false;
+		else {
+			int addToX = ThreadLocalRandom.current().nextInt(0,2);
+			if(addToX == 1)
+				allNodes[rootY] = x;
+			else
+				allNodes[rootX] = y;
+			return true;
+		}
+	}
+	
+	// The 3 functions end here
 
 }

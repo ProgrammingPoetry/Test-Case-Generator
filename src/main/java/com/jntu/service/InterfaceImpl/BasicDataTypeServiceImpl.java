@@ -1,6 +1,7 @@
 package com.jntu.service.InterfaceImpl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -165,6 +166,7 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		String characterCase = requestParams.get(ApplicationConstants.CHARACTER_CASE).toString();
 		boolean isPalindrome = Boolean.valueOf(requestParams.get(ApplicationConstants.IS_PALINDROME).toString());
 		boolean printLength = Boolean.valueOf(requestParams.get(ApplicationConstants.PRINT_STRING_LENGTH).toString());
+		boolean isSorted = Boolean.valueOf(requestParams.get(ApplicationConstants.SORTED).toString());
 		
 		/*
 		 * In the request, whiteSpaceCharacter is selected by the user.
@@ -185,7 +187,7 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		 * processStringRequest() does everything using the below routine itself.
 		 * */
 		return generateRandomStrings(testCases, minValue, maxValue, characterCase,
-				minLength, maxLength, isPalindrome, printLength, whiteSpaceCharacter);
+				minLength, maxLength, isPalindrome, printLength, whiteSpaceCharacter, isSorted);
 	}
 
 	// This function is used to generate random numbers given testCases,
@@ -196,7 +198,6 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		for (long i = 0; i < testCases; ++i) {
 			testData += Long.valueOf(generator.getRandomNumber(minValue, maxValue)).toString() + "\n";
 		}
-		System.out.println("Done!");
 		Map<String, String> jsonResponse = new HashMap<>();
 		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
 		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
@@ -480,7 +481,7 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 	
 	// This function generates random Strings with the specified arguments
 	private Map<String, String> generateRandomStrings(long testCases, int minValue, int maxValue, String characterCase,
-			long minLength, long maxLength, boolean isPalindrome, boolean printLength, char whiteSpaceCharacter) {
+			long minLength, long maxLength, boolean isPalindrome, boolean printLength, char whiteSpaceCharacter, boolean isSorted) {
 		log.info("Random Strings is being executed");
 		Map<String, String> jsonResponse = new HashMap<>();
 		String testData = testCases + "\n";
@@ -565,6 +566,13 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 				}
 				else
 					randomString += reversedString;
+			}
+			
+			// Sort the array (Note: isSorted and isPalindrome both cannot be true at the same time in requestParams)
+			if(isSorted) {
+				char array[] = randomString.toCharArray();
+				Arrays.sort(array);
+				randomString = new String(array);
 			}
 			
 			// After generating a randomString, append it to our testData

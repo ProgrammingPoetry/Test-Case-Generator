@@ -1,0 +1,23 @@
+header{
+      background-color:green;
+      color: white;
+      padding: 15px;
+    }
+.btn-xl {
+      box-shadow: 0 15px yellow;
+      } 
+#firstButtonGroup{
+          margin-top: 30px;
+          margin-left : 60px;
+      }  
+#secondButtonGroup{
+          margin-top :40px;
+          margin-left: 60px;
+      }
+footer{
+      background-color:green;
+      color: white;
+      width:100%;
+      position:absolute;
+      bottom:0%;
+}

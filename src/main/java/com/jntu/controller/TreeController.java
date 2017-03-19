@@ -13,19 +13,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jntu.constants.ApplicationConstants;
 import com.jntu.service.Interface.TreeServiceInterface;
 
+/*
+ * This class handles all the endpoints for "Tree" category
+ * Note: For each category use separate controller
+ *  
+ * */
+
 @Controller
 public class TreeController {
 
+	// This is the service which will handle our business logic pertaining to
+	// "Tree" category
 	@Autowired
 	TreeServiceInterface service;
 
 	// Logger is used for showing debugging statements in the console
 	private static Logger log = Logger.getLogger(TreeController.class.getName());
 
-	@RequestMapping(value = "/trees", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> getTrees(@RequestParam Map<String, Object> requestParams) {
+	@RequestMapping(value = "/treeService", method = RequestMethod.POST)
+	public @ResponseBody Map<String, String> treeController(@RequestParam Map<String, Object> requestParams) {
 
-		log.info("'/trees' Controller has been hit");
+		log.info("'/treeService' Controller has been hit");
 		log.info("Request params are: " + requestParams);
 
 		// Measure the time taken by the user's request

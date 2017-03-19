@@ -1,0 +1,12 @@
+.btn-xl{
+        width:60%;
+        margin-left:250px;
+    }
+header{
+      background-color:green;
+      color: white;
+      padding: 15px;
+    }
+#number,#character{
+         padding-bottom: 30px;
+    }
