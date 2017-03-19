@@ -1,7 +1,10 @@
 package com.jntu.service.InterfaceImpl;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -83,7 +86,22 @@ public class TreeServiceImpl implements TreeServiceInterface {
 		
 		log.info("Full binary tree subcategory has been selected");
 		
-		return null;
+		// Retrieve all the values from the request parameters
+
+		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
+		int numberOfLevels = Integer.parseInt(requestParams.get(ApplicationConstants.NUMBER_OF_LEVELS).toString());
+		int indexedFrom = Integer.parseInt(requestParams.get(ApplicationConstants.INDEXED_FROM).toString());
+		
+		boolean isWeighted = Boolean.valueOf(requestParams.get(ApplicationConstants.IS_WEIGHTED).toString());
+		long minWeight = ApplicationConstants.NOT_PRESENT, maxWeight = ApplicationConstants.NOT_PRESENT;
+		boolean isDistinct = false;
+		if(isWeighted) {	
+			minWeight = Long.parseLong(requestParams.get(ApplicationConstants.MIN_WEIGHT).toString());
+			maxWeight = Long.parseLong(requestParams.get(ApplicationConstants.MAX_WEIGHT).toString());
+			isDistinct = Boolean.valueOf(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
+		}
+
+		return generateRandomFullBinaryTree(testCases, numberOfLevels, indexedFrom, isWeighted, minWeight, maxWeight, isDistinct);
 	}
 
 	@Override
@@ -209,4 +227,83 @@ public class TreeServiceImpl implements TreeServiceInterface {
 		return jsonResponse;
 	}
 	
+	private Map<String, String> generateRandomFullBinaryTree(long testCases, int numberOfLevels, int indexedFrom,
+			boolean isWeighted, long minWeight, long maxWeight, boolean isDistinct) {
+		
+		log.info("Generate random full binary tree is being executed");
+		
+		Map<String,String> jsonResponse = new HashMap<>();
+		String testData = testCases + "\n";
+		
+		// Calculate the number of nodes given the number of levels
+		int nodes = (int) Math.pow(2, numberOfLevels) - 1;
+		
+		// 'lower' and 'upper' is used for generating random node numbers within the specified limits
+		int lower = indexedFrom;
+		int upper = (indexedFrom == 0 ? nodes - 1 : nodes);
+		
+		// Start generating testData (We use Union-Find data structure to generate a spanning tree)
+		for(long i = 0;i < testCases;++i) {
+			
+			// Before generating the tree, we need to print the number of nodes in the testData
+			testData += nodes + "\n";
+			
+			Set<Long> set = new HashSet<>();
+			
+			/*
+			 * Below is an array which holds our full binary tree.
+			 * We simply generate a permutation of an array of integers within the range [lower,upper]
+			 * and think of it as a full-binary-tree in array representation
+			 * */
+			List<Integer> a = new ArrayList<Integer>();
+			for(int j = lower;j <= upper;++j)
+				a.add(j);
+			Collections.shuffle(a);
+			
+			/*
+			 * Now, the left-child of node 'i' is at position 2 * i + 1
+			 * and right-child is at position 2 * i + 2
+			 * 
+			 * We extract those nodes and put them in testData along with the weight
+			 * */
+			for(int j = 0;j < a.size()/2;++j) {
+				
+				int nodeValue = a.get(j);
+				int leftNodeValue = a.get(2 * j + 1);
+				int rightNodeValue = a.get(2 * j + 2);
+				
+				if(isWeighted) {
+					long randomWeight1 = generator.getRandomNumber(minWeight, maxWeight);
+					long randomWeight2 = generator.getRandomNumber(minWeight, maxWeight);
+					if(isDistinct) {
+						if((nodes - 1) > (maxWeight - minWeight + 1)) {
+							jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+							jsonResponse.put(ApplicationConstants.DESCRIPTION, "Cannot generate distinct weights within"
+									+ " the given range!");
+							return jsonResponse;
+						}
+						while(set.contains(randomWeight1))
+							randomWeight1 = generator.getRandomNumber(minWeight, maxWeight);
+						while(set.contains(randomWeight2))
+							randomWeight2 = generator.getRandomNumber(minWeight, maxWeight);
+						set.add(randomWeight1);
+						set.add(randomWeight2);
+					}
+					testData += nodeValue + " " + leftNodeValue + " " + randomWeight1 + "\n";
+					testData += nodeValue + " " + rightNodeValue + " " + randomWeight2 + "\n";
+				}
+				else {
+					testData += nodeValue + " " + leftNodeValue + " " + "\n";
+					testData += nodeValue + " " + rightNodeValue + " " + "\n";
+				}
+				
+			}
+		}
+		
+		// Return the response
+		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
+		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
+		jsonResponse.put(ApplicationConstants.TEST_DATA, testData);
+		return jsonResponse;
+	}
 }
