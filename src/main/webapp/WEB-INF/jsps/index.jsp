@@ -59,12 +59,12 @@
 					max : max.value
 				},
 				success : function(data) {
-					console.log("Success!");
-					var result = document.getElementById("results");
-					result.innerHTML = data.status + ": " + data.description;
-					if (data.hasOwnProperty('testData'))
-						download(data.testdata);
-					}
+							console.log("Success!");
+							var result = document.getElementById("results");
+							result.innerHTML = data.status + ": " + data.description;
+							if (data.hasOwnProperty('testData'))
+								download(data.testdata);
+						  }
 			});
 
 			return false;

@@ -45,6 +45,7 @@ public class ApplicationConstants {
 	public static final String WHITE_SPACE_CHARACTER = "whiteSpaceCharacter";
 	public static final String NEW_LINE_CHARACTER = "newLine";
 	public static final String SPACE_CHARACTER = "space";
+	public static final String IS_SORTED = "sorted";
 	
 	// Constants which denote the sub-categories in our application (Such as:
 	// Numbers, Characters etc)
