@@ -54,14 +54,14 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 	public Map<String, String> processArrayOfNumbersRequest(Map<String, Object> requestParams) {
 		Map<String, String> jsonResponse = new HashMap<>();
 		// TODO validations here
-		String whiteSpace = "\n";
+		String whiteSpace = requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
 		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
 		long minSize = Long.parseLong(requestParams.get(ApplicationConstants.MIN_SIZE).toString());
 		long maxSize = Long.parseLong(requestParams.get(ApplicationConstants.MAX_SIZE).toString());
 		boolean isDistinct = Boolean.parseBoolean(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
 		boolean printSize = Boolean.parseBoolean(requestParams.get(ApplicationConstants.PRINT_SIZE).toString());
 		String sorted = requestParams.get(ApplicationConstants.SORTED).toString();
-		String seperatedBy = " ";
+		String seperatedBy = requestParams.get(ApplicationConstants.SPACE_CHARACTER).toString();
 		String data = testCases + whiteSpace;
 		long size;
 		long minValue = Long.parseLong(requestParams.get(ApplicationConstants.MIN_VALUE).toString());
@@ -83,14 +83,14 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 	public Map<String, String> processArrayOfCharactersRequest(Map<String, Object> requestParams) {
 		Map<String, String> jsonResponse = new HashMap<>();
 		// TODO validations here
-		String whiteSpace = "\n";
+		String whiteSpace = requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
 		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
 		long minSize = Long.parseLong(requestParams.get(ApplicationConstants.MIN_SIZE).toString());
 		long maxSize = Long.parseLong(requestParams.get(ApplicationConstants.MAX_SIZE).toString());
 		boolean isDistinct = Boolean.parseBoolean(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
 		boolean printSize = Boolean.parseBoolean(requestParams.get(ApplicationConstants.PRINT_SIZE).toString());
 		String sorted = requestParams.get(ApplicationConstants.SORTED).toString();
-		String seperatedBy = " ";
+		String seperatedBy = requestParams.get(ApplicationConstants.SPACE_CHARACTER).toString();
 		String data = testCases + whiteSpace;
 		long size;
 		char minCharValue = requestParams.get(ApplicationConstants.MIN_VALUE).toString().charAt(0);
@@ -113,13 +113,13 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 	public Map<String, String> processArrayOfStringsRequest(Map<String, Object> requestParams) {
 		Map<String, String> jsonResponse = new HashMap<>();
 		// TODO validations here
-		String whiteSpace = "\n";
+		String whiteSpace = requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
 		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
-		long minSize = Long.parseLong(requestParams.get(ApplicationConstants.MIN_SIZE).toString());
-		long maxSize = Long.parseLong(requestParams.get(ApplicationConstants.MAX_SIZE).toString());
+		long minSize = Long.parseLong(requestParams.get(ApplicationConstants.MIN_STRING_LENGTH).toString());
+		long maxSize = Long.parseLong(requestParams.get(ApplicationConstants.MAX_STRING_LENGTH).toString());
 		boolean isDistinct = Boolean.parseBoolean(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
 		String sorted = requestParams.get(ApplicationConstants.SORTED).toString();
-		String seperatedBy = " ";
+		String seperatedBy = requestParams.get(ApplicationConstants.SPACE_CHARACTER).toString();
 		String data = testCases + whiteSpace;
 		long size;
 		char minStringCharValue = requestParams.get(ApplicationConstants.MIN_CHAR_VALUE).toString().charAt(0);

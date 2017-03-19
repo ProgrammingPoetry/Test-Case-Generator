@@ -136,10 +136,58 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 
 	@Override
 	public Map<String, String> processStringRequest(Map<String, Object> requestParams) {
+		log.info("Strings subcategory has been selected");
 		
-		return null;
+		// Retrieve all the values from the request parameters
+
+		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
+		
+		/*
+		 * In the request, minValue and maxValue are English letters.
+		 * We parse them into numbers within the range [0,25]
+		 * */
+		int minValue, maxValue;
+		char ch;
+		ch = requestParams.get(ApplicationConstants.MIN_VALUE).toString().charAt(0);
+		if(Character.isUpperCase(ch))
+			minValue = ch - 'A';
+		else
+			minValue = ch - 'a';
+		ch = requestParams.get(ApplicationConstants.MAX_VALUE).toString().charAt(0);
+		if(Character.isUpperCase(ch))
+			maxValue = ch - 'A';
+		else
+			maxValue = ch - 'a';
+		
+		long minLength = Long.parseLong(requestParams.get(ApplicationConstants.MIN_STRING_LENGTH).toString());
+		long maxLength = Long.parseLong(requestParams.get(ApplicationConstants.MAX_STRING_LENGTH).toString());
+		
+		String characterCase = requestParams.get(ApplicationConstants.CHARACTER_CASE).toString();
+		boolean isPalindrome = Boolean.valueOf(requestParams.get(ApplicationConstants.IS_PALINDROME).toString());
+		boolean printLength = Boolean.valueOf(requestParams.get(ApplicationConstants.PRINT_STRING_LENGTH).toString());
+		
+		/*
+		 * In the request, whiteSpaceCharacter is selected by the user.
+		 * We parse them into the appropriate character: '\n' or ' '
+		 * */
+		char whiteSpaceCharacter;
+		String whiteSpace = requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
+		if(whiteSpace.equals(ApplicationConstants.NEW_LINE_CHARACTER))
+			whiteSpaceCharacter = '\n';
+		else if(whiteSpace.equals(ApplicationConstants.SPACE_CHARACTER))
+			whiteSpaceCharacter = ' ';
+		else
+			whiteSpaceCharacter = '\0';
+		
+		/*
+		 * The below function handles all cases which may arise depending upon the user's form input.
+		 * Unlike processNumberRequest() which calls several other routines to accomplish its task,
+		 * processStringRequest() does everything using the below routine itself.
+		 * */
+		return generateRandomStrings(testCases, minValue, maxValue, characterCase,
+				minLength, maxLength, isPalindrome, printLength, whiteSpaceCharacter);
 	}
-	
+
 	// This function is used to generate random numbers given testCases,
 	// minValue and maxValue
 	private Map<String, String> generateRandomNumbers(long testCases, long minValue, long maxValue) {
@@ -420,6 +468,107 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 			}
 			else
 				testData += ch + "\n";
+			
+		}
+		
+		// Return successful response along with testData
+		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
+		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
+		jsonResponse.put(ApplicationConstants.TEST_DATA, testData);
+		return jsonResponse;
+	}
+	
+	// This function generates random Strings with the specified arguments
+	private Map<String, String> generateRandomStrings(long testCases, int minValue, int maxValue, String characterCase,
+			long minLength, long maxLength, boolean isPalindrome, boolean printLength, char whiteSpaceCharacter) {
+		log.info("Random Strings is being executed");
+		Map<String, String> jsonResponse = new HashMap<>();
+		String testData = testCases + "\n";
+		
+		// Start generating random strings up-to the given testCases
+		for(long i = 0;i < testCases;++i) {
+			
+			String randomString = "";
+			long stringLength = generator.getRandomNumber(minLength, maxLength);
+			
+			// If user chooses to print String length we print it (According to the whiteSpaceCharacter specified)
+			if(printLength)
+				testData += "" + stringLength + whiteSpaceCharacter;
+			
+			long j = 0;
+			
+			/*
+			 * If the user chooses to generate palindromic strings, then we generate a randomString of length
+			 * which is half of the given length. Let's call this type of string 'randomString'
+			 * Later on, we reverse this string, let's call it 'reversedString'. We then append those 2 together
+			 * to get a palindromic string.
+			 * When the input length of the string is odd, we need to add another character in between 'randomString'
+			 * and 'reversedString'. For implementation, see the end of this method.
+			 * */
+			long count = stringLength;
+			if(isPalindrome)
+				count /= 2;
+			
+			// The below loop keeps generating random characters 'count' number-of-times
+			while(j < count) {
+				
+				// 'index' is used index over into the arrays present in ApplicationConstants
+				int index = (int)generator.getRandomNumber(minValue, maxValue);
+				/*
+				 * 'ch' is used to hold the character which is extracted from the array present
+				 * in ApplicationConstants
+				 * */
+				char ch;
+				
+				// Determine the characterCase and generate the random character appropriately
+				if(characterCase.equals(ApplicationConstants.LOWER_CASE))	
+					ch = ApplicationConstants.LOWER_CASE_CHARACTER_LITERALS[index];
+				else if(characterCase.equals(ApplicationConstants.UPPER_CASE))
+					ch = ApplicationConstants.UPPER_CASE_CHARACTER_LITERALS[index];
+				else if(characterCase.equals(ApplicationConstants.MIXED_CASE)) {
+					int upperOrLower = (int)generator.getRandomNumber(0, 1);
+					if(upperOrLower == 0)
+						ch = ApplicationConstants.UPPER_CASE_CHARACTER_LITERALS[index];
+					else
+						ch = ApplicationConstants.LOWER_CASE_CHARACTER_LITERALS[index];
+				} else {
+					// If the character case doesn't match lower, upper or mixed, then return an error response
+					jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+					jsonResponse.put(ApplicationConstants.DESCRIPTION, "Invalid character case has been sent"
+							+ " from the request. Please send a valid one.");
+					return jsonResponse;
+				}
+				
+				randomString += ch;
+				j++;
+				
+			}
+			
+			// If the user chooses to generate palindromic strings follow the below procedure
+			if(isPalindrome) {
+				String reversedString = new StringBuilder(randomString).reverse().toString();
+				if(stringLength % 2 != 0) {
+					int index = (int)generator.getRandomNumber(minValue, maxValue);
+					char ch = '\0';
+					if(characterCase.equals(ApplicationConstants.LOWER_CASE))	
+						ch = ApplicationConstants.LOWER_CASE_CHARACTER_LITERALS[index];
+					else if(characterCase.equals(ApplicationConstants.UPPER_CASE))
+						ch = ApplicationConstants.UPPER_CASE_CHARACTER_LITERALS[index];
+					else if(characterCase.equals(ApplicationConstants.MIXED_CASE)) {
+						int upperOrLower = (int)generator.getRandomNumber(0, 1);
+						if(upperOrLower == 0)
+							ch = ApplicationConstants.UPPER_CASE_CHARACTER_LITERALS[index];
+						else
+							ch = ApplicationConstants.LOWER_CASE_CHARACTER_LITERALS[index];
+					}
+					randomString += ch + reversedString;	
+				}
+				else
+					randomString += reversedString;
+			}
+			
+			// After generating a randomString, append it to our testData
+			testData += randomString + "\n";
 			
 		}
 		

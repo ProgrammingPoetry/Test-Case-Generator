@@ -39,7 +39,13 @@ public class ApplicationConstants {
 	public static final String MAX_CHAR_VALUE = "maxCharValue";
 	public static final String PRINT_LENGTH ="printLength";
 	public static final String IS_PALINDROME = "isPalindrome";
-
+	public static final String MIN_STRING_LENGTH = "minStringLength";
+	public static final String MAX_STRING_LENGTH = "maxStringLength";
+	public static final String PRINT_STRING_LENGTH = "printStringLength";
+	public static final String WHITE_SPACE_CHARACTER = "whiteSpaceCharacter";
+	public static final String NEW_LINE_CHARACTER = "newLine";
+	public static final String SPACE_CHARACTER = "space";
+	
 	// Constants which denote the sub-categories in our application (Such as:
 	// Numbers, Characters etc)
 	public static final String NUMBERS = "numbers";
