@@ -99,7 +99,6 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 			data += Arrays.toString(singleTestCase).replaceAll(",", seperatedBy).replace("[", "").replace("]", "")
 					+ whiteSpace;
 		}
-		log.info("RECEIVED DATA : " + data);
 		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
 		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
 		jsonResponse.put(ApplicationConstants.TEST_DATA, data);
