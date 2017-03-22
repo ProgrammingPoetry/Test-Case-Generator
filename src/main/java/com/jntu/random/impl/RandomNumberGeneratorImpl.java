@@ -32,7 +32,6 @@ public class RandomNumberGeneratorImpl implements RandomNumberGeneratorInterface
 	@Override
 	public String[] getArrayOfNumbers(int size, long minValue, long maxValue, boolean isDistinct, boolean isPrime,
 			long multipleOf, String sorted) {
-		// assumed that all the validations are done at service layers
 		String[] output = new String[size];
 		if (multipleOf == ApplicationConstants.NOT_PRESENT && !isPrime && !isDistinct)
 			output = getArrayOfAnyRandomNumbers(size, minValue, maxValue);
