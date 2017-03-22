@@ -46,11 +46,11 @@ public class RandomNumberGeneratorImpl implements RandomNumberGeneratorInterface
 			output = getMultiplesOfNumber(size, minValue, maxValue, multipleOf);
 		else if (multipleOf != ApplicationConstants.NOT_PRESENT && isDistinct)
 			output = getDistinctMultiplesOfNumber(size, minValue, maxValue, multipleOf);
-		if (sorted == ApplicationConstants.SORTING_ASCENDING){
+		if (sorted.equals(ApplicationConstants.SORTING_ASCENDING) ){
 			Arrays.sort(output);
 			log.debug("Ascending Sorting");
 		}
-		else if (sorted == ApplicationConstants.SORTING_DESCENDING) {
+		else if (sorted.equals(ApplicationConstants.SORTING_DESCENDING)) {
 			Arrays.sort(output);
 			Collections.reverse(Arrays.asList(output));
 			log.debug("Descending Sorting");
@@ -128,6 +128,7 @@ public class RandomNumberGeneratorImpl implements RandomNumberGeneratorInterface
 		long x = z - y;
 		if (x <= ApplicationConstants.MAX_ARRAY_SIZE) {
 			output = new ArrayList<String>((int) (x + 1));
+			//TODO list various approaches and pick best one here
 			for (long i = y; i <= z; i++)
 				output.add(i * multipleOf + "");
 			Collections.shuffle(output);

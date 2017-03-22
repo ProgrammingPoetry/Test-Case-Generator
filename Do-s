@@ -1,0 +1,22 @@
+# DO's while writing the code
+
+#while writing controllers
+
+1. Add @Validate(categorytype) on the top of method where you receive (@RequestParam Map<String, Object> requestParams)
+	so that all the params will be validated
+
+
+
+#while writing service layer
+
+
+
+
+
+#while writing Apllicationconstants
+
+
+
+
+
+#while writing aspectsS

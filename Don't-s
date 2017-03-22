@@ -1,0 +1,23 @@
+# Don'ts while writing the code
+
+#while writing controllers
+ 
+ 1.Don't log anything in the controller or add anything to response objects . logs,response status and time taken are added via AOP
+ You can add other things there so it will be same for all the controllers which reduces a lot of code repetetion
+
+
+
+
+#while writing service layer
+
+
+
+
+
+#while writing Apllicationconstants
+
+
+
+
+
+#while writing aspectsS

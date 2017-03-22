@@ -1,0 +1,14 @@
+#TODO LIST priority wise
+
+For version 1.0
+
+1.Complete all the basic functionalities of the web site
+
+2.Do all the validations 
+
+3.Find an alternate way to store all the data into a file instead of jsonresponse so we can send any size of text file
+
+After the stable version is released do a branch cut and add rich functionalities
+For version 2.0
+
+1.Optimizing service layer implementations
