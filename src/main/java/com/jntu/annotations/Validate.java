@@ -1,4 +1,4 @@
-package com.jntu.aop.annotations;
+package com.jntu.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

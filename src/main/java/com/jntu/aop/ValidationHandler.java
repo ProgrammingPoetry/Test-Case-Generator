@@ -5,10 +5,9 @@ import java.util.Map;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-import com.jntu.aop.annotations.Validate;
+import com.jntu.annotations.Validate;
 import com.jntu.constants.ApplicationConstants;
 import com.jntu.enums.MainCategories;
 
