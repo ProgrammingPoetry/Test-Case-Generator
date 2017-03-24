@@ -2,8 +2,9 @@ package com.jntu.logging;
 
 import java.util.Arrays;
 import java.util.Map;
-import java.util.logging.Logger;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -18,7 +19,7 @@ import com.jntu.constants.ApplicationConstants;
 @Component
 public class ControllerLogs {
 
-	private static Logger log;
+	private static Log log;
 
 	@Pointcut("execution(* com.jntu.controller.*.*(..))")
 	private void controllerLogs() {
@@ -26,23 +27,23 @@ public class ControllerLogs {
 
 	@Before("controllerLogs()")
 	public void beforeAdvice(JoinPoint joinPoint) {
-		log = Logger.getLogger(joinPoint.getSignature().getDeclaringTypeName());
+		log = LogFactory.getLog(joinPoint.getSignature().getDeclaringTypeName());
 		log.info("Entered This Controller");
-		log.info(joinPoint.getSignature().getName() + "() method has been invoked");
-		log.info("Arguments are :" + Arrays.toString(joinPoint.getArgs()));
+		log.debug(joinPoint.getSignature().getName() + "() method has been invoked");
+		log.trace("Arguments are :" + Arrays.toString(joinPoint.getArgs()));
 	}
 
 	@SuppressWarnings("unchecked")
 	@AfterReturning(pointcut = "controllerLogs()", returning = "result")
 	public void afterReturningAdvice(JoinPoint joinPoint, Object result) {
-		log = Logger.getLogger(joinPoint.getSignature().getDeclaringTypeName());
+		log = LogFactory.getLog(joinPoint.getSignature().getDeclaringTypeName());
 		log.info("Returning response status : " + ((Map<String, String>) result).get(ApplicationConstants.STATUS));
 	}
 
 	@AfterThrowing(pointcut = "controllerLogs()", throwing = "error")
 	public void afterThrowingAdvice(JoinPoint joinPoint, Throwable error) {
-		log = Logger.getLogger(joinPoint.getSignature().getDeclaringTypeName());
-		log.severe(error.toString());
+		log = LogFactory.getLog(joinPoint.getSignature().getDeclaringTypeName());
+		log.error(error.toString());
 	}
 
 	/*
