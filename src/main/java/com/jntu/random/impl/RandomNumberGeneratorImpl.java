@@ -8,11 +8,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.jntu.constants.ApplicationConstants;
-import com.jntu.controller.ArrayController;
 import com.jntu.random.interfaces.RandomNumberGeneratorInterface;
 import com.jntu.util.Utility;
 
@@ -20,8 +18,6 @@ import com.jntu.util.Utility;
 // It will be replaced by our own version of randomNumberGenerator later
 @Component
 public class RandomNumberGeneratorImpl implements RandomNumberGeneratorInterface {
-	
-	private static Logger log = Logger.getLogger(ArrayController.class.getName());
 
 	@Override
 	public long getRandomNumber(long lower, long upper) {
@@ -47,12 +43,10 @@ public class RandomNumberGeneratorImpl implements RandomNumberGeneratorInterface
 			output = getDistinctMultiplesOfNumber(size, minValue, maxValue, multipleOf);
 		if (sorted.equals(ApplicationConstants.SORTING_ASCENDING) ){
 			Arrays.sort(output);
-			log.debug("Ascending Sorting");
 		}
 		else if (sorted.equals(ApplicationConstants.SORTING_DESCENDING)) {
 			Arrays.sort(output);
 			Collections.reverse(Arrays.asList(output));
-			log.debug("Descending Sorting");
 		}
 		return output;
 	}
