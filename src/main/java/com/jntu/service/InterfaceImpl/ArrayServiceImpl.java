@@ -109,14 +109,15 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 	public Map<String, String> processArrayOfCharactersRequest(Map<String, Object> requestParams) {
 		Map<String, String> jsonResponse = new HashMap<>();
 		// TODO validations here
-		String whiteSpace ="\n";// requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
+		String whiteSpace = "\n";// requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
 		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
 		long minSize = Long.parseLong(requestParams.get(ApplicationConstants.MIN_SIZE).toString());
 		long maxSize = Long.parseLong(requestParams.get(ApplicationConstants.MAX_SIZE).toString());
 		boolean isDistinct = Boolean.parseBoolean(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
 		boolean printSize = Boolean.parseBoolean(requestParams.get(ApplicationConstants.PRINT_SIZE).toString());
 		String sorted = requestParams.get(ApplicationConstants.SORTED).toString();
-		String seperatedBy = " ";requestParams.get(ApplicationConstants.SPACE_CHARACTER).toString();
+		String seperatedBy = " ";
+		requestParams.get(ApplicationConstants.SPACE_CHARACTER).toString();
 		String data = testCases + whiteSpace;
 		long size;
 		char minCharValue = requestParams.get(ApplicationConstants.MIN_VALUE).toString().charAt(0);
@@ -168,9 +169,11 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 			size = randomNumbers.getRandomNumber(minSize, maxSize);
 			if (printLength)
 				data += size + whiteSpace;
-			data += randomStrings.getArrayOfStrings(size, minStringCharValue, maxStringCharValue,
-					specialCharactersAllowedString, stringCase, isPalindrome, printLength, individuallySorted, sorted,
-					seperatedBy) + whiteSpace;
+			String[] singleTestCase = randomStrings.getArrayOfStrings(size, minStringCharValue, maxStringCharValue,
+					minSize, maxSize, specialCharactersAllowedString, stringCase, isPalindrome, printLength,
+					individuallySorted, sorted, seperatedBy);
+			data += Arrays.toString(singleTestCase).replaceAll(",", seperatedBy).replace("[", "").replace("]", "")
+					+ whiteSpace;
 		}
 		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
 		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
