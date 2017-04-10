@@ -37,7 +37,13 @@ public class ControllerLogs {
 	@AfterReturning(pointcut = "controllerLogs()", returning = "result")
 	public void afterReturningAdvice(JoinPoint joinPoint, Object result) {
 		log = LogFactory.getLog(joinPoint.getSignature().getDeclaringTypeName());
-		log.info("Returning response status : " + ((Map<String, String>) result).get(ApplicationConstants.STATUS));
+		
+		// ERROR is in the next line here (Resolve it Rakesh) Right now I'm commenting it out
+		// Reason: If the below line is uncommented, the index.jsp page is not getting displayed when the user requests it using: localhost:5010/index
+		// It is giving ClassCastException from String to Map<String,String>
+		
+		
+		// log.info("Returning response status : " + ((Map<String, String>) result).get(ApplicationConstants.STATUS));
 	}
 
 	@AfterThrowing(pointcut = "controllerLogs()", throwing = "error")
