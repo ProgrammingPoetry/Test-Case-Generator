@@ -31,6 +31,7 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 
 		Map<String, String> jsonResponse = new HashMap<>();
 
+		// Check if category key is present in the request parameters
 		if (!requestParams.containsKey(ApplicationConstants.CATEGORY)) {
 			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
 			jsonResponse.put(ApplicationConstants.DESCRIPTION, "No category selected!");
@@ -39,6 +40,7 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 
 		String category = requestParams.get(ApplicationConstants.CATEGORY).toString();
 
+		// Determine the value of category key and take appropriate action
 		switch (category) {
 		case ApplicationConstants.NUMBERS:
 			return processNumberRequest(requestParams);
@@ -60,12 +62,27 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 
 		Map<String, String> jsonResponse = new HashMap<>();
 
-		// Retrieve all the values from the request parameters
-
+		// Validate the request parameters by checking the mandatory attributes
+		String[] requiredParameterNames = {
+				ApplicationConstants.TEST_CASES,
+				ApplicationConstants.MIN_VALUE,
+				ApplicationConstants.MAX_VALUE
+		};
+		Map<String, String> validateResponse = Utility.validateRequestParameters(requestParams, requiredParameterNames);
+		
+		// If the request parameters do not contain the mandatory attributes, return error response
+		if(validateResponse.get(ApplicationConstants.STATUS).equals(ApplicationConstants.FAILURE_STATUS))
+			return validateResponse;
+		
+		// Retrieve mandatory parameters from the request
+		
 		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
 		long minValue = Long.parseLong(requestParams.get(ApplicationConstants.MIN_VALUE).toString());
 		long maxValue = Long.parseLong(requestParams.get(ApplicationConstants.MAX_VALUE).toString());
 
+		// Parse optional parameters (Here we need to validate them too!)
+		// Start here >>>>>>>>>>>>>>>>>>>>>>>>> ADITYA
+		
 		long multipleOf;
 		String multipleOfParam = requestParams.get(ApplicationConstants.MULTIPLE_OF).toString();
 		if (!multipleOfParam.equals(""))

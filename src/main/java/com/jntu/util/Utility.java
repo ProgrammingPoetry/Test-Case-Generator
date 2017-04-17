@@ -1,7 +1,11 @@
 package com.jntu.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
+
+import com.jntu.constants.ApplicationConstants;
 
 /*
  * This class contains all the utility functions which we will be using in our application
@@ -95,5 +99,25 @@ public class Utility {
 	}
 	
 	// The 3 functions end here
+	
+	// This function checks whether all the required attributes are present in the request parameters or not
+	public static Map<String, String> validateRequestParameters(
+			Map<String, Object> requestParams,
+			String[] requiredParameterNames) {
+		
+		Map<String, String> jsonResponse = new HashMap<>();
+		
+		for(String requiredParameterName : requiredParameterNames) {
+			if(!requestParams.containsKey(requiredParameterName)) {
+				jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+				jsonResponse.put(ApplicationConstants.DESCRIPTION, "Missing required attribute: " + requiredParameterName);
+				return jsonResponse;
+			}
+		}
+		
+		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
+		jsonResponse.put(ApplicationConstants.DESCRIPTION, "All attributes are present");
+		return jsonResponse;
+	}
 
 }
