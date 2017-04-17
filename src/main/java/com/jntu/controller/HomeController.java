@@ -32,5 +32,10 @@ public class HomeController {
 	public String treePageController() {
 		return "trees";
 	}
+	
+	@RequestMapping(value = "/graphs", method = RequestMethod.GET)
+	public String graphPageController() {
+		return "graphs";
+	}
 
 }
