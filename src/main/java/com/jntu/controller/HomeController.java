@@ -22,5 +22,10 @@ public class HomeController {
 	public String arrayPageController() {
 		return "Arrays";
 	}
+	
+	@RequestMapping(value = "/matrix", method = RequestMethod.GET)
+	public String matrixPageController() {
+		return "matrix";
+	}
 
 }

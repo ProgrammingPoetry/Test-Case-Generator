@@ -84,7 +84,8 @@
 			onclick="location.href='/datatypes'">Data Types</button>
 		<button type="button" class="btn btn-primary btn-xl"
 		onclick="location.href='/arrays'">Arrays</button>
-		<button type="button" class="btn btn-primary btn-xl">Matrix</button>
+		<button type="button" class="btn btn-primary btn-xl"
+		onclick="location.href='/matrix'">Matrix</button>
 	</div>
 	<div class="row" id="secondButtonGroup">
 		<button type="button" class="btn btn-primary btn-xl">Trees</button>
