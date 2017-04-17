@@ -27,5 +27,10 @@ public class HomeController {
 	public String matrixPageController() {
 		return "matrix";
 	}
+	
+	@RequestMapping(value = "/trees", method = RequestMethod.GET)
+	public String treePageController() {
+		return "trees";
+	}
 
 }

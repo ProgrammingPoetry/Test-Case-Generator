@@ -88,7 +88,8 @@
 		onclick="location.href='/matrix'">Matrix</button>
 	</div>
 	<div class="row" id="secondButtonGroup">
-		<button type="button" class="btn btn-primary btn-xl">Trees</button>
+		<button type="button" class="btn btn-primary btn-xl"
+		onclick="location.href='/trees'">Trees</button>
 		<button type="button" class="btn btn-primary btn-xl">Graphs</button>
 		<button type="button" class="btn btn-primary btn-xl">Misc</button>
 	</div>
