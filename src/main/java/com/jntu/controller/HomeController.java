@@ -18,5 +18,9 @@ public class HomeController {
 	public String basicDataTypePageController() {
 		return "datatypes";
 	}
+	@RequestMapping(value = "/arrays", method = RequestMethod.GET)
+	public String arrayPageController() {
+		return "Arrays";
+	}
 
 }

@@ -82,7 +82,8 @@
 	<div class="row" id="firstButtonGroup">
 		<button type="button" class="btn btn-primary btn-xl"
 			onclick="location.href='/datatypes'">Data Types</button>
-		<button type="button" class="btn btn-primary btn-xl">Arrays</button>
+		<button type="button" class="btn btn-primary btn-xl"
+		onclick="location.href='/arrays'">Arrays</button>
 		<button type="button" class="btn btn-primary btn-xl">Matrix</button>
 	</div>
 	<div class="row" id="secondButtonGroup">
