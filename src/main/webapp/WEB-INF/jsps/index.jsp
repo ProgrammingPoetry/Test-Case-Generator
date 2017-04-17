@@ -92,7 +92,8 @@
 		onclick="location.href='/trees'">Trees</button>
 		<button type="button" class="btn btn-primary btn-xl"
 		onclick="location.href='/graphs'">Graphs</button>
-		<button type="button" class="btn btn-primary btn-xl">Misc</button>
+		<button type="button" class="btn btn-primary btn-xl"
+		onclick="location.href='/misc'">Misc</button>
 	</div>
 </body>
 

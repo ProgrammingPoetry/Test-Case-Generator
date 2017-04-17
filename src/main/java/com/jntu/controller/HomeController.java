@@ -37,5 +37,10 @@ public class HomeController {
 	public String graphPageController() {
 		return "graphs";
 	}
+	
+	@RequestMapping(value = "/misc", method = RequestMethod.GET)
+	public String miscPageController() {
+		return "misc";
+	}
 
 }
