@@ -1,0 +1,82 @@
+2017-03-24 12:31:16.033 [32m INFO[0;39m 600 --- [main] com.jntu.TestCaseGeneratorApplication    : Starting TestCaseGeneratorApplication on LAP0002136 with PID 600 (C:\Users\rakesh.nukapeyyi\Desktop\Test-Case-Generator\target\classes started by rakesh.nukapeyyi in C:\Users\rakesh.nukapeyyi\Desktop\Test-Case-Generator)
+2017-03-24 12:31:16.098 [32mDEBUG[0;39m 600 --- [main] com.jntu.TestCaseGeneratorApplication    : Running with Spring Boot v1.5.2.RELEASE, Spring v4.3.7.RELEASE
+2017-03-24 12:31:16.100 [32m INFO[0;39m 600 --- [main] com.jntu.TestCaseGeneratorApplication    : No active profile set, falling back to default profiles: default
+2017-03-24 12:31:17.246 [32m INFO[0;39m 600 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@58fdd99: startup date [Fri Mar 24 12:31:16 IST 2017]; root of context hierarchy
+2017-03-24 12:31:30.519 [32m INFO[0;39m 600 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 5010 (http)
+2017-03-24 12:31:30.700 [32m INFO[0;39m 600 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-03-24 12:31:30.718 [32m INFO[0;39m 600 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.11
+2017-03-24 12:31:32.498 [32m INFO[0;39m 600 --- [localhost-startStop-1] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2017-03-24 12:31:32.517 [32m INFO[0;39m 600 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-03-24 12:31:32.518 [32m INFO[0;39m 600 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 15584 ms
+2017-03-24 12:31:33.646 [32m INFO[0;39m 600 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-03-24 12:31:33.656 [32m INFO[0;39m 600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-03-24 12:31:35.302 [32m INFO[0;39m 600 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/arrays],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.String> com.jntu.controller.ArrayController.getArrays(java.util.Map<java.lang.String, java.lang.Object>)
+2017-03-24 12:31:35.305 [32m INFO[0;39m 600 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/datatypeService],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.String> com.jntu.controller.BasicDataTypeController.datatypeController(java.util.Map<java.lang.String, java.lang.Object>)
+2017-03-24 12:31:35.310 [32m INFO[0;39m 600 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/graphs],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.String> com.jntu.controller.GraphController.getGraphs(java.util.Map<java.lang.String, java.lang.Object>)
+2017-03-24 12:31:35.313 [32m INFO[0;39m 600 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index],methods=[GET]}" onto public java.lang.String com.jntu.controller.HomeController.homePageController()
+2017-03-24 12:31:35.318 [32m INFO[0;39m 600 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/datatypes],methods=[GET]}" onto public java.lang.String com.jntu.controller.HomeController.basicDataTypePageController()
+2017-03-24 12:31:35.320 [32m INFO[0;39m 600 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/matrices],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.String> com.jntu.controller.MatrixController.getMatrices(java.util.Map<java.lang.String, java.lang.Object>)
+2017-03-24 12:31:35.333 [32m INFO[0;39m 600 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/Miscellaneous],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.String> com.jntu.controller.MiscController.getMiscellaneous(java.util.Map<java.lang.String, java.lang.Object>)
+2017-03-24 12:31:35.333 [32m INFO[0;39m 600 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/treeService],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.String> com.jntu.controller.TreeController.treeController(java.util.Map<java.lang.String, java.lang.Object>)
+2017-03-24 12:31:35.343 [32m INFO[0;39m 600 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-03-24 12:31:35.345 [32m INFO[0;39m 600 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-03-24 12:31:35.738 [32m INFO[0;39m 600 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler]
+2017-03-24 12:31:35.935 [32m INFO[0;39m 600 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@58fdd99: startup date [Fri Mar 24 12:31:16 IST 2017]; root of context hierarchy
+2017-03-24 12:31:41.688 [32m INFO[0;39m 600 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-03-24 12:31:42.895 [32m INFO[0;39m 600 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 5010 (http)
+2017-03-24 12:31:42.909 [32m INFO[0;39m 600 --- [main] com.jntu.TestCaseGeneratorApplication    : Started TestCaseGeneratorApplication in 29.392 seconds (JVM running for 35.146)
+2017-03-24 12:31:53.474 [32m INFO[0;39m 600 --- [http-nio-5010-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-03-24 12:31:53.474 [32m INFO[0;39m 600 --- [http-nio-5010-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-03-24 12:31:53.595 [32m INFO[0;39m 600 --- [http-nio-5010-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 120 ms
+2017-03-24 12:31:53.835 [32m INFO[0;39m 600 --- [http-nio-5010-exec-1] com.jntu.controller.ArrayController      : Entered This Controller
+2017-03-24 12:31:53.835 [32mDEBUG[0;39m 600 --- [http-nio-5010-exec-1] com.jntu.controller.ArrayController      : getArrays() method has been invoked
+2017-03-24 12:31:53.837 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] com.jntu.controller.ArrayController      : Arguments are :[{testCases=5, minSize=5, maxSize=10, distinct=true, minValue=A, maxValue=z, space=_, category=characters, whiteSpaceCharacter=___, printSize=true, sorted=none, case=none, specialCharactersAllowed=false}]
+2017-03-24 12:31:53.857 [32mDEBUG[0;39m 600 --- [http-nio-5010-exec-1] c.j.s.Interface.ArrayServiceInterface    : getResponse() method has been invoked
+2017-03-24 12:31:53.857 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.s.Interface.ArrayServiceInterface    : Arguments are :[{testCases=5, minSize=5, maxSize=10, distinct=true, minValue=A, maxValue=z, space=_, category=characters, whiteSpaceCharacter=___, printSize=true, sorted=none, case=none, specialCharactersAllowed=false}]
+2017-03-24 12:31:53.860 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : getRandomNumber() method has been invoked
+2017-03-24 12:31:53.860 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Arguments are :[5, 10]
+2017-03-24 12:31:53.862 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Returning from the method getRandomNumber()
+2017-03-24 12:31:53.862 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : getArrayOfCharacters() method has been invoked
+2017-03-24 12:31:53.862 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : Arguments are :[6, a, z, true, none, false, true, none,  ]
+2017-03-24 12:31:53.865 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : getArrayOfDistinctNumbers() method has been invoked
+2017-03-24 12:31:53.865 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Arguments are :[6, 0, 25]
+2017-03-24 12:31:53.865 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Returning from the method getArrayOfDistinctNumbers()
+2017-03-24 12:31:53.867 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : Returning from the method getArrayOfCharacters()
+2017-03-24 12:31:53.870 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : getRandomNumber() method has been invoked
+2017-03-24 12:31:53.870 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Arguments are :[5, 10]
+2017-03-24 12:31:53.870 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Returning from the method getRandomNumber()
+2017-03-24 12:31:53.870 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : getArrayOfCharacters() method has been invoked
+2017-03-24 12:31:53.872 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : Arguments are :[8, a, z, true, none, false, true, none,  ]
+2017-03-24 12:31:53.872 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : getArrayOfDistinctNumbers() method has been invoked
+2017-03-24 12:31:53.872 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Arguments are :[8, 0, 25]
+2017-03-24 12:31:53.872 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Returning from the method getArrayOfDistinctNumbers()
+2017-03-24 12:31:53.872 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : Returning from the method getArrayOfCharacters()
+2017-03-24 12:31:53.875 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : getRandomNumber() method has been invoked
+2017-03-24 12:31:53.875 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Arguments are :[5, 10]
+2017-03-24 12:31:53.875 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Returning from the method getRandomNumber()
+2017-03-24 12:31:53.875 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : getArrayOfCharacters() method has been invoked
+2017-03-24 12:31:53.877 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : Arguments are :[6, a, z, true, none, false, true, none,  ]
+2017-03-24 12:31:53.877 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : getArrayOfDistinctNumbers() method has been invoked
+2017-03-24 12:31:53.877 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Arguments are :[6, 0, 25]
+2017-03-24 12:31:53.877 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Returning from the method getArrayOfDistinctNumbers()
+2017-03-24 12:31:53.877 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : Returning from the method getArrayOfCharacters()
+2017-03-24 12:31:53.877 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : getRandomNumber() method has been invoked
+2017-03-24 12:31:53.880 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Arguments are :[5, 10]
+2017-03-24 12:31:53.880 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Returning from the method getRandomNumber()
+2017-03-24 12:31:53.880 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : getArrayOfCharacters() method has been invoked
+2017-03-24 12:31:53.880 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : Arguments are :[8, a, z, true, none, false, true, none,  ]
+2017-03-24 12:31:53.880 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : getArrayOfDistinctNumbers() method has been invoked
+2017-03-24 12:31:53.880 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Arguments are :[8, 0, 25]
+2017-03-24 12:31:53.882 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Returning from the method getArrayOfDistinctNumbers()
+2017-03-24 12:31:53.882 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : Returning from the method getArrayOfCharacters()
+2017-03-24 12:31:53.882 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : getRandomNumber() method has been invoked
+2017-03-24 12:31:53.882 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Arguments are :[5, 10]
+2017-03-24 12:31:53.882 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Returning from the method getRandomNumber()
+2017-03-24 12:31:53.882 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : getArrayOfCharacters() method has been invoked
+2017-03-24 12:31:53.882 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : Arguments are :[7, a, z, true, none, false, true, none,  ]
+2017-03-24 12:31:53.885 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : getArrayOfDistinctNumbers() method has been invoked
+2017-03-24 12:31:53.885 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Arguments are :[7, 0, 25]
+2017-03-24 12:31:53.885 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] c.j.r.i.RandomNumberGeneratorInterface   : Returning from the method getArrayOfDistinctNumbers()
+2017-03-24 12:31:53.885 [32mTRACE[0;39m 600 --- [http-nio-5010-exec-1] .j.r.i.RandomCharacterGeneratorInterface : Returning from the method getArrayOfCharacters()
+2017-03-24 12:31:53.885 [32mDEBUG[0;39m 600 --- [http-nio-5010-exec-1] c.j.s.Interface.ArrayServiceInterface    : Returning from the method getResponse()
+2017-03-24 12:31:53.887 [32m INFO[0;39m 600 --- [http-nio-5010-exec-1] com.jntu.controller.ArrayController      : Returning response status : Success

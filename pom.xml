@@ -33,7 +33,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<!-- <scope>test</scope>-->
+			<!-- <scope>test</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 
 		<dependency>
@@ -47,7 +52,6 @@
 			<artifactId>jstl</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
 	</dependencies>
 
 	<build>

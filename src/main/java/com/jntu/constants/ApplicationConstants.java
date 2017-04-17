@@ -45,6 +45,9 @@ public class ApplicationConstants {
 	public static final String WHITE_SPACE_CHARACTER = "whiteSpaceCharacter";
 	public static final String NEW_LINE_CHARACTER = "newLine";
 	public static final String SPACE_CHARACTER = "space";
+	public static final String SORTING_ASCENDING = "sortingAscending";
+	public static final String SORTING_DESCENDING = "sortingDescending";
+	public static final String SORTING_NONE = "sortingNone";
 	public static final String IS_SORTED = "sorted";
 	public static final String NODES = "nodes";
 	public static final String IS_WEIGHTED = "weighted";
@@ -83,4 +86,7 @@ public class ApplicationConstants {
 			'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 	public static final char[] UPPER_CASE_CHARACTER_LITERALS = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 			'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+	
+	public static final  int MAX_ARRAY_SIZE = 1000000;
+	
 }

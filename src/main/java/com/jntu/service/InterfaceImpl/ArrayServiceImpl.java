@@ -1,12 +1,15 @@
 package com.jntu.service.InterfaceImpl;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jntu.constants.ApplicationConstants;
+import com.jntu.controller.ArrayController;
 import com.jntu.random.interfaces.RandomCharacterGeneratorInterface;
 import com.jntu.random.interfaces.RandomNumberGeneratorInterface;
 import com.jntu.random.interfaces.RandomStringGeneratorInterface;
@@ -23,6 +26,8 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 
 	@Autowired
 	RandomStringGeneratorInterface randomStrings;
+
+	private static Logger log = Logger.getLogger(ArrayController.class.getName());
 
 	@Override
 	public Map<String, String> getResponse(Map<String, Object> requestParams) {
@@ -53,25 +58,46 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 	@Override
 	public Map<String, String> processArrayOfNumbersRequest(Map<String, Object> requestParams) {
 		Map<String, String> jsonResponse = new HashMap<>();
-		// TODO validations here
-		String whiteSpace = requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
+		// TODO validations
+
+		// REQUIRED KEYS
+		String[] keys = { ApplicationConstants.WHITE_SPACE_CHARACTER, ApplicationConstants.TEST_CASES,
+				ApplicationConstants.MIN_SIZE, ApplicationConstants.MAX_SIZE, ApplicationConstants.IS_DISTINCT,
+				ApplicationConstants.PRINT_SIZE, ApplicationConstants.SORTED, ApplicationConstants.SPACE_CHARACTER,
+				ApplicationConstants.MIN_VALUE, ApplicationConstants.MAX_VALUE, ApplicationConstants.IS_PRIME,
+				ApplicationConstants.MULTIPLE_OF };
+		// FIXING NULL POINTER EXCEPTIONS
+		for (String key : keys) {
+			if (!requestParams.containsKey(key)) {
+				jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+				jsonResponse.put(ApplicationConstants.DESCRIPTION,
+						key + " is not set which would usually raise NULLPOINTEREXCEPTION");
+			}
+		}
+		String whiteSpace = "\n";// requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
 		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
 		long minSize = Long.parseLong(requestParams.get(ApplicationConstants.MIN_SIZE).toString());
 		long maxSize = Long.parseLong(requestParams.get(ApplicationConstants.MAX_SIZE).toString());
 		boolean isDistinct = Boolean.parseBoolean(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
 		boolean printSize = Boolean.parseBoolean(requestParams.get(ApplicationConstants.PRINT_SIZE).toString());
 		String sorted = requestParams.get(ApplicationConstants.SORTED).toString();
-		String seperatedBy = requestParams.get(ApplicationConstants.SPACE_CHARACTER).toString();
+		String seperatedBy = " ";// requestParams.get(ApplicationConstants.SPACE_CHARACTER).toString();
 		String data = testCases + whiteSpace;
 		long size;
 		long minValue = Long.parseLong(requestParams.get(ApplicationConstants.MIN_VALUE).toString());
 		long maxValue = Long.parseLong(requestParams.get(ApplicationConstants.MAX_VALUE).toString());
 		boolean isPrime = Boolean.parseBoolean(requestParams.get(ApplicationConstants.IS_PRIME).toString());
-		long multipleOf = Long.parseLong(requestParams.get(ApplicationConstants.MULTIPLE_OF).toString());
+		long multipleOf = 1;// Long.parseLong(requestParams.get(ApplicationConstants.MULTIPLE_OF).toString());
 		for (long i = 0; i < testCases; i++) {
 			size = randomNumbers.getRandomNumber(minSize, maxSize);
-			data += randomNumbers.getArrayOfNumbers(size, minValue, maxValue, isDistinct, isPrime, multipleOf,
-					printSize, sorted, seperatedBy).toString() + whiteSpace;
+			// TODO size validation
+			if (printSize)
+				data += size + whiteSpace;
+			String[] singleTestCase = randomNumbers.getArrayOfNumbers((int) size, minValue, maxValue, isDistinct,
+					isPrime, multipleOf, sorted);
+			log.debug("TESTCASE : " + (i + 1) + " : " + Arrays.toString(singleTestCase));
+			data += Arrays.toString(singleTestCase).replaceAll(",", seperatedBy).replace("[", "").replace("]", "")
+					+ whiteSpace;
 		}
 		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
 		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
@@ -83,14 +109,15 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 	public Map<String, String> processArrayOfCharactersRequest(Map<String, Object> requestParams) {
 		Map<String, String> jsonResponse = new HashMap<>();
 		// TODO validations here
-		String whiteSpace = requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
+		String whiteSpace = "\n";// requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
 		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
 		long minSize = Long.parseLong(requestParams.get(ApplicationConstants.MIN_SIZE).toString());
 		long maxSize = Long.parseLong(requestParams.get(ApplicationConstants.MAX_SIZE).toString());
 		boolean isDistinct = Boolean.parseBoolean(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
 		boolean printSize = Boolean.parseBoolean(requestParams.get(ApplicationConstants.PRINT_SIZE).toString());
 		String sorted = requestParams.get(ApplicationConstants.SORTED).toString();
-		String seperatedBy = requestParams.get(ApplicationConstants.SPACE_CHARACTER).toString();
+		String seperatedBy = " ";
+		requestParams.get(ApplicationConstants.SPACE_CHARACTER).toString();
 		String data = testCases + whiteSpace;
 		long size;
 		char minCharValue = requestParams.get(ApplicationConstants.MIN_VALUE).toString().charAt(0);
@@ -100,8 +127,16 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 		String charCase = requestParams.get(ApplicationConstants.CHARACTER_CASE).toString();
 		for (long i = 0; i < testCases; i++) {
 			size = randomNumbers.getRandomNumber(minSize, maxSize);
-			data += randomCharacters.getArrayOfCharacters(size, minCharValue, maxCharValue, isDistinct, charCase,
-					specialCharactersAllowed, printSize, sorted, seperatedBy).toString() + whiteSpace;
+			if (printSize)
+				data += size + whiteSpace;
+			if (minCharValue >= 'A' && minCharValue <= 'Z')
+				minCharValue = (char) ('a' + minCharValue - 'A');
+			if (maxCharValue >= 'A' && maxCharValue <= 'Z')
+				maxCharValue = (char) ('a' + maxCharValue - 'A');
+			String[] singleTestCase = randomCharacters.getArrayOfCharacters(size, minCharValue, maxCharValue,
+					isDistinct, charCase, specialCharactersAllowed, printSize, sorted, seperatedBy);
+			data += Arrays.toString(singleTestCase).replaceAll(",", seperatedBy).replace("[", "").replace("]", "")
+					+ whiteSpace;
 		}
 		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
 		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
@@ -132,9 +167,13 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 		String individuallySorted = requestParams.get(ApplicationConstants.INDIVIDUALLY_SORTED).toString();
 		for (long i = 0; i < testCases; i++) {
 			size = randomNumbers.getRandomNumber(minSize, maxSize);
-			data += randomStrings.getArrayOfStrings(size, minStringCharValue, maxStringCharValue,
-					specialCharactersAllowedString, stringCase, isPalindrome, printLength, individuallySorted, sorted,
-					seperatedBy) + whiteSpace;
+			if (printLength)
+				data += size + whiteSpace;
+			String[] singleTestCase = randomStrings.getArrayOfStrings(size, minStringCharValue, maxStringCharValue,
+					minSize, maxSize, specialCharactersAllowedString, stringCase, isPalindrome, printLength,
+					individuallySorted, sorted, seperatedBy);
+			data += Arrays.toString(singleTestCase).replaceAll(",", seperatedBy).replace("[", "").replace("]", "")
+					+ whiteSpace;
 		}
 		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
 		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);

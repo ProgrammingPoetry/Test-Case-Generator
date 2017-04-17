@@ -8,7 +8,18 @@ public interface RandomNumberGeneratorInterface {
 	// [lower,upper]
 	long getRandomNumber(long lower, long upper);
 
-	long[] getArrayOfNumbers(long size, long minValue, long maxValue, boolean isDistinct, boolean isPrime,
-			long multipleOf, boolean printSize, String sorted, String seperatedBy);
+	String[] getArrayOfNumbers(int size, long minValue, long maxValue, boolean isDistinct, boolean isPrime,
+			long multipleOf, String sorted);
 
+	String[] getArrayOfPrimes(int size, long minValue, long maxValue);
+
+	String[] getArrayOfDistinctPrimeNumbers(int size, long minValue, long maxValue);
+
+	String[] getArrayOfDistinctNumbers(int size, long minValue, long maxValue);
+
+	String[] getMultiplesOfNumber(int size, long minValue, long maxValue, long multipleOf);
+
+	String[] getDistinctMultiplesOfNumber(int size, long minValue, long maxValue, long multipleOf);
+
+	String[] getArrayOfAnyRandomNumbers(int size, long minValue, long maxValue);
 }
