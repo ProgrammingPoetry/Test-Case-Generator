@@ -26,6 +26,10 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 	// Logger is used to generate logs in the console for debugging purposes
 	private static Logger log = Logger.getLogger(BasicDataTypeServiceImpl.class.getName());
 
+	
+
+	
+	// The main function which will be called by controller and which this class is responsible for performing
 	@Override
 	public Map<String, String> getResponse(Map<String, Object> requestParams) {
 
@@ -54,7 +58,13 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		}
 		return jsonResponse;
 	}
+	
+	
 
+	
+	// All the below functions process requests based on sub-category
+	
+	// For numbers sub-category
 	@Override
 	public Map<String, String> processNumberRequest(Map<String, Object> requestParams) {
 
@@ -76,23 +86,45 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		
 		// Retrieve mandatory parameters from the request
 		
-		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
-		long minValue = Long.parseLong(requestParams.get(ApplicationConstants.MIN_VALUE).toString());
-		long maxValue = Long.parseLong(requestParams.get(ApplicationConstants.MAX_VALUE).toString());
+		long testCases, minValue, maxValue;
+		try {
+		
+			testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
+			if(testCases < 0)
+				throw new NumberFormatException();
+			minValue = Long.parseLong(requestParams.get(ApplicationConstants.MIN_VALUE).toString());
+			maxValue = Long.parseLong(requestParams.get(ApplicationConstants.MAX_VALUE).toString());
+		
+		} catch(NumberFormatException e) {
+			
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Couldn't parse testcases/minValue/maxValue");
+			return jsonResponse;
+			
+		}
+		
+		// Check whether minValue <= maxValue (or else return error response)
+		Map<String, String> errorResponse = Utility.minValueLessThanMaxValue(minValue,maxValue);
+		if(errorResponse.get(ApplicationConstants.STATUS).equals(ApplicationConstants.FAILURE_STATUS))
+			return errorResponse;
 
 		// Parse optional parameters (Here we need to validate them too!)
-		// Start here >>>>>>>>>>>>>>>>>>>>>>>>> ADITYA
 		
-		long multipleOf;
-		String multipleOfParam = requestParams.get(ApplicationConstants.MULTIPLE_OF).toString();
-		if (!multipleOfParam.equals(""))
-			multipleOf = Long.parseLong(multipleOfParam);
-		else
-			multipleOf = ApplicationConstants.NOT_PRESENT;
+		long multipleOf = Utility.parseMultipleOfParam(requestParams);
+		if(multipleOf != ApplicationConstants.NOT_PRESENT && multipleOf <= 0) {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "MultipleOf must be strictly greater than 0");
+			return jsonResponse;
+		}
+		boolean isPrime = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_PRIME, requestParams);
+		boolean isDistinct = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_DISTINCT, requestParams);
 
-		boolean isPrime = Boolean.valueOf(requestParams.get(ApplicationConstants.IS_PRIME).toString());
-		boolean isDistinct = Boolean.valueOf(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
-
+		if(multipleOf != ApplicationConstants.NOT_PRESENT && isPrime) {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "MultipleOf parameter and isPrime parameter cannot be both set at the same time");
+			return jsonResponse;
+		}
+		
 		/*
 		 * There 'numbers' sub-category can be further divided into 6 cases
 		 * depending upon the user's form input.
@@ -116,13 +148,40 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		return jsonResponse;
 	}
 
+	// For character sub-category
 	@Override
 	public Map<String, String> processCharacterRequest(Map<String, Object> requestParams) {
+		
 		log.info("Characters subcategory has been selected");
 		
-		// Retrieve all the values from the request parameters
+		Map<String, String> jsonResponse = new HashMap<>();
 
-		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
+		// Validate the request parameters by checking the mandatory attributes
+		String[] requiredParameterNames = {
+			ApplicationConstants.TEST_CASES,
+			ApplicationConstants.MIN_VALUE,
+			ApplicationConstants.MAX_VALUE,
+			ApplicationConstants.CHARACTER_CASE
+		};
+		
+		Map<String, String> validateResponse = Utility.validateRequestParameters(requestParams, requiredParameterNames);
+				
+		// If the request parameters do not contain the mandatory attributes, return error response
+		if(validateResponse.get(ApplicationConstants.STATUS).equals(ApplicationConstants.FAILURE_STATUS))
+			return validateResponse;
+		
+				
+		// Retrieve mandatory parameters from the request
+		long testCases;
+		try {
+			testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
+			if(testCases < 0)
+				throw new NumberFormatException();
+		} catch(NumberFormatException e) {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Couldn't parse testcases");
+			return jsonResponse;
+		}
 		
 		/*
 		 * In the request, minValue and maxValue are English letters.
@@ -141,8 +200,15 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		else
 			maxValue = ch - 'a';
 		
+		// Check whether minValue <= maxValue (or else return error response)
+		Map<String, String> errorResponse = Utility.minValueLessThanMaxValue(minValue,maxValue);
+		if(errorResponse.get(ApplicationConstants.STATUS).equals(ApplicationConstants.FAILURE_STATUS))
+			return errorResponse;
+		
 		String characterCase = requestParams.get(ApplicationConstants.CHARACTER_CASE).toString();
-		boolean isDistinct = Boolean.valueOf(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
+		
+		// Retrieve optional parameters
+		boolean isDistinct = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_DISTINCT, requestParams);
 
 		/*
 		 * The below function handles all cases which may arise depending upon the user's form input.
@@ -152,13 +218,46 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		return generateRandomCharacters(testCases, minValue, maxValue, characterCase, isDistinct);
 	}
 
+	// For string sub-category
 	@Override
 	public Map<String, String> processStringRequest(Map<String, Object> requestParams) {
+		
 		log.info("Strings subcategory has been selected");
 		
-		// Retrieve all the values from the request parameters
+		Map<String, String> jsonResponse = new HashMap<>();
+		
+		// Validate the request parameters by checking the mandatory attributes
+		String[] requiredParameterNames = {
+			ApplicationConstants.TEST_CASES,
+			ApplicationConstants.MIN_VALUE,
+			ApplicationConstants.MAX_VALUE,
+			ApplicationConstants.MIN_STRING_LENGTH,
+			ApplicationConstants.MAX_STRING_LENGTH,
+			ApplicationConstants.CHARACTER_CASE,
+			ApplicationConstants.WHITE_SPACE_CHARACTER
+		};
+				
+		Map<String, String> validateResponse = Utility.validateRequestParameters(requestParams, requiredParameterNames);
+						
+		// If the request parameters do not contain the mandatory attributes, return error response
+		if(validateResponse.get(ApplicationConstants.STATUS).equals(ApplicationConstants.FAILURE_STATUS))
+			return validateResponse;
 
-		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
+		// Retrieve mandatory parameters from the request
+		long testCases, minLength, maxLength;
+		try {
+			testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
+			if(testCases < 0)
+				throw new NumberFormatException();
+			minLength = Long.parseLong(requestParams.get(ApplicationConstants.MIN_STRING_LENGTH).toString());
+			maxLength = Long.parseLong(requestParams.get(ApplicationConstants.MAX_STRING_LENGTH).toString());
+		} catch(NumberFormatException e) {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Couldn't parse testcases/minStringLength/maxStringLength");
+			return jsonResponse;
+		}
+		
+		String characterCase = requestParams.get(ApplicationConstants.CHARACTER_CASE).toString();
 		
 		/*
 		 * In the request, minValue and maxValue are English letters.
@@ -177,13 +276,14 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		else
 			maxValue = ch - 'a';
 		
-		long minLength = Long.parseLong(requestParams.get(ApplicationConstants.MIN_STRING_LENGTH).toString());
-		long maxLength = Long.parseLong(requestParams.get(ApplicationConstants.MAX_STRING_LENGTH).toString());
+		// Check whether minValue <= maxValue (or else return error response)
+		Map<String, String> errorResponse = Utility.minValueLessThanMaxValue(minValue,maxValue);
+		if(errorResponse.get(ApplicationConstants.STATUS).equals(ApplicationConstants.FAILURE_STATUS))
+			return errorResponse;
 		
-		String characterCase = requestParams.get(ApplicationConstants.CHARACTER_CASE).toString();
-		boolean isPalindrome = Boolean.valueOf(requestParams.get(ApplicationConstants.IS_PALINDROME).toString());
-		boolean printLength = Boolean.valueOf(requestParams.get(ApplicationConstants.PRINT_STRING_LENGTH).toString());
-		boolean isSorted = Boolean.valueOf(requestParams.get(ApplicationConstants.SORTED).toString());
+		boolean isPalindrome = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_PALINDROME, requestParams);
+		boolean printLength = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.PRINT_LENGTH, requestParams);
+		boolean isSorted = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.SORTED, requestParams);
 		
 		/*
 		 * In the request, whiteSpaceCharacter is selected by the user.
@@ -207,6 +307,12 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 				minLength, maxLength, isPalindrome, printLength, whiteSpaceCharacter, isSorted);
 	}
 
+	
+	
+	
+	
+	// The below functions are utility functions specific to numbers sub-category
+	
 	// This function is used to generate random numbers given testCases,
 	// minValue and maxValue
 	private Map<String, String> generateRandomNumbers(long testCases, long minValue, long maxValue) {
@@ -267,14 +373,27 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 	private Map<String, String> generateMultipleOfNumbers(long testCases, long minValue, long maxValue,
 			long multipleOf) {
 		log.info("Multiple Of Numbers is being executed");
-		long newMinValue = minValue / multipleOf;
-		long newMaxValue = maxValue / multipleOf;
+		
+		Map<String, String> jsonResponse = new HashMap<>();
+		
+		// Check if multiples exist within the provided range
+		if(!Utility.multiplesExist(minValue,maxValue,multipleOf)) {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "No multiples of " + multipleOf + " exist within the range: [" + minValue + "," + maxValue + "]");
+			return jsonResponse;
+		}
+		
 		String testData = testCases + "\n";
 		for (long i = 0; i < testCases; ++i) {
-			testData += Long.valueOf(generator.getRandomNumber(newMinValue, newMaxValue) * multipleOf).toString()
+			long number;
+			while(true) {
+				number = generator.getRandomNumber(minValue, maxValue);
+				if(number % multipleOf == 0)
+					break;
+			}
+			testData += Long.valueOf(number).toString()
 					+ "\n";
 		}
-		Map<String, String> jsonResponse = new HashMap<>();
 		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
 		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
 		jsonResponse.put(ApplicationConstants.TEST_DATA, testData);
@@ -286,19 +405,20 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 	private Map<String, String> generateDistinctMultipleOfNumbers(long testCases, long minValue, long maxValue,
 			long multipleOf) {
 		log.info("Distinct Multiple Of Numbers is being executed");
-		long newMinValue = minValue / multipleOf;
-		long newMaxValue = maxValue / multipleOf;
-
-		/*
-		 * If the number of testCases required are more than the range of
-		 * [minValue,maxValue], then we cannot generate DISTINCT numbers which
-		 * are multiple of a given number. Hence we need to return failure
-		 * status with appropriate message
-		 */
+		
 		Map<String, String> jsonResponse = new HashMap<>();
-		if (testCases > newMaxValue - newMinValue + 1) {
+		
+		// Check if multiples exist within the provided range
+		if(!Utility.multiplesExist(minValue,maxValue,multipleOf)) {
 			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
-			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Distinct numbers which are multiple of" + multipleOf
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "No multiples of " + multipleOf + " exist within the range: [" + minValue + "," + maxValue + "]");
+			return jsonResponse;
+		}
+		
+		// Count the number of distinct multiples possible
+		if(Utility.getMultiplesCount(minValue,maxValue,multipleOf) < testCases) {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Distinct numbers which are multiple of " + multipleOf
 					+ " cannot be generated within the given range and testcases");
 			return jsonResponse;
 		}
@@ -311,7 +431,12 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		Set<Long> set = new HashSet<Long>();
 		String testData = testCases + "\n";
 		for (long i = 0; i < testCases; ++i) {
-			long number = generator.getRandomNumber(newMinValue, newMaxValue) * multipleOf;
+			long number;
+			while(true) {
+				number = generator.getRandomNumber(minValue, maxValue);
+				if(number % multipleOf == 0)
+					break;
+			}
 			if (set.contains(number)) {
 				i--;
 				continue;
@@ -404,6 +529,12 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		return jsonResponse;
 	}
 
+	
+	
+	
+	// The below utility functions are specific to characters sub-category
+	
+	
 	// This function generates random characters, given testCases, range, characterCase and isDistinct
 	private Map<String, String> generateRandomCharacters(long testCases, int minValue, int maxValue,
 			String characterCase, boolean isDistinct) {
@@ -495,6 +626,10 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		jsonResponse.put(ApplicationConstants.TEST_DATA, testData);
 		return jsonResponse;
 	}
+	
+	
+	
+	// The below utility functions are specific to Strings sub-category
 	
 	// This function generates random Strings with the specified arguments
 	private Map<String, String> generateRandomStrings(long testCases, int minValue, int maxValue, String characterCase,

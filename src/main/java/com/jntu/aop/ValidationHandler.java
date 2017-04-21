@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import com.jntu.annotations.Validate;
 import com.jntu.constants.ApplicationConstants;
-import com.jntu.enums.MainCategories;
 
 @Aspect
 @Component

@@ -1,21 +1,17 @@
 package com.jntu.logging;
 
 import java.util.Arrays;
-import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-import com.jntu.constants.ApplicationConstants;
-
-@Aspect
+// @Aspect
 @Component
 public class ControllerLogs {
 
