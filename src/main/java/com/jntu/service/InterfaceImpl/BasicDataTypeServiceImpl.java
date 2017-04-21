@@ -270,10 +270,10 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		long testCases, minLength, maxLength;
 		try {
 			testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
-			if(testCases < 0)
-				throw new NumberFormatException();
 			minLength = Long.parseLong(requestParams.get(ApplicationConstants.MIN_STRING_LENGTH).toString());
 			maxLength = Long.parseLong(requestParams.get(ApplicationConstants.MAX_STRING_LENGTH).toString());
+			if(testCases < 0 || minLength <= 0 || maxLength <= 0 || minLength > maxLength)
+				throw new NumberFormatException();
 		} catch(NumberFormatException e) {
 			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
 			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Couldn't parse testcases/minStringLength/maxStringLength");
@@ -288,16 +288,39 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		 * */
 		int minValue, maxValue;
 		char ch;
-		ch = requestParams.get(ApplicationConstants.MIN_VALUE).toString().charAt(0);
+		String minValueParam = requestParams.get(ApplicationConstants.MIN_VALUE).toString();
+		if(minValueParam.equals("")) {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Min value parameter cannot be empty");
+			return jsonResponse;
+		}
+		ch = minValueParam.charAt(0);
 		if(Character.isUpperCase(ch))
 			minValue = ch - 'A';
-		else
+		else if(Character.isLowerCase(ch))
 			minValue = ch - 'a';
-		ch = requestParams.get(ApplicationConstants.MAX_VALUE).toString().charAt(0);
+		else {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Min value must be a character within the range [a-z] or [A-Z]");
+			return jsonResponse;
+		}
+		
+		String maxValueParam = requestParams.get(ApplicationConstants.MAX_VALUE).toString();
+		if(maxValueParam.equals("")) {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Max value parameter cannot be empty");
+			return jsonResponse;
+		}
+		ch = maxValueParam.charAt(0);
 		if(Character.isUpperCase(ch))
 			maxValue = ch - 'A';
-		else
+		else if(Character.isLowerCase(ch))
 			maxValue = ch - 'a';
+		else {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Max value must be a character within the range [a-z] or [A-Z]");
+			return jsonResponse;
+		}
 		
 		// Check whether minValue <= maxValue (or else return error response)
 		Map<String, String> errorResponse = Utility.minValueLessThanMaxValue(minValue,maxValue);
@@ -307,6 +330,12 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		boolean isPalindrome = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_PALINDROME, requestParams);
 		boolean printLength = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.PRINT_LENGTH, requestParams);
 		boolean isSorted = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.SORTED, requestParams);
+		
+		if(isPalindrome && isSorted) {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "isSorted and isPalindrome, both cannot be true at the same time");
+			return jsonResponse;
+		}
 		
 		/*
 		 * In the request, whiteSpaceCharacter is selected by the user.
