@@ -121,19 +121,54 @@ public class TreeServiceImpl implements TreeServiceInterface {
 		
 		log.info("Full binary tree subcategory has been selected");
 		
-		// Retrieve all the values from the request parameters
-
-		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
-		int numberOfLevels = Integer.parseInt(requestParams.get(ApplicationConstants.NUMBER_OF_LEVELS).toString());
-		int indexedFrom = Integer.parseInt(requestParams.get(ApplicationConstants.INDEXED_FROM).toString());
+		Map<String, String> jsonResponse = new HashMap<>();
 		
-		boolean isWeighted = Boolean.valueOf(requestParams.get(ApplicationConstants.IS_WEIGHTED).toString());
+		// Validate the request parameters by checking the mandatory attributes
+		String[] requiredParameterNames = {
+			ApplicationConstants.TEST_CASES,
+			ApplicationConstants.NUMBER_OF_LEVELS,
+			ApplicationConstants.INDEXED_FROM,
+			ApplicationConstants.IS_WEIGHTED,
+			ApplicationConstants.MIN_WEIGHT,
+			ApplicationConstants.MAX_WEIGHT,
+			ApplicationConstants.IS_DISTINCT
+		};
+		Map<String, String> validateResponse = Utility.validateRequestParameters(requestParams, requiredParameterNames);
+				
+		// If the request parameters do not contain the mandatory attributes, return error response
+		if(validateResponse.get(ApplicationConstants.STATUS).equals(ApplicationConstants.FAILURE_STATUS))
+			return validateResponse;
+				
+		// Retrieve mandatory parameters from the request
+
+		long testCases;
 		long minWeight = ApplicationConstants.NOT_PRESENT, maxWeight = ApplicationConstants.NOT_PRESENT;
+		int numberOfLevels, indexedFrom;
 		boolean isDistinct = false;
-		if(isWeighted) {	
-			minWeight = Long.parseLong(requestParams.get(ApplicationConstants.MIN_WEIGHT).toString());
-			maxWeight = Long.parseLong(requestParams.get(ApplicationConstants.MAX_WEIGHT).toString());
-			isDistinct = Boolean.valueOf(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
+		
+		boolean isWeighted = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_WEIGHTED, requestParams);
+		
+		try {
+			
+			testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
+			numberOfLevels = Integer.parseInt(requestParams.get(ApplicationConstants.NUMBER_OF_LEVELS).toString());
+			indexedFrom = Integer.parseInt(requestParams.get(ApplicationConstants.INDEXED_FROM).toString());
+			if(testCases < 0 || numberOfLevels <= 0 || (indexedFrom != 0 && indexedFrom != 1))
+				throw new NumberFormatException();
+			if(isWeighted) {	
+				minWeight = Long.parseLong(requestParams.get(ApplicationConstants.MIN_WEIGHT).toString());
+				maxWeight = Long.parseLong(requestParams.get(ApplicationConstants.MAX_WEIGHT).toString());
+				if(minWeight > maxWeight)
+					throw new NumberFormatException();
+				isDistinct = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_DISTINCT, requestParams);
+			}
+		
+		} catch(NumberFormatException e) {
+			
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Couldn't parse testcases/numberOfLevels/indexedFrom/minWeight/maxWeight/isDistinct");
+			return jsonResponse;
+			
 		}
 
 		return generateRandomFullBinaryTree(testCases, numberOfLevels, indexedFrom, isWeighted, minWeight, maxWeight, isDistinct);
