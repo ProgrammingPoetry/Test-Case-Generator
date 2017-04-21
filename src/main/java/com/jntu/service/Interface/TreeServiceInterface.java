@@ -32,9 +32,4 @@ public interface TreeServiceInterface {
 	 */
 	Map<String, String> processBinarySearchTreeRequest(Map<String, Object> requestParams);
 
-	/*
-	 * This method is used to process balanced-binary-search-tree sub-category
-	 */
-	Map<String, String> processBalancedBinarySearchTreeRequest(Map<String, Object> requestParams);
-
 }

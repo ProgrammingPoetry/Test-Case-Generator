@@ -49,8 +49,6 @@ public class TreeServiceImpl implements TreeServiceInterface {
 			return processSkewTreeRequest(requestParams);
 		case ApplicationConstants.BINARY_SEARCH_TREE:
 			return processBinarySearchTreeRequest(requestParams);
-		case ApplicationConstants.BALANCED_BINARY_SEARCH_TREE:
-			return processBalancedBinarySearchTreeRequest(requestParams);
 		default:
 			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
 			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Category: " + category + " is INVALID");
@@ -237,15 +235,59 @@ public class TreeServiceImpl implements TreeServiceInterface {
 
 		log.info("Binary search tree subcategory has been selected");
 		
-		return null;
-	}
-
-	@Override
-	public Map<String, String> processBalancedBinarySearchTreeRequest(Map<String, Object> requestParams) {
-
-		log.info("Balanced binary search tree subcategory has been selected");
+		Map<String, String> jsonResponse = new HashMap<>();
 		
-		return null;
+		// Validate the request parameters by checking the mandatory attributes
+		String[] requiredParameterNames = {
+			ApplicationConstants.TEST_CASES,
+			ApplicationConstants.NODES,
+			ApplicationConstants.INDEXED_FROM,
+			ApplicationConstants.IS_WEIGHTED,
+			ApplicationConstants.MIN_WEIGHT,
+			ApplicationConstants.MAX_WEIGHT,
+			ApplicationConstants.IS_DISTINCT,
+			ApplicationConstants.IS_BALANCED
+		};
+		Map<String, String> validateResponse = Utility.validateRequestParameters(requestParams, requiredParameterNames);
+				
+		// If the request parameters do not contain the mandatory attributes, return error response
+		if(validateResponse.get(ApplicationConstants.STATUS).equals(ApplicationConstants.FAILURE_STATUS))
+			return validateResponse;
+				
+		// Retrieve mandatory parameters from the request
+
+		long testCases;
+		long minWeight = ApplicationConstants.NOT_PRESENT, maxWeight = ApplicationConstants.NOT_PRESENT;
+		int nodes, indexedFrom;
+		boolean isDistinct = false;
+		
+		boolean isWeighted = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_WEIGHTED, requestParams);
+		boolean isBalanced = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_BALANCED, requestParams);
+		
+		try {
+			
+			testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
+			nodes = Integer.parseInt(requestParams.get(ApplicationConstants.NODES).toString());
+			indexedFrom = Integer.parseInt(requestParams.get(ApplicationConstants.INDEXED_FROM).toString());
+			if(testCases < 0 || nodes <= 0 || (indexedFrom != 0 && indexedFrom != 1))
+				throw new NumberFormatException();
+			if(isWeighted) {	
+				minWeight = Long.parseLong(requestParams.get(ApplicationConstants.MIN_WEIGHT).toString());
+				maxWeight = Long.parseLong(requestParams.get(ApplicationConstants.MAX_WEIGHT).toString());
+				if(minWeight > maxWeight)
+					throw new NumberFormatException();
+				isDistinct = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_DISTINCT, requestParams);
+			}
+		
+		} catch(NumberFormatException e) {
+			
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Couldn't parse testcases/nodes/indexedFrom/minWeight/maxWeight/isDistinct");
+			return jsonResponse;
+			
+		}
+		
+		return generateRandomBinarySearchTree(testCases, nodes, indexedFrom, isWeighted, minWeight, maxWeight, isDistinct, isBalanced);
 	}
 
 	private Map<String, String> generateRandomNumericTree(long testCases, int nodes, int indexedFrom,
@@ -470,8 +512,7 @@ public class TreeServiceImpl implements TreeServiceInterface {
 				int anotherNodeValue = a.get(j + 1);
 				
 				if(isWeighted) {
-					long randomWeight1 = generator.getRandomNumber(minWeight, maxWeight);
-					long randomWeight2 = generator.getRandomNumber(minWeight, maxWeight);
+					long randomWeight = generator.getRandomNumber(minWeight, maxWeight);
 					if(isDistinct) {
 						if((nodes - 1) > (maxWeight - minWeight + 1)) {
 							jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
@@ -479,14 +520,11 @@ public class TreeServiceImpl implements TreeServiceInterface {
 									+ " the given range!");
 							return jsonResponse;
 						}
-						while(set.contains(randomWeight1))
-							randomWeight1 = generator.getRandomNumber(minWeight, maxWeight);
-						while(set.contains(randomWeight2))
-							randomWeight2 = generator.getRandomNumber(minWeight, maxWeight);
-						set.add(randomWeight1);
-						set.add(randomWeight2);
+						while(set.contains(randomWeight))
+							randomWeight = generator.getRandomNumber(minWeight, maxWeight);
+						set.add(randomWeight);
 					}
-					testData += nodeValue + " " + anotherNodeValue + " " + randomWeight1 + "\n";
+					testData += nodeValue + " " + anotherNodeValue + " " + randomWeight + "\n";
 				}
 				else
 					testData += nodeValue + " " + anotherNodeValue + " " + "\n";
@@ -500,4 +538,98 @@ public class TreeServiceImpl implements TreeServiceInterface {
 		jsonResponse.put(ApplicationConstants.TEST_DATA, testData);
 		return jsonResponse;
 	}
+	
+	private Map<String, String> generateRandomBinarySearchTree(long testCases, int nodes, int indexedFrom,
+			boolean isWeighted, long minWeight, long maxWeight, boolean isDistinct, boolean isBalanced) {
+
+		log.info("Generate random binary search tree is being executed");
+		
+		Map<String,String> jsonResponse = new HashMap<>();
+		
+		String testData = testCases + "\n";
+		
+		// Start generating test data
+		for(long i = 0;i < testCases;++i) {
+			// Before generating the tree, we need to print the number of nodes in the testData
+			testData += nodes + "\n";
+			
+			// By default the generated BST node values are 0 based indexing
+			int[] bst = Utility.generateRandomBinarySearchTree(nodes,isBalanced);
+			
+			// Set for keeping track of already generated weights
+			Set<Long> set = new HashSet<>();
+			
+			// Parse the data from bst[] array and append to testData
+			for(int j = 0;j < bst.length;++j) {
+				
+				int currentNode = bst[j];
+				
+				// If current node is a valid node then process it
+				if(currentNode != ApplicationConstants.BST_NODE_EMPTY) {
+					
+					int leftNode = bst[2 * j + 1];
+					int rightNode = bst[2 * j + 2];
+					
+					// Process left nodes and right nodes
+					
+					if(leftNode != ApplicationConstants.BST_NODE_EMPTY) {
+						int nodeValue = leftNode;
+						if(indexedFrom == 1)
+							nodeValue++;
+						if(isWeighted) {
+							long randomWeight = generator.getRandomNumber(minWeight, maxWeight);
+							if(isDistinct) {
+								if((nodes - 1) > (maxWeight - minWeight + 1)) {
+									jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+									jsonResponse.put(ApplicationConstants.DESCRIPTION, "Cannot generate distinct weights within"
+											+ " the given range!");
+									return jsonResponse;
+								}
+								while(set.contains(randomWeight))
+									randomWeight = generator.getRandomNumber(minWeight, maxWeight);
+								set.add(randomWeight);
+							}
+							testData += currentNode + " " + nodeValue + " " + randomWeight + "\n";
+						}
+						else {
+							testData += currentNode + " " + nodeValue + "\n";
+						}
+					}
+					if(rightNode != ApplicationConstants.BST_NODE_EMPTY) {
+						int nodeValue = rightNode;
+						if(indexedFrom == 1)
+							nodeValue++;
+						if(isWeighted) {
+							long randomWeight = generator.getRandomNumber(minWeight, maxWeight);
+							if(isDistinct) {
+								if((nodes - 1) > (maxWeight - minWeight + 1)) {
+									jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+									jsonResponse.put(ApplicationConstants.DESCRIPTION, "Cannot generate distinct weights within"
+											+ " the given range!");
+									return jsonResponse;
+								}
+								while(set.contains(randomWeight))
+									randomWeight = generator.getRandomNumber(minWeight, maxWeight);
+								set.add(randomWeight);
+							}
+							testData += currentNode + " " + nodeValue + " " + randomWeight + "\n";
+						}
+						else {
+							testData += currentNode + " " + nodeValue + "\n";
+						}
+					}
+					
+				}
+			}
+		}
+		
+		// Return the response
+		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
+		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
+		jsonResponse.put(ApplicationConstants.TEST_DATA, testData);
+		return jsonResponse;
+	}
+
+	
+	
 }
