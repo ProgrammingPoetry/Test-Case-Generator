@@ -189,16 +189,39 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		 * */
 		int minValue, maxValue;
 		char ch;
-		ch = requestParams.get(ApplicationConstants.MIN_VALUE).toString().charAt(0);
+		String minValueParam = requestParams.get(ApplicationConstants.MIN_VALUE).toString();
+		if(minValueParam.equals("")) {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Min value parameter cannot be empty");
+			return jsonResponse;
+		}
+		ch = minValueParam.charAt(0);
 		if(Character.isUpperCase(ch))
 			minValue = ch - 'A';
-		else
+		else if(Character.isLowerCase(ch))
 			minValue = ch - 'a';
-		ch = requestParams.get(ApplicationConstants.MAX_VALUE).toString().charAt(0);
+		else {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Min value must be a character within the range [a-z] or [A-Z]");
+			return jsonResponse;
+		}
+		
+		String maxValueParam = requestParams.get(ApplicationConstants.MAX_VALUE).toString();
+		if(maxValueParam.equals("")) {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Max value parameter cannot be empty");
+			return jsonResponse;
+		}
+		ch = maxValueParam.charAt(0);
 		if(Character.isUpperCase(ch))
 			maxValue = ch - 'A';
-		else
+		else if(Character.isLowerCase(ch))
 			maxValue = ch - 'a';
+		else {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Max value must be a character within the range [a-z] or [A-Z]");
+			return jsonResponse;
+		}
 		
 		// Check whether minValue <= maxValue (or else return error response)
 		Map<String, String> errorResponse = Utility.minValueLessThanMaxValue(minValue,maxValue);
@@ -558,14 +581,14 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 			 * with the specified case. Hence we need to return failure status with
 			 * appropriate message. We perform these checks below.
 			 */
-			
-			if((characterCase.equals(ApplicationConstants.LOWER_CASE)
-					&& (testCases > ApplicationConstants.LOWER_CASE_CHARACTER_LITERALS.length))
-				|| (characterCase.equals(ApplicationConstants.UPPER_CASE)
-						&& (testCases > ApplicationConstants.UPPER_CASE_CHARACTER_LITERALS.length))
-				|| (characterCase.equals(ApplicationConstants.MIXED_CASE)
-						&& (testCases > (ApplicationConstants.LOWER_CASE_CHARACTER_LITERALS.length
-								+ ApplicationConstants.UPPER_CASE_CHARACTER_LITERALS.length)))) {
+			boolean result1 = (characterCase.equals(ApplicationConstants.LOWER_CASE)
+					&& (testCases > (maxValue - minValue + 1)));
+			boolean result2 = (characterCase.equals(ApplicationConstants.UPPER_CASE)
+					&& (testCases > (maxValue - minValue + 1)));
+			boolean result3 = (characterCase.equals(ApplicationConstants.MIXED_CASE)
+					&& (testCases > (2 * (maxValue - minValue + 1))));
+			System.out.println(result1 + " " + result2 + " " + result3);
+			if(result1 || result2 || result3) {
 				jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
 				jsonResponse.put(ApplicationConstants.DESCRIPTION,
 						"Distinct characters with the given case (lower,upper, or mixed)"
