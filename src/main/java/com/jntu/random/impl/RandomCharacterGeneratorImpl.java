@@ -20,10 +20,10 @@ public class RandomCharacterGeneratorImpl implements RandomCharacterGeneratorInt
 		int low = (int)minValue -(int)'a';
 		int up = (int)maxValue - (int)'a';
 		if (isDistinct == true) {
-			output=randomNumbergenerator.getArrayOfDistinctNumbers((int)size, low, up);
+			//output=randomNumbergenerator.getArrayOfDistinctNumbers((int)size, low, up);
 			
 		} else {
-			output=randomNumbergenerator.getArrayOfAnyRandomNumbers((int)size, low, up);
+			//output=randomNumbergenerator.getArrayOfAnyRandomNumbers((int)size, low, up);
 		}
 		output=this.getCharArrayFromIntArray(output,charCase);
 		return output;
