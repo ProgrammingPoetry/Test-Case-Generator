@@ -120,6 +120,7 @@ public class ArrayOfNumbers extends ArraysCommon {
 
 	@AssertTrue(message = "GIVEN ARRAY SIZE CAN NOT HAVE ENOUGH DISTINCT NUMBERS")
 	public boolean isRangeValidIfDistinctIsChecked() {
+		//TODO : remove this method later
 		return this.getMaxSize() <= (this.maxValue - this.minValue + 1);
 	}
 

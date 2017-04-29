@@ -1,6 +1,6 @@
 package com.jntu.random.interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.jntu.service.NumberSO;
 
@@ -12,27 +12,11 @@ public interface RandomNumberGeneratorInterface {
 	// [lower,upper]
 	long getRandomNumber(long lower, long upper);
 
-	String[] getArrayOfNumbers(int size, long minValue, long maxValue, boolean isDistinct, boolean isPrime,
-			long multipleOf, String sorted);
+	<T> List<? extends Number> getArrayOfDistinctPrimeNumbers(NumberSO<T> numberSO);
 
-	String[] getArrayOfPrimes(int size, long minValue, long maxValue);
+	<T> List<? extends Number> getArrayOfPrimes(NumberSO<T> numberSO);
 
-	String[] getArrayOfDistinctPrimeNumbers(int size, long minValue, long maxValue);
+	<T> List<? extends Number> getArrayOfDistinctNumbers(NumberSO<T> numberSO);
 
-	String[] getArrayOfDistinctNumbers(int size, long minValue, long maxValue);
-
-	String[] getMultiplesOfNumber(int size, long minValue, long maxValue, long multipleOf);
-
-	String[] getDistinctMultiplesOfNumber(int size, long minValue, long maxValue, long multipleOf);
-
-	String[] getArrayOfAnyRandomNumbers(int size, long minValue, long maxValue);
-
-
-	<T> ArrayList getArrayOfDistinctPrimeNumbers(NumberSO<T> numberSO);
-
-	<T> ArrayList getArrayOfPrimes(NumberSO<T> numberSO);
-
-	<T> ArrayList getArrayOfDistinctNumbers(NumberSO<T> numberSO);
-
-	<T> ArrayList getArrayOfAnyRandomNumbers(NumberSO<T> numberSO);
+	<T> List<? extends Number> getArrayOfAnyRandomNumbers(NumberSO<T> numberSO);
 }
