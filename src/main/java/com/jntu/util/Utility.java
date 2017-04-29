@@ -1,13 +1,19 @@
 package com.jntu.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.apache.log4j.Logger;
 
 import com.jntu.constants.ApplicationConstants;
+import com.jntu.model.BSTNode;
+import com.jntu.random.impl.RandomNumberGeneratorImpl;
+import com.jntu.random.interfaces.RandomNumberGeneratorInterface;
 
 /*
  * This class contains all the utility functions which we will be using in our application
@@ -22,6 +28,8 @@ public class Utility {
 
 	// Logger is used to generate logs in the console for debugging purposes
 	private static Logger log = Logger.getLogger(Utility.class.getName());
+	
+	// The randomNumberGenerator which is used to generate randomNumbers
 	
 	public static ArrayList<Long> sieve() {
 		ArrayList<Long> list = new ArrayList<>();
@@ -192,6 +200,113 @@ public class Utility {
 		if(minValueIsAMultiple || maxValueIsAMultiple)
 			result++;
 		return result;
+	}
+
+	public static int[] generateRandomBinarySearchTree(int nodes, boolean isBalanced) {
+		RandomNumberGeneratorInterface generator = new RandomNumberGeneratorImpl();
+		BSTNode root = null;
+		Set<Integer> set = new HashSet<>();
+		for(int i = 0;i < nodes;++i) {
+			int data;
+			do{
+				data = (int) generator.getRandomNumber(0, nodes - 1);
+			}while(set.contains(data));
+			set.add(data);
+			if(!isBalanced)
+				root = insertIntoBST(root,data);
+			else
+				root = balancedInsertIntoBST(root,data);
+		}
+		int maxArraySizeInWorstCase = (int) Math.pow(2,nodes) - 1;
+		int[] arrayForm = new int[maxArraySizeInWorstCase];
+		// Fill the array with empty bst nodes
+		Arrays.fill(arrayForm, ApplicationConstants.BST_NODE_EMPTY);
+		return BSTNode.toArray(root,0,arrayForm);
+	}
+	
+	private static BSTNode balancedInsertIntoBST(BSTNode root, int data) {
+		if(root == null)
+			return new BSTNode(data);
+		if(data < root.getData()) {
+			BSTNode leftNode = root.getLeftNode();
+			leftNode = insertIntoBST(leftNode,data);
+		}
+		else {
+			BSTNode rightNode = root.getRightNode();
+			rightNode = insertIntoBST(rightNode, data);
+		}
+		
+		// After inserting the new node, update the balance
+		root.updateBalance();
+		
+		// If the balance property of the AVL tree is violated, rotate appropriately as follows
+		int balance = root.getBalance();
+		if(balance == 2) {
+			
+			BSTNode rootLeft = root.getLeftNode();
+			if(root.getLeftNode().getRightNode() != null) {
+				// LR case
+				BSTNode rootLeftRight = rootLeft.getRightNode();
+				rootLeft.setRightNode(rootLeftRight.getLeftNode());
+				root.setLeftNode(rootLeftRight.getRightNode());
+				rootLeftRight.setLeftNode(rootLeft);
+				rootLeftRight.setRightNode(root);
+				rootLeft.updateBalance();
+				root.updateBalance();
+				rootLeftRight.updateBalance();
+				root = rootLeftRight;
+			}
+			else if(root.getLeftNode().getLeftNode() != null) {
+				// RR case
+				root.setLeftNode(rootLeft.getRightNode());
+				rootLeft.setRightNode(root);
+				root.updateBalance();
+				rootLeft.updateBalance();
+				root = rootLeft;
+			}
+			
+		}
+		else if(balance == -2) {
+			
+			BSTNode rootRight = root.getRightNode();
+			if(root.getRightNode().getLeftNode() != null) {
+				// RL case
+				BSTNode rootRightLeft = rootRight.getLeftNode();
+				rootRight.setLeftNode(rootRightLeft.getRightNode());
+				root.setRightNode(rootRightLeft.getLeftNode());
+				rootRightLeft.setRightNode(rootRight);
+				rootRightLeft.setLeftNode(root);
+				rootRight.updateBalance();
+				root.updateBalance();
+				rootRightLeft.updateBalance();
+				root = rootRightLeft;
+			}
+			else if(root.getRightNode().getRightNode() != null) {
+				// LL case
+				root.setRightNode(rootRight.getLeftNode());
+				rootRight.setLeftNode(root);
+				root.updateBalance();
+				rootRight.updateBalance();
+				root = rootRight;
+			}
+			
+		}
+		
+		return root;
+	}
+
+	private static BSTNode insertIntoBST(BSTNode root,int data) {
+		if(root == null)
+			return new BSTNode(data);
+		if(data < root.getData()) {
+			BSTNode leftNode = root.getLeftNode();
+			leftNode = insertIntoBST(leftNode,data);
+		}
+		else {
+			BSTNode rightNode = root.getRightNode();
+			rightNode = insertIntoBST(rightNode, data);
+		}
+		return root;
 	}
 
 }

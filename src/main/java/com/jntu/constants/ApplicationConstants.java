@@ -56,6 +56,7 @@ public class ApplicationConstants {
 	public static final String MAX_WEIGHT = "maxWeight";
 	public static final String DISTINCT_WEIGHT = "distinctWeight";
 	public static final String DISTINCT_VALUE = "distinctValue";
+	public static final String IS_BALANCED = "isBalanced";
 	
 	// Constants which denote the sub-categories in our application (Such as:
 	// Numbers, Characters etc)
@@ -66,7 +67,6 @@ public class ApplicationConstants {
 	public static final String FULL_BINARY_TREE = "fullBinaryTree";
 	public static final String SKEW_TREE = "skewTree";
 	public static final String BINARY_SEARCH_TREE = "binarySearchTree";
-	public static final String BALANCED_BINARY_SEARCH_TREE = "balancedBinarySearchTree";
 	public static final String NUMBER_OF_LEVELS = "numberOfLevels";
 
 	// Other constants are below (which do not fall into any specific category)
@@ -88,5 +88,7 @@ public class ApplicationConstants {
 			'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 	
 	public static final  int MAX_ARRAY_SIZE = 1000000;
+	
+	public static final int BST_NODE_EMPTY = -1;
 	
 }
