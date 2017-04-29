@@ -1,8 +1,14 @@
 package com.jntu.controller;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.jntu.model.ArrayOfCharacters;
+import com.jntu.model.ArrayOfNumbers;
+import com.jntu.model.ArrayOfStrings;
 
 // This controller is used to serve jsp pages of our application
 
@@ -18,8 +24,12 @@ public class HomeController {
 	public String basicDataTypePageController() {
 		return "datatypes";
 	}
+	
 	@RequestMapping(value = "/arrays", method = RequestMethod.GET)
-	public String arrayPageController() {
+	public String viewArraysPage(Map<String, Object> model) {
+		model.put("arrayOfNumbersForm", new ArrayOfNumbers());
+		model.put("arrayOfCharactersForm", new ArrayOfCharacters());
+		model.put("arrayOfStringsForm", new ArrayOfStrings());
 		return "Arrays";
 	}
 	

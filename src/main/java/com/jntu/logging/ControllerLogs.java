@@ -7,16 +7,17 @@ import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-// @Aspect
+@Aspect
 @Component
 public class ControllerLogs {
 
 	private static Log log;
-
+	
 	@Pointcut("execution(* com.jntu.controller.*.*(..))")
 	private void controllerLogs() {
 	}

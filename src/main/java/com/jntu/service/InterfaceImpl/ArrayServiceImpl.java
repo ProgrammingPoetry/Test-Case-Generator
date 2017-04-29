@@ -1,8 +1,14 @@
 package com.jntu.service.InterfaceImpl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.validation.constraints.NotNull;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +16,13 @@ import org.springframework.stereotype.Service;
 
 import com.jntu.constants.ApplicationConstants;
 import com.jntu.controller.ArrayController;
+import com.jntu.model.ArrayOfCharacters;
+import com.jntu.model.ArrayOfNumbers;
+import com.jntu.model.ArrayOfStrings;
 import com.jntu.random.interfaces.RandomCharacterGeneratorInterface;
 import com.jntu.random.interfaces.RandomNumberGeneratorInterface;
 import com.jntu.random.interfaces.RandomStringGeneratorInterface;
+import com.jntu.service.NumberSO;
 import com.jntu.service.Interface.ArrayServiceInterface;
 
 @Service
@@ -179,6 +189,59 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
 		jsonResponse.put(ApplicationConstants.TEST_DATA, data);
 		return jsonResponse;
+	}
+
+	@Override
+	@SuppressWarnings(value = { "unchecked", "rawtypes" })
+	public Object getFileContent(ArrayOfNumbers input) {
+		List data = new ArrayList();
+		long noOfTestCases = input.getNoOfTestCases();
+		if (input.getPrintNoOfTestCases()) {
+			data.add(noOfTestCases);
+		}
+		boolean printArraySize = input.getPrintArraySize();
+		for (int i = 0; i < noOfTestCases; i++) {
+			NumberSO numberSO = new NumberSO();
+			numberSO.setArraySize((int) randomNumbers.getRandomNumber(input.getMinSize(), input.getMaxSize()));
+			if (printArraySize) {
+				data.add(numberSO.getArraySize());
+			}
+			if (input.getMultipleOf() != 0) {
+				numberSO.setMinValue((long) Math.ceil(input.getMinValue() / input.getMultipleOf()));
+				numberSO.setMaxValue((long) Math.floor(input.getMaxValue() / input.getMultipleOf()));
+			}
+			numberSO.setMultipleOf(input.getMultipleOf());
+			numberSO.setSorted(input.getSorted());
+			ArrayList list = null;
+			if (input.getIsPrime() && input.getIsDistinct()) {
+				list = randomNumbers.getArrayOfDistinctPrimeNumbers(numberSO);
+			} else if (input.getIsPrime()) {
+				list = randomNumbers.getArrayOfPrimes(numberSO);
+			} else if (input.getIsDistinct()) {
+				list = randomNumbers.getArrayOfDistinctNumbers(numberSO);
+			} else {
+				list = randomNumbers.getArrayOfAnyRandomNumbers(numberSO);
+			}
+			if ("ascending".equals(numberSO.getSorted())) {
+				Collections.sort(list);
+			} else if ("descending".equals(numberSO.getSorted())) {
+				Collections.sort(list, Collections.reverseOrder());
+			}
+			data.add(list);
+		}
+		return data;
+	}
+
+	@Override
+	public Object getFileContent(ArrayOfCharacters input) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object getFileContent(ArrayOfStrings input) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

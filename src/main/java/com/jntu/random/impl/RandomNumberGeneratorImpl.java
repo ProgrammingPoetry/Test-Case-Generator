@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.jntu.constants.ApplicationConstants;
 import com.jntu.random.interfaces.RandomNumberGeneratorInterface;
+import com.jntu.service.NumberSO;
 import com.jntu.util.Utility;
 
 // This class currently uses the library methods to generate random number
@@ -149,5 +150,41 @@ public class RandomNumberGeneratorImpl implements RandomNumberGeneratorInterface
 			output[i] = this.getRandomNumber(minValue, maxValue) + "";
 		return output;
 	}
+
+	@SuppressWarnings({ "rawtypes" })
+	@Override
+	public <T> ArrayList getArrayOfDistinctPrimeNumbers(NumberSO<T> numberSO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@SuppressWarnings({ "rawtypes" })
+	@Override
+	public <T> ArrayList getArrayOfPrimes(NumberSO<T> numberSO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@SuppressWarnings({ "rawtypes" })
+	@Override
+	public <T> ArrayList getArrayOfDistinctNumbers(NumberSO<T> numberSO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	public <T> ArrayList getArrayOfAnyRandomNumbers(NumberSO<T> numberSO) {
+		int size = numberSO.getArraySize();
+		ArrayList list = new ArrayList(size);
+		long randomNumber;
+		long multipleOf=(Long)numberSO.getMultipleOf();
+		for(int i=0;i<size;i++){
+			randomNumber=this.getRandomNumber((Long)numberSO.getMinValue(),(Long)numberSO.getMaxValue());
+			list.add(randomNumber*multipleOf);
+		}
+		return list;
+	}
+
 
 }
