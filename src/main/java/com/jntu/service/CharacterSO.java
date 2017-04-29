@@ -1,12 +1,28 @@
 package com.jntu.service;
 
-public class CharacterSO<T> {
+public class CharacterSO {
 
 	private int arraySize;
+	
+	private String refString;
+	
+	private boolean isDistinct;
 
-	private T minValue;
+	public boolean isDistinct() {
+		return isDistinct;
+	}
 
-	private T maxValue;
+	public void setDistinct(boolean isDistinct) {
+		this.isDistinct = isDistinct;
+	}
+
+	public String getRefString() {
+		return refString;
+	}
+
+	public void setRefString(String refString) {
+		this.refString = refString;
+	}
 
 	public int getArraySize() {
 		return arraySize;
@@ -14,22 +30,6 @@ public class CharacterSO<T> {
 
 	public void setArraySize(int arraySize) {
 		this.arraySize = arraySize;
-	}
-
-	public T getMinValue() {
-		return minValue;
-	}
-
-	public void setMinValue(T minValue) {
-		this.minValue = minValue;
-	}
-
-	public T getMaxValue() {
-		return maxValue;
-	}
-
-	public void setMaxValue(T maxValue) {
-		this.maxValue = maxValue;
 	}
 
 }

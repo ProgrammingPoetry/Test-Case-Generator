@@ -11,10 +11,14 @@ import com.jntu.util.Utility;
 
 public class ArrayOfNumbers extends ArraysCommon {
 
+	// TODO : AS OF NOW ALL THE MESSAGES HAVE BEEN HARDCODED. SET THEM FROM PROP
+	@NotNull(message = "MINIMUM VALUE MUST NOT BE NULL")
 	private long minValue = 1;
 
+	@NotNull(message = "MAXIMUM VALUE MUST NOT BE NULL")
 	private long maxValue = 10;
 
+	@NotNull(message = "MULTIPLE OF MUST NOT BE NULL")
 	private long multipleOf = 1;
 
 	@NotNull(message = "PRIME GENERATION MUST BE ENABLED OR DISABLED")
@@ -24,7 +28,7 @@ public class ArrayOfNumbers extends ArraysCommon {
 	private Boolean isDistinct = false;
 
 	@NotEmpty(message = "SORTED MUST HOLD A VALUE FROM DROP DOWN")
-	private String sorted;// TODO valid check
+	private String sorted = "none";// TODO :MAKE ENUM
 
 	public long getMinValue() {
 		return minValue;
@@ -120,15 +124,15 @@ public class ArrayOfNumbers extends ArraysCommon {
 
 	@AssertTrue(message = "GIVEN ARRAY SIZE CAN NOT HAVE ENOUGH DISTINCT NUMBERS")
 	public boolean isRangeValidIfDistinctIsChecked() {
-		//TODO : remove this method later
+		// TODO : remove this method later
 		return this.getMaxSize() <= (this.maxValue - this.minValue + 1);
 	}
 
 	@AssertTrue(message = "GIVEN ARRAY SIZE CAN NOT HAVE ENOUGH DISTINCT NUMBERS FOR GIVEN MULTIPLE OF")
-	public boolean isRangeValidIfDistinctIsCheckedForGivenMultipleOf(){
-		if(this.multipleOf == 1){
+	public boolean isRangeValidIfDistinctIsCheckedForGivenMultipleOf() {
+		if (this.multipleOf == 1) {
 			return true;
 		}
-		return this.getMaxSize() <= (this.maxValue - this.minValue + 1)/this.multipleOf;
+		return this.getMaxSize() <= (this.maxValue - this.minValue + 1) / this.multipleOf;
 	}
 }

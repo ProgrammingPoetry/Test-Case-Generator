@@ -59,6 +59,12 @@ public class ArrayController {
 			BindingResult result) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		if (result.hasErrors()) {
+			List<String> errors = new ArrayList<>();
+			List<ObjectError> allErrors = result.getAllErrors();
+			for(ObjectError error:allErrors){
+				errors.add(error.getDefaultMessage());
+			}
+			model.put("errors", errors);
 			model.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
 			return ResponseEntity.badRequest().body(model);
 		}
@@ -78,6 +84,12 @@ public class ArrayController {
 			BindingResult result) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		if (result.hasErrors()) {
+			List<String> errors = new ArrayList<>();
+			List<ObjectError> allErrors = result.getAllErrors();
+			for(ObjectError error:allErrors){
+				errors.add(error.getDefaultMessage());
+			}
+			model.put("errors", errors);
 			model.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
 			return ResponseEntity.badRequest().body(model);
 		}

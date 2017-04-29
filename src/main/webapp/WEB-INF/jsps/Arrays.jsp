@@ -39,7 +39,8 @@
 				<div class="center-block"
 					style="width: 375px; background: lightgreen; border-radius: 10px; padding: 10px; margin-top: 45px;">
 					<h2>Array of Numbers</h2>
-					<form:form modelAttribute="arrayOfNumbersForm" id="arrayOfNumbersForm">
+					<form:form modelAttribute="arrayOfNumbersForm"
+						id="arrayOfNumbersForm">
 						<div class="form-group" name="div1">
 							<form:errors path="*" cssClass="error" />
 						</div>
@@ -56,14 +57,14 @@
 									<form:label path="" for="number">Min Value</form:label>
 									<form:input path="minValue" type="number" class="form-control"
 										name="minVal" />
-									<form:errors path="minValue" type="number" class="form-control"
+									<form:errors path="minValue" type="string" class="form-control"
 										name="minVal" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max Value</form:label>
 									<form:input path="maxValue" type="number" class="form-control"
 										name="maxVal" />
-									<form:errors path="maxValue" type="number" class="form-control"
+									<form:errors path="maxValue" type="string" class="form-control"
 										name="maxVal" />
 								</div>
 							</div>
@@ -74,14 +75,14 @@
 									<form:label path="" for="number">Min Size</form:label>
 									<form:input path="minSize" type="number" class="form-control"
 										name="minSize" />
-									<form:errors path="minSize" type="number" class="form-control"
+									<form:errors path="minSize" type="string" class="form-control"
 										name="minSize" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max Size</form:label>
 									<form:input path="maxSize" type="number" class="form-control"
 										name="maxSize" />
-									<form:errors path="maxSize" type="number" class="form-control"
+									<form:errors path="maxSize" type="string" class="form-control"
 										name="maxSize" />
 								</div>
 							</div>
@@ -91,7 +92,7 @@
 							<form:label path="" for="number">Multipleof</form:label>
 							<form:input path="multipleOf" type="number" class="form-control"
 								name="multipleOf" />
-							<form:errors path="multipleOf" type="number" class="form-control"
+							<form:errors path="multipleOf" type="string" class="form-control"
 								name="multipleOf" />
 						</div>
 						<div class="form-group">
@@ -158,31 +159,30 @@
 				<div class="center-block"
 					style="width: 375px; background: lightgreen; border-radius: 10px; padding: 10px; margin-top: 45px;">
 					<h2>Array of Characters</h2>
-					<form:form action="arras/characters" method="post"
-						commandName="arrayOfCharactersForm">
+					<form:form modelAttribute="arrayOfCharactersForm" id="arrayOfCharactersForm">
 						<div class="form-group">
 							<form:label path="" for="number">Test cases</form:label>
-							<form:input path="" type="number" class="form-control"
-								name="noOfTestcases" />
-							<form:errors path="" type="number" class="form-control"
-								name="noOfTestcases" />
+							<form:input path="noOfTestCases" type="number" class="form-control"
+								name="noOfTestCases" />
+							<form:errors path="noOfTestCases" type="string" class="form-control"
+								name="noOfTestCases" />
 						</div>
 						<!-- Form Fields are placed in a row-->
 						<div class="form-group">
 							<div class="row">
 								<div class="col-xs-6">
 									<form:label path="" for="number">Min Value</form:label>
-									<form:input path="" type="number" class="form-control"
-										name="minVal" />
-									<form:errors path="" type="number" class="form-control"
-										name="minVal" />
+									<form:input path="minValue" type="character" class="form-control"
+										name="minValue" />
+									<form:errors path="minValue" type="string" class="form-control"
+										name="minValue" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max Value</form:label>
-									<form:input path="" type="number" class="form-control"
-										name="maxVal" />
-									<form:errors path="" type="number" class="form-control"
-										name="maxVal" />
+									<form:input path="maxValue" type="character" class="form-control"
+										name="maxValue" />
+									<form:errors path="maxValue" type="string" class="form-control"
+										name="maxValue" />
 								</div>
 							</div>
 						</div>
@@ -190,16 +190,16 @@
 							<div class="row">
 								<div class="col-xs-6">
 									<form:label path="" for="number">Min Size</form:label>
-									<form:input path="" type="number" class="form-control"
+									<form:input path="minSize" type="number" class="form-control"
 										name="minSize" />
-									<form:errors path="" type="number" class="form-control"
+									<form:errors path="minSize" type="string" class="form-control"
 										name="minSize" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max Size</form:label>
-									<form:input path="" type="number" class="form-control"
+									<form:input path="maxSize" type="number" class="form-control"
 										name="maxSize" />
-									<form:errors path="" type="number" class="form-control"
+									<form:errors path="maxSize" type="string" class="form-control"
 										name="maxSize" />
 								</div>
 							</div>
@@ -209,20 +209,23 @@
 							<div class="row">
 								<div class="col-xs-6">
 									<form:label path="" for="text">Case:</form:label>
-									<form:select path="">
-										<option value="upper">upper</option>
+									<form:select path="charCase">
+										<option selected="selected" value="upper">upper</option>
 										<option value="lower">lower</option>
 										<option value="mixed">mixed</option>
 									</form:select>
-									<form:errors path="" />
+									<form:errors path="charCase" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="boolean">Distinct:</form:label>
+									<form:checkbox path="isDistinct"/>
+									<form:errors path="isDistinct" />
+									<!--
 									<form:select path="">
 										<option value="true">True</option>
 										<option value="false">False</option>
 									</form:select>
-									<form:errors path="" />
+									-->
 								</div>
 							</div>
 						</div>
@@ -230,17 +233,17 @@
 							<div class="row">
 								<div class="col-xs-6">
 									<form:label path="" for="text">Sorted:</form:label>
-									<form:select path="">
+									<form:select path="sorted">
 										<option value="ascending">Ascending</option>
 										<option value="descending">Descending</option>
-										<option value="none">None</option>
+										<option selected="selected" value="none">None</option>
 									</form:select>
-									<form:errors path="" />
+									<form:errors path="sorted" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="text">PrintSize:</form:label>
 									<form:checkbox path="printArraySize" />
-									<form:errors path="" />
+									<form:errors path="printArraySize" />
 									<!--  
                                         <form:select path="">
                                             <option value="true">True</option>
@@ -386,11 +389,12 @@
 					async : false,
 					dataType : 'json',
 					success : function(data) {
-						//console.log(JSON.stringify(data));
-						//alert("success");
+						console.log(JSON.stringify(data));
+						alert("success");
 					},
 					error : function(data) {
-						//console.log("ERROR");
+						console.log(data);
+						alert(data.responseJSON.errors);
 					}
 				});
 			});
@@ -404,11 +408,12 @@
 					async : false,
 					dataType : 'json',
 					success : function(data) {
-						//console.log(JSON.stringify(data));
-						//alert("success");
+						console.log(JSON.stringify(data));
+						alert("success");
 					},
 					error : function(data) {
-						//console.log("ERROR");
+						console.log(data);
+						alert(data.responseJSON.errors);
 					}
 				});
 			});

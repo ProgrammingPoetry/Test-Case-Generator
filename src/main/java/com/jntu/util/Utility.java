@@ -28,9 +28,9 @@ public class Utility {
 
 	// Logger is used to generate logs in the console for debugging purposes
 	private static Logger log = Logger.getLogger(Utility.class.getName());
-	
+
 	// The randomNumberGenerator which is used to generate randomNumbers
-	
+
 	public static ArrayList<Long> sieve() {
 		ArrayList<Long> list = new ArrayList<>();
 		boolean[] a = new boolean[1000000];
@@ -147,8 +147,8 @@ public class Utility {
 				else
 					multipleOf = ApplicationConstants.NOT_PRESENT;
 			} catch (NumberFormatException e) {
-				log.info("MultipleOf parameter parsing failed. It is specified as: " + multipleOfParam + 
-						" Currently assuming that it is not present and proceeding ahead with generating test data.");
+				log.info("MultipleOf parameter parsing failed. It is specified as: " + multipleOfParam
+						+ " Currently assuming that it is not present and proceeding ahead with generating test data.");
 				multipleOf = ApplicationConstants.NOT_PRESENT;
 			}
 		}
@@ -166,27 +166,30 @@ public class Utility {
 		return booleanParameter;
 	}
 
-	// Simple function to check whether minValue <= maxValue (success, or else failure)
+	// Simple function to check whether minValue <= maxValue (success, or else
+	// failure)
 	public static Map<String, String> minValueLessThanMaxValue(long minValue, long maxValue) {
 		Map<String, String> jsonResponse = new HashMap<>();
-		if(minValue > maxValue) {
+		if (minValue > maxValue) {
 			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
-			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Error: minValue must be less than or equal to maxValue");
-		}
-		else
+			jsonResponse.put(ApplicationConstants.DESCRIPTION,
+					"Error: minValue must be less than or equal to maxValue");
+		} else
 			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
 		return jsonResponse;
 	}
 
-	// A function to check whether multiples of the number 'multipleOf' exists in the range [minValue,maxValue]
+	// A function to check whether multiples of the number 'multipleOf' exists
+	// in the range [minValue,maxValue]
 	public static boolean multiplesExist(long minValue, long maxValue, long multipleOf) {
 		// Assumes minValue < maxValue
-		if(minValue % multipleOf == 0 || maxValue % multipleOf == 0)
+		if (minValue % multipleOf == 0 || maxValue % multipleOf == 0)
 			return true;
 		double lowerLimit = minValue / (multipleOf * 1.0);
 		double upperLimit = maxValue / (multipleOf * 1.0);
 		boolean result = (upperLimit - lowerLimit) >= 1.0;
-		// System.out.println("Lower limit is: " + lowerLimit + " Upper limit is: " + upperLimit + " Result: " + result);
+		// System.out.println("Lower limit is: " + lowerLimit + " Upper limit
+		// is: " + upperLimit + " Result: " + result);
 		return result;
 	}
 
@@ -194,10 +197,10 @@ public class Utility {
 		// Assumes minValue < maxValue
 		double lowerLimit = minValue / (multipleOf * 1.0);
 		double upperLimit = maxValue / (multipleOf * 1.0);
-		long result = (long)(upperLimit - lowerLimit);
+		long result = (long) (upperLimit - lowerLimit);
 		boolean minValueIsAMultiple = (minValue % multipleOf == 0);
 		boolean maxValueIsAMultiple = (maxValue % multipleOf == 0);
-		if(minValueIsAMultiple || maxValueIsAMultiple)
+		if (minValueIsAMultiple || maxValueIsAMultiple)
 			result++;
 		return result;
 	}
@@ -206,45 +209,45 @@ public class Utility {
 		RandomNumberGeneratorInterface generator = new RandomNumberGeneratorImpl();
 		BSTNode root = null;
 		Set<Integer> set = new HashSet<>();
-		for(int i = 0;i < nodes;++i) {
+		for (int i = 0; i < nodes; ++i) {
 			int data;
-			do{
+			do {
 				data = (int) generator.getRandomNumber(0, nodes - 1);
-			}while(set.contains(data));
+			} while (set.contains(data));
 			set.add(data);
-			if(!isBalanced)
-				root = insertIntoBST(root,data);
+			if (!isBalanced)
+				root = insertIntoBST(root, data);
 			else
-				root = balancedInsertIntoBST(root,data);
+				root = balancedInsertIntoBST(root, data);
 		}
-		int maxArraySizeInWorstCase = (int) Math.pow(2,nodes) - 1;
+		int maxArraySizeInWorstCase = (int) Math.pow(2, nodes) - 1;
 		int[] arrayForm = new int[maxArraySizeInWorstCase];
 		// Fill the array with empty bst nodes
 		Arrays.fill(arrayForm, ApplicationConstants.BST_NODE_EMPTY);
-		return BSTNode.toArray(root,0,arrayForm);
+		return BSTNode.toArray(root, 0, arrayForm);
 	}
-	
+
 	private static BSTNode balancedInsertIntoBST(BSTNode root, int data) {
-		if(root == null)
+		if (root == null)
 			return new BSTNode(data);
-		if(data < root.getData()) {
+		if (data < root.getData()) {
 			BSTNode leftNode = root.getLeftNode();
-			leftNode = insertIntoBST(leftNode,data);
-		}
-		else {
+			leftNode = insertIntoBST(leftNode, data);
+		} else {
 			BSTNode rightNode = root.getRightNode();
 			rightNode = insertIntoBST(rightNode, data);
 		}
-		
+
 		// After inserting the new node, update the balance
 		root.updateBalance();
-		
-		// If the balance property of the AVL tree is violated, rotate appropriately as follows
+
+		// If the balance property of the AVL tree is violated, rotate
+		// appropriately as follows
 		int balance = root.getBalance();
-		if(balance == 2) {
-			
+		if (balance == 2) {
+
 			BSTNode rootLeft = root.getLeftNode();
-			if(root.getLeftNode().getRightNode() != null) {
+			if (root.getLeftNode().getRightNode() != null) {
 				// LR case
 				BSTNode rootLeftRight = rootLeft.getRightNode();
 				rootLeft.setRightNode(rootLeftRight.getLeftNode());
@@ -255,8 +258,7 @@ public class Utility {
 				root.updateBalance();
 				rootLeftRight.updateBalance();
 				root = rootLeftRight;
-			}
-			else if(root.getLeftNode().getLeftNode() != null) {
+			} else if (root.getLeftNode().getLeftNode() != null) {
 				// RR case
 				root.setLeftNode(rootLeft.getRightNode());
 				rootLeft.setRightNode(root);
@@ -264,12 +266,11 @@ public class Utility {
 				rootLeft.updateBalance();
 				root = rootLeft;
 			}
-			
-		}
-		else if(balance == -2) {
-			
+
+		} else if (balance == -2) {
+
 			BSTNode rootRight = root.getRightNode();
-			if(root.getRightNode().getLeftNode() != null) {
+			if (root.getRightNode().getLeftNode() != null) {
 				// RL case
 				BSTNode rootRightLeft = rootRight.getLeftNode();
 				rootRight.setLeftNode(rootRightLeft.getRightNode());
@@ -280,8 +281,7 @@ public class Utility {
 				root.updateBalance();
 				rootRightLeft.updateBalance();
 				root = rootRightLeft;
-			}
-			else if(root.getRightNode().getRightNode() != null) {
+			} else if (root.getRightNode().getRightNode() != null) {
 				// LL case
 				root.setRightNode(rootRight.getLeftNode());
 				rootRight.setLeftNode(root);
@@ -289,24 +289,42 @@ public class Utility {
 				rootRight.updateBalance();
 				root = rootRight;
 			}
-			
+
 		}
-		
+
 		return root;
 	}
 
-	private static BSTNode insertIntoBST(BSTNode root,int data) {
-		if(root == null)
+	private static BSTNode insertIntoBST(BSTNode root, int data) {
+		if (root == null)
 			return new BSTNode(data);
-		if(data < root.getData()) {
+		if (data < root.getData()) {
 			BSTNode leftNode = root.getLeftNode();
-			leftNode = insertIntoBST(leftNode,data);
-		}
-		else {
+			leftNode = insertIntoBST(leftNode, data);
+		} else {
 			BSTNode rightNode = root.getRightNode();
 			rightNode = insertIntoBST(rightNode, data);
 		}
 		return root;
+	}
+
+	public static String mixedCase(String input) {
+		StringBuilder result = new StringBuilder(input);
+		int index = 0;
+		for (char character : input.toCharArray()) {
+			if (Character.isLetter(character)) {
+				if (ThreadLocalRandom.current().nextBoolean()) {
+					if (Character.isLowerCase(character))
+						character = Character.toUpperCase(character);
+					else
+						character = Character.toLowerCase(character);
+				}
+			}
+			result.setCharAt(index, character);
+			index++;
+		}
+
+		return result.toString();
 	}
 
 }

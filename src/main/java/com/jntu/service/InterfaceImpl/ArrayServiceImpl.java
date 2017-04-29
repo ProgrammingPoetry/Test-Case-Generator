@@ -175,7 +175,31 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 			if (printArraySize) {
 				data.add(characterSO.getArraySize());
 			}
-			//TODO
+			String refString = "";
+			for (char c = input.getMinValue(); c <= input.getMaxValue(); c++) {
+				refString += c;
+				if ("mixed".equals(input.getCharCase())) {
+					if (Character.isLowerCase(c)) {
+						refString += Character.toUpperCase(c);
+					} else {
+						refString += Character.toLowerCase(c);
+					}
+				}
+			}
+			if ("upper".equals(input.getCharCase())) {
+				refString = refString.toUpperCase();
+			} else if ("lower".equals(input.getCharCase())) {
+				refString = refString.toLowerCase();
+			}
+			characterSO.setRefString(refString);
+			characterSO.setDistinct(input.getIsDistinct());
+			List<Character> list = randomCharacters.getArrayOfCharacters(characterSO);
+			if ("ascending".equals(input.getSorted())) {
+				Collections.sort(list);
+			} else if ("descending".equals(input.getSorted())) {
+				Collections.sort(list, Collections.reverseOrder());
+			}
+			data.add(list);
 		}
 		return data;
 	}
@@ -184,20 +208,20 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 	@Override
 	public Object getFileContent(ArrayOfStrings input) {
 		// TODO : TYPE RELATED CHECKS
-				List data = new ArrayList();
-				long noOfTestCases = input.getNoOfTestCases();
-				if (input.getPrintNoOfTestCases()) {
-					data.add(noOfTestCases);
-				}
-				boolean printArraySize = input.getPrintArraySize();
-				for (int i = 0; i < noOfTestCases; i++) {
-					StringSO stringSO = new StringSO();
-					stringSO.setArraySize((int) randomNumbers.getRandomNumber(input.getMinSize(), input.getMaxSize()));
-					if (printArraySize) {
-						data.add(stringSO.getArraySize());
-					}
-					//TODO
-				}
+		List data = new ArrayList();
+		long noOfTestCases = input.getNoOfTestCases();
+		if (input.getPrintNoOfTestCases()) {
+			data.add(noOfTestCases);
+		}
+		boolean printArraySize = input.getPrintArraySize();
+		for (int i = 0; i < noOfTestCases; i++) {
+			StringSO stringSO = new StringSO();
+			stringSO.setArraySize((int) randomNumbers.getRandomNumber(input.getMinSize(), input.getMaxSize()));
+			if (printArraySize) {
+				data.add(stringSO.getArraySize());
+			}
+			// TODO
+		}
 		return data;
 	}
 
