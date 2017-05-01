@@ -359,6 +359,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+	var response;
 		$(document).ready(function() {
 			$("#arrayOfNumbersForm").submit(function(event) {
 				var str = $("#arrayOfNumbersForm").serialize();
@@ -370,6 +371,7 @@
 					async : false,
 					dataType : 'json',
 					success : function(data) {
+						response=data;
 						console.log(JSON.stringify(data));
 						alert("success");
 					},
@@ -389,6 +391,7 @@
 					async : false,
 					dataType : 'json',
 					success : function(data) {
+						response=data;
 						console.log(JSON.stringify(data));
 						alert("success");
 					},
@@ -412,6 +415,7 @@
 						alert("success");
 					},
 					error : function(data) {
+						response=data;
 						console.log(data);
 						alert(data.responseJSON.errors);
 					}

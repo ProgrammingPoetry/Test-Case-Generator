@@ -1,23 +1,24 @@
 package com.jntu.model;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class ArrayOfCharacters extends ArraysCommon {
-	
-	@NotNull(message="MINIMUM CHAR VALUE MUST NOT BE NULL")
-	private char minValue='A';
-	
-	@NotNull(message="MAXIMUM CHAR VALUE MUST NOT BE NULL")
-	private char maxValue='Z';
-	
+
+	@NotNull(message = "MINIMUM CHAR VALUE MUST NOT BE NULL")
+	private char minValue = 'A';
+
+	@NotNull(message = "MAXIMUM CHAR VALUE MUST NOT BE NULL")
+	private char maxValue = 'Z';
+
 	@NotNull(message = "DISTINCT GENERATION MUST BE ENABLED OR DISABLED")
 	private Boolean isDistinct = false;
-	
+
 	@NotEmpty(message = "SORTED MUST HOLD A VALUE FROM DROP DOWN")
 	private String sorted = "none";// TODO :MAKE ENUM
-	
+
 	@NotEmpty(message = "CASE MUST HOLD A VALUE FROM DROP DOWN")
 	private String charCase;// TODO :MAKE ENUM
 
@@ -59,5 +60,41 @@ public class ArrayOfCharacters extends ArraysCommon {
 
 	public void setSorted(String sorted) {
 		this.sorted = sorted;
+	}
+
+	@AssertTrue(message = "MAXIMUM CHAR VALUE MUST BE GREATER OR EQUAL TO MINIMUM CHAR VALUE")
+	public boolean isValueCheckSatisfied() {
+		return this.minValue <= this.maxValue;
+
+	}
+
+	@AssertTrue(message = "MENTIONED CASE AND VALUES DO NOT MATCH")
+	public boolean isValueAndCaseCheckSatisfied() {
+		if ("lower".equals(this.charCase)
+				&& (Character.isUpperCase(this.minValue) || Character.isUpperCase(this.maxValue))) {
+			return false;
+		}
+		if ("upper".equals(this.charCase)
+				&& (Character.isLowerCase(this.minValue) || Character.isLowerCase(this.maxValue))) {
+			return false;
+		}
+		return true;
+	}
+
+	@AssertTrue(message = "BOTH MIN VALUE AND MAX VALUE MUST BE OF SAME CASE")
+	public boolean isMinValueAndMaxValueSameCase() {
+		return (Character.isUpperCase(this.minValue) == Character.isUpperCase(this.maxValue));
+	}
+
+	@AssertTrue(message = "ENTERED VALUES MUST BE ALPHABETS")
+	public boolean isAlphabet() {
+		return (Character.isLetter(this.minValue) && Character.isLetter(this.maxValue));
+	}
+	
+	@AssertTrue(message = "GIVEN ARRAY SIZE CAN NOT HAVE ENOUGH DISTINCT NUMBERS")
+	public boolean isRangeValidIfDistinctIsChecked() {
+		if (!this.isDistinct)
+			return true;
+		return this.getMaxSize() <= (this.maxValue - this.minValue + 1);
 	}
 }
