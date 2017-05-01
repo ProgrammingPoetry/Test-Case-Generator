@@ -477,8 +477,7 @@ public class TreeServiceImpl implements TreeServiceInterface {
 		Map<String,String> jsonResponse = new HashMap<>();
 		String testData = testCases + "\n";
 		
-		// Calculate the number of nodes given the number of levels
-		int nodes = (int) Math.pow(2, numberOfLevels) - 1;
+		int nodes = numberOfLevels;
 		
 		// 'lower' and 'upper' is used for generating random node numbers within the specified limits
 		int lower = indexedFrom;
