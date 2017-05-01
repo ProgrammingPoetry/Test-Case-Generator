@@ -22,10 +22,10 @@ public class GraphController {
 	// Logger is used for showing debugging statements in the console
 	private static Logger log = Logger.getLogger(GraphController.class.getName());
 
-	@RequestMapping(value = "/graphs", method = RequestMethod.POST)
+	@RequestMapping(value = "/graphService", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> getGraphs(@RequestParam Map<String, Object> requestParams) {
 
-		log.info("'/graphs' Controller has been hit");
+		log.info("'/graphService' Controller has been hit");
 		log.info("Request params are: " + requestParams);
 
 		// Measure the time taken by the user's request

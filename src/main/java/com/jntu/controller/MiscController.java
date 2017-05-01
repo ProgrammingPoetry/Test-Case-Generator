@@ -22,10 +22,10 @@ public class MiscController {
 	// Logger is used for showing debugging statements in the console
 	private static Logger log = Logger.getLogger(MiscController.class.getName());
 
-	@RequestMapping(value = "/Miscellaneous", method = RequestMethod.POST)
+	@RequestMapping(value = "/miscellaneousService", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> getMiscellaneous(@RequestParam Map<String, Object> requestParams) {
 
-		log.info("'/Miscellaneous' Controller has been hit");
+		log.info("'/miscellaneousService' Controller has been hit");
 		log.info("Request params are: " + requestParams);
 
 		// Measure the time taken by the user's request
