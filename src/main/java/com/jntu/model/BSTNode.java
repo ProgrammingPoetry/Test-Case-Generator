@@ -53,6 +53,8 @@ public class BSTNode {
 	public static int[] toArray(BSTNode node, int i, int[] arrayForm) {
 		if(node == null)
 			return arrayForm;
+		if(i >= arrayForm.length)
+			return arrayForm;
 		arrayForm[i] = node.data;
 		toArray(node.leftNode, 2 * i + 1, arrayForm);
 		toArray(node.rightNode, 2 * i + 2, arrayForm);

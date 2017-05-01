@@ -221,7 +221,15 @@ public class Utility {
 				root = balancedInsertIntoBST(root, data);
 		}
 		int maxArraySizeInWorstCase = (int) Math.pow(2, nodes);
-		int[] arrayForm = new int[maxArraySizeInWorstCase];
+		int exponent = (int) Math.floor(Math.log10(nodes * 1.0) / Math.log10(2.0)) + 1;
+		int maxArraySizeInWorstCaseIfBalanced = (int) Math.pow(2, exponent) - 1;
+		int[] arrayForm;
+		// If the tree is unbalanced, then in the worst case there can be 'maxArraySizeInWorstCase' nodes possible
+		// Else, if the tree is balanced then number of nodes are 'maxArraySizeInWorstCaseIfBalanced'
+		if(!isBalanced)
+			arrayForm = new int[maxArraySizeInWorstCase];
+		else
+			arrayForm = new int[maxArraySizeInWorstCaseIfBalanced];
 		// Fill the array with empty bst nodes
 		Arrays.fill(arrayForm, ApplicationConstants.BST_NODE_EMPTY);
 		return BSTNode.toArray(root, 0, arrayForm);
@@ -231,7 +239,7 @@ public class Utility {
 	private static void inorderTraversal(BSTNode root) {
 		if(root != null) {
 			inorderTraversal(root.getLeftNode());
-			System.out.println("Inorder: " + root.getData());
+			System.out.println("Inorder: " + root.getData() + " Balance: " + root.getBalance());
 			inorderTraversal(root.getRightNode());
 		}
 	}
@@ -241,11 +249,11 @@ public class Utility {
 			return new BSTNode(data);
 		if (data < root.getData()) {
 			BSTNode leftNode = root.getLeftNode();
-			leftNode = insertIntoBST(leftNode, data);
+			leftNode = balancedInsertIntoBST(leftNode, data);
 			root.setLeftNode(leftNode);
 		} else {
 			BSTNode rightNode = root.getRightNode();
-			rightNode = insertIntoBST(rightNode, data);
+			rightNode = balancedInsertIntoBST(rightNode, data);
 			root.setRightNode(rightNode);
 		}
 

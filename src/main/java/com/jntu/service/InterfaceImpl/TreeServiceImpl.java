@@ -549,11 +549,17 @@ public class TreeServiceImpl implements TreeServiceInterface {
 		
 		// Start generating test data
 		for(long i = 0;i < testCases;++i) {
+			
+			System.out.println("Test case : " + i);
 			// Before generating the tree, we need to print the number of nodes in the testData
 			testData += nodes + "\n";
 			
 			// By default the generated BST node values are 0 based indexing
 			int[] bst = Utility.generateRandomBinarySearchTree(nodes,isBalanced);
+			
+			/*for(int element : bst) {
+				System.out.println("Element: " + element);
+			}*/
 			
 			// Set for keeping track of already generated weights
 			Set<Long> set = new HashSet<>();
@@ -565,6 +571,9 @@ public class TreeServiceImpl implements TreeServiceInterface {
 				
 				// If current node is a valid node then process it
 				if(currentNode != ApplicationConstants.BST_NODE_EMPTY) {
+					
+					if(indexedFrom == 1)
+						currentNode++;
 					
 					int leftNode = bst[2 * j + 1];
 					int rightNode = ApplicationConstants.BST_NODE_EMPTY;
