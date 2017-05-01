@@ -52,6 +52,7 @@ public class GraphServiceImpl implements GraphServiceInterface {
 	@Override
 	public Map<String, String> processBasicGraphRequest(Map<String, Object> requestParams) {
 		
+		// Start basic graph category
 		log.info("Basic graph subcategory has been selected");
 		
 		return null;
