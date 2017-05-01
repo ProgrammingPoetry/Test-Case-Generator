@@ -220,11 +220,20 @@ public class Utility {
 			else
 				root = balancedInsertIntoBST(root, data);
 		}
-		int maxArraySizeInWorstCase = (int) Math.pow(2, nodes) - 1;
+		int maxArraySizeInWorstCase = (int) Math.pow(2, nodes);
 		int[] arrayForm = new int[maxArraySizeInWorstCase];
 		// Fill the array with empty bst nodes
 		Arrays.fill(arrayForm, ApplicationConstants.BST_NODE_EMPTY);
 		return BSTNode.toArray(root, 0, arrayForm);
+	}
+	
+	@SuppressWarnings("unused")
+	private static void inorderTraversal(BSTNode root) {
+		if(root != null) {
+			inorderTraversal(root.getLeftNode());
+			System.out.println("Inorder: " + root.getData());
+			inorderTraversal(root.getRightNode());
+		}
 	}
 
 	private static BSTNode balancedInsertIntoBST(BSTNode root, int data) {
@@ -233,9 +242,11 @@ public class Utility {
 		if (data < root.getData()) {
 			BSTNode leftNode = root.getLeftNode();
 			leftNode = insertIntoBST(leftNode, data);
+			root.setLeftNode(leftNode);
 		} else {
 			BSTNode rightNode = root.getRightNode();
 			rightNode = insertIntoBST(rightNode, data);
+			root.setRightNode(rightNode);
 		}
 
 		// After inserting the new node, update the balance
@@ -301,9 +312,11 @@ public class Utility {
 		if (data < root.getData()) {
 			BSTNode leftNode = root.getLeftNode();
 			leftNode = insertIntoBST(leftNode, data);
+			root.setLeftNode(leftNode);
 		} else {
 			BSTNode rightNode = root.getRightNode();
 			rightNode = insertIntoBST(rightNode, data);
+			root.setRightNode(rightNode);
 		}
 		return root;
 	}

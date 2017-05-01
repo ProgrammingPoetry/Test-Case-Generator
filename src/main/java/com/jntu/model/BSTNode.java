@@ -14,6 +14,8 @@ public class BSTNode {
 	public BSTNode(int data) {
 		this.data = data;
 		this.balance = 0;
+		this.leftNode = null;
+		this.rightNode = null;
 	}
 	
 	public int getBalance() {

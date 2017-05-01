@@ -269,7 +269,7 @@ public class TreeServiceImpl implements TreeServiceInterface {
 			testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
 			nodes = Integer.parseInt(requestParams.get(ApplicationConstants.NODES).toString());
 			indexedFrom = Integer.parseInt(requestParams.get(ApplicationConstants.INDEXED_FROM).toString());
-			if(testCases < 0 || nodes <= 0 || (indexedFrom != 0 && indexedFrom != 1))
+			if(testCases < 0 || nodes <= 1 || (indexedFrom != 0 && indexedFrom != 1))
 				throw new NumberFormatException();
 			if(isWeighted) {	
 				minWeight = Long.parseLong(requestParams.get(ApplicationConstants.MIN_WEIGHT).toString());
@@ -559,7 +559,7 @@ public class TreeServiceImpl implements TreeServiceInterface {
 			Set<Long> set = new HashSet<>();
 			
 			// Parse the data from bst[] array and append to testData
-			for(int j = 0;j < bst.length;++j) {
+			for(int j = 0;j < bst.length / 2;++j) {
 				
 				int currentNode = bst[j];
 				
@@ -567,7 +567,9 @@ public class TreeServiceImpl implements TreeServiceInterface {
 				if(currentNode != ApplicationConstants.BST_NODE_EMPTY) {
 					
 					int leftNode = bst[2 * j + 1];
-					int rightNode = bst[2 * j + 2];
+					int rightNode = ApplicationConstants.BST_NODE_EMPTY;
+					if(2 * j + 2 < bst.length)
+						rightNode = bst[2 * j + 2];
 					
 					// Process left nodes and right nodes
 					
