@@ -102,7 +102,6 @@ public class MiscServiceImpl implements MiscServiceInterface {
 		
 		String testData = testCases + "\n";
 		for(long i = 0;i < testCases;++i) {
-			System.out.println("Test case: " + i);
 			long n = generator.getRandomNumber(minValue, maxValue);
 			testData += n + "\n";
 			if(n >= 1)
