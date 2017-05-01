@@ -57,6 +57,7 @@ public class ApplicationConstants {
 	public static final String DISTINCT_WEIGHT = "distinctWeight";
 	public static final String DISTINCT_VALUE = "distinctValue";
 	public static final String IS_BALANCED = "isBalanced";
+	public static final String NUMBER_OF_LEVELS = "numberOfLevels";
 	
 	// Constants which denote the sub-categories in our application (Such as:
 	// Numbers, Characters etc)
@@ -66,8 +67,8 @@ public class ApplicationConstants {
 	public static final String NUMERIC_TREE = "numericTree";
 	public static final String FULL_BINARY_TREE = "fullBinaryTree";
 	public static final String SKEW_TREE = "skewTree";
-	public static final String BINARY_SEARCH_TREE = "binarySearchTree";
-	public static final String NUMBER_OF_LEVELS = "numberOfLevels";
+	public static final String BINARY_SEARCH_TREE = "binarySearchTree";	
+	public static final String FIBONACCI_SERIES = "fibonacci";
 
 	// Other constants are below (which do not fall into any specific category)
 
