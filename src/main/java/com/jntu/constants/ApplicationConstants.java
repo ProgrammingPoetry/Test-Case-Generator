@@ -69,6 +69,9 @@ public class ApplicationConstants {
 	public static final String SKEW_TREE = "skewTree";
 	public static final String BINARY_SEARCH_TREE = "binarySearchTree";	
 	public static final String FIBONACCI_SERIES = "fibonacci";
+	public static final String BASIC_GRAPH = "basicGraph";
+	public static final String N_PARTITE_GRAPH = "nPartiteGraph";
+	public static final String COMPLETE_GRAPH = "completeGraph";
 
 	// Other constants are below (which do not fall into any specific category)
 
