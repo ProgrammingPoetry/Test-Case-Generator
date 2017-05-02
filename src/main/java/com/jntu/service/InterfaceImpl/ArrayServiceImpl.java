@@ -1,21 +1,12 @@
 package com.jntu.service.InterfaceImpl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.validation.constraints.NotNull;
-
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jntu.constants.ApplicationConstants;
-import com.jntu.controller.ArrayController;
 import com.jntu.model.ArrayOfCharacters;
 import com.jntu.model.ArrayOfNumbers;
 import com.jntu.model.ArrayOfStrings;
@@ -38,84 +29,6 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 
 	@Autowired
 	RandomStringGeneratorInterface randomStrings;
-
-	private static Logger log = Logger.getLogger(ArrayServiceImpl.class.getName());
-
-	@Override
-	public Map<String, String> processArrayOfCharactersRequest(Map<String, Object> requestParams) {
-		Map<String, String> jsonResponse = new HashMap<>();
-		// TODO validations here
-		String whiteSpace = "\n";// requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
-		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
-		long minSize = Long.parseLong(requestParams.get(ApplicationConstants.MIN_SIZE).toString());
-		long maxSize = Long.parseLong(requestParams.get(ApplicationConstants.MAX_SIZE).toString());
-		boolean isDistinct = Boolean.parseBoolean(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
-		boolean printSize = Boolean.parseBoolean(requestParams.get(ApplicationConstants.PRINT_SIZE).toString());
-		String sorted = requestParams.get(ApplicationConstants.SORTED).toString();
-		String seperatedBy = " ";
-		requestParams.get(ApplicationConstants.SPACE_CHARACTER).toString();
-		String data = testCases + whiteSpace;
-		long size;
-		char minCharValue = requestParams.get(ApplicationConstants.MIN_VALUE).toString().charAt(0);
-		char maxCharValue = requestParams.get(ApplicationConstants.MAX_VALUE).toString().charAt(0);
-		boolean specialCharactersAllowed = Boolean
-				.parseBoolean(requestParams.get(ApplicationConstants.SPECIAL_CHARACTERS_ALLOWED).toString());
-		String charCase = requestParams.get(ApplicationConstants.CHARACTER_CASE).toString();
-		for (long i = 0; i < testCases; i++) {
-			size = randomNumbers.getRandomNumber(minSize, maxSize);
-			if (printSize)
-				data += size + whiteSpace;
-			if (minCharValue >= 'A' && minCharValue <= 'Z')
-				minCharValue = (char) ('a' + minCharValue - 'A');
-			if (maxCharValue >= 'A' && maxCharValue <= 'Z')
-				maxCharValue = (char) ('a' + maxCharValue - 'A');
-			String[] singleTestCase = randomCharacters.getArrayOfCharacters(size, minCharValue, maxCharValue,
-					isDistinct, charCase, specialCharactersAllowed, printSize, sorted, seperatedBy);
-			data += Arrays.toString(singleTestCase).replaceAll(",", seperatedBy).replace("[", "").replace("]", "")
-					+ whiteSpace;
-		}
-		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
-		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
-		jsonResponse.put(ApplicationConstants.TEST_DATA, data);
-		return jsonResponse;
-	}
-
-	@Override
-	public Map<String, String> processArrayOfStringsRequest(Map<String, Object> requestParams) {
-		Map<String, String> jsonResponse = new HashMap<>();
-		// TODO validations here
-		String whiteSpace = requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
-		long testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
-		long minSize = Long.parseLong(requestParams.get(ApplicationConstants.MIN_STRING_LENGTH).toString());
-		long maxSize = Long.parseLong(requestParams.get(ApplicationConstants.MAX_STRING_LENGTH).toString());
-		boolean isDistinct = Boolean.parseBoolean(requestParams.get(ApplicationConstants.IS_DISTINCT).toString());
-		String sorted = requestParams.get(ApplicationConstants.SORTED).toString();
-		String seperatedBy = requestParams.get(ApplicationConstants.SPACE_CHARACTER).toString();
-		String data = testCases + whiteSpace;
-		long size;
-		char minStringCharValue = requestParams.get(ApplicationConstants.MIN_CHAR_VALUE).toString().charAt(0);
-		char maxStringCharValue = requestParams.get(ApplicationConstants.MAX_CHAR_VALUE).toString().charAt(0);
-		boolean specialCharactersAllowedString = Boolean
-				.parseBoolean(requestParams.get(ApplicationConstants.SPECIAL_CHARACTERS_ALLOWED).toString());
-		boolean printLength = Boolean.parseBoolean(requestParams.get(ApplicationConstants.PRINT_LENGTH).toString());
-		String stringCase = requestParams.get(ApplicationConstants.CHARACTER_CASE).toString();
-		boolean isPalindrome = Boolean.parseBoolean(requestParams.get(ApplicationConstants.IS_PALINDROME).toString());
-		String individuallySorted = requestParams.get(ApplicationConstants.INDIVIDUALLY_SORTED).toString();
-		for (long i = 0; i < testCases; i++) {
-			size = randomNumbers.getRandomNumber(minSize, maxSize);
-			if (printLength)
-				data += size + whiteSpace;
-			String[] singleTestCase = randomStrings.getArrayOfStrings(size, minStringCharValue, maxStringCharValue,
-					minSize, maxSize, specialCharactersAllowedString, stringCase, isPalindrome, printLength,
-					individuallySorted, sorted, seperatedBy);
-			data += Arrays.toString(singleTestCase).replaceAll(",", seperatedBy).replace("[", "").replace("]", "")
-					+ whiteSpace;
-		}
-		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
-		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
-		jsonResponse.put(ApplicationConstants.TEST_DATA, data);
-		return jsonResponse;
-	}
 
 	@Override
 	@SuppressWarnings(value = { "unchecked", "rawtypes" })
@@ -186,6 +99,7 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 					}
 				}
 			}
+			// TODO : below check can be removed
 			if ("upper".equals(input.getCharCase())) {
 				refString = refString.toUpperCase();
 			} else if ("lower".equals(input.getCharCase())) {
@@ -220,7 +134,38 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 			if (printArraySize) {
 				data.add(stringSO.getArraySize());
 			}
-			// TODO
+			String refString = "";
+			for (char c = input.getMinCharValue(); c <= input.getMaxCharValue(); c++) {
+				refString += c;
+				if ("mixed".equals(input.getCharCase())) {
+					if (Character.isLowerCase(c)) {
+						refString += Character.toUpperCase(c);
+					} else {
+						refString += Character.toLowerCase(c);
+					}
+				}
+			}
+			// TODO : below check can be removed
+			if ("upper".equals(input.getCharCase())) {
+				refString = refString.toUpperCase();
+			} else if ("lower".equals(input.getCharCase())) {
+				refString = refString.toLowerCase();
+			}
+			stringSO.setRefString(refString);
+			stringSO.setMinLength(input.getMinLength());
+			stringSO.setMaxLength(input.getMaxLength());
+			List<String> list = null;
+			if (input.getIsPalindrome()) {
+				list = randomStrings.getArrayOfPalindromicStrings(stringSO);
+			} else {
+				list = randomStrings.getArrayOfStrings(stringSO);
+			}
+			if ("ascending".equals(input.getSorted())) {
+				Collections.sort(list);
+			} else if ("descending".equals(input.getSorted())) {
+				Collections.sort(list, Collections.reverseOrder());
+			}
+			data.add(list);
 		}
 		return data;
 	}

@@ -1,14 +1,14 @@
 package com.jntu.random.interfaces;
 
+import java.util.List;
+
+import com.jntu.service.StringSO;
+
 public interface RandomStringGeneratorInterface {
+	
+	String getRandomString(String refString,int length);
 
-	String[] getArrayOfStrings(long size, char minChar, char maxChar, long minSize, long maxSize,
-			boolean specialCharactersAllowed, String stringCase, boolean isPalindrome, boolean printLength,
-			String individuallySorted, String sorted, String seperatedBy);
+	List<String> getArrayOfStrings(StringSO stringSO);
 
-	String[] getArrayOfPalindromes(long size, char minChar, char maxChar, long minSize,long maxSize,
-			boolean specialCharactersAllowed, boolean printLength, String individuallySorted, String seperatedBy);
-
-	String[] getArrayOfAnyStrings(long size, char minChar, char maxChar, long minSize,long maxSize, boolean specialCharactersAllowed,
-			boolean printLength, String individuallySorted, String seperatedBy);
+	List<String> getArrayOfPalindromicStrings(StringSO stringSO);
 }

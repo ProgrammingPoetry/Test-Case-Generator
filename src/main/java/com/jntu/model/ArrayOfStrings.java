@@ -1,14 +1,20 @@
 package com.jntu.model;
 
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class ArrayOfStrings extends ArraysCommon {
 
-	private int minLength;
+	@NotNull(message = "MINIMUM LENGTH OF THE STRING MUST NOT BE NULL")
+	@Min(value = 1, message = "MINIMUM LENGTH OF THE STRING MUST BE GREATER THAN OR EQUAL TO 1")
+	private int minLength = 1;
 
-	private int maxLength;
+	@NotNull(message = "MIXIMUM LENGTH OF THE STRING MUST NOT BE NULL")
+	@Min(value = 1, message = "MIXIMUM LENGTH OF THE STRING MUST BE GREATER THAN OR EQUAL TO 1")
+	private int maxLength = 5;
 
 	@NotNull(message = "MINIMUM CHAR VALUE MUST NOT BE NULL")
 	private char minCharValue = 'A';
@@ -22,6 +28,7 @@ public class ArrayOfStrings extends ArraysCommon {
 	@NotEmpty(message = "CASE MUST HOLD A VALUE FROM DROP DOWN")
 	private String charCase = "upper";// TODO :MAKE ENUM
 
+	@NotNull(message = "PALINDROME MUST NOT BE NULL")
 	private Boolean isPalindrome = false;
 
 	public Boolean getIsPalindrome() {
@@ -78,6 +85,40 @@ public class ArrayOfStrings extends ArraysCommon {
 
 	public void setCharCase(String charCase) {
 		this.charCase = charCase;
+	}
+
+	@AssertTrue(message = "MAXIMUM CHAR VALUE MUST BE GREATER OR EQUAL TO MINIMUM CHAR VALUE")
+	public boolean isValueCheckSatisfied() {
+		return this.minCharValue <= this.maxCharValue;
+
+	}
+
+	@AssertTrue(message = "MAXIMUM LENGTH MUST BE GREATER OR EQUAL TO MINIMUM LENGTH")
+	public boolean isLengthCheckSatisfied() {
+		return this.minLength <= this.maxLength;
+	}
+
+	@AssertTrue(message = "MENTIONED CASE AND VALUES DO NOT MATCH")
+	public boolean isValueAndCaseCheckSatisfied() {
+		if ("lower".equals(this.charCase)
+				&& (Character.isUpperCase(this.minCharValue) || Character.isUpperCase(this.maxCharValue))) {
+			return false;
+		}
+		if ("upper".equals(this.charCase)
+				&& (Character.isLowerCase(this.minCharValue) || Character.isLowerCase(this.maxCharValue))) {
+			return false;
+		}
+		return true;
+	}
+
+	@AssertTrue(message = "BOTH MIN VALUE AND MAX VALUE MUST BE OF SAME CASE")
+	public boolean isMinValueAndMaxValueSameCase() {
+		return (Character.isUpperCase(this.minCharValue) == Character.isUpperCase(this.maxCharValue));
+	}
+
+	@AssertTrue(message = "ENTERED VALUES MUST BE ALPHABETS")
+	public boolean isAlphabet() {
+		return (Character.isLetter(this.minCharValue) && Character.isLetter(this.maxCharValue));
 	}
 
 }
