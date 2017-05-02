@@ -20,7 +20,7 @@ public class ArrayOfCharacters extends ArraysCommon {
 	private String sorted = "none";// TODO :MAKE ENUM
 
 	@NotEmpty(message = "CASE MUST HOLD A VALUE FROM DROP DOWN")
-	private String charCase;// TODO :MAKE ENUM
+	private String charCase="upper";// TODO :MAKE ENUM
 
 	public String getCharCase() {
 		return charCase;

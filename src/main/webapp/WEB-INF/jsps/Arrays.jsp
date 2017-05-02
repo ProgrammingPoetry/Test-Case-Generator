@@ -159,28 +159,29 @@
 				<div class="center-block"
 					style="width: 375px; background: lightgreen; border-radius: 10px; padding: 10px; margin-top: 45px;">
 					<h2>Array of Characters</h2>
-					<form:form modelAttribute="arrayOfCharactersForm" id="arrayOfCharactersForm">
+					<form:form modelAttribute="arrayOfCharactersForm"
+						id="arrayOfCharactersForm">
 						<div class="form-group">
 							<form:label path="" for="number">Test cases</form:label>
-							<form:input path="noOfTestCases" type="number" class="form-control"
-								name="noOfTestCases" />
-							<form:errors path="noOfTestCases" type="string" class="form-control"
-								name="noOfTestCases" />
+							<form:input path="noOfTestCases" type="number"
+								class="form-control" name="noOfTestCases" />
+							<form:errors path="noOfTestCases" type="string"
+								class="form-control" name="noOfTestCases" />
 						</div>
 						<!-- Form Fields are placed in a row-->
 						<div class="form-group">
 							<div class="row">
 								<div class="col-xs-6">
 									<form:label path="" for="number">Min Value</form:label>
-									<form:input path="minValue" type="character" class="form-control"
-										name="minValue" />
+									<form:input path="minValue" type="character"
+										class="form-control" name="minValue" />
 									<form:errors path="minValue" type="string" class="form-control"
 										name="minValue" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max Value</form:label>
-									<form:input path="maxValue" type="character" class="form-control"
-										name="maxValue" />
+									<form:input path="maxValue" type="character"
+										class="form-control" name="maxValue" />
 									<form:errors path="maxValue" type="string" class="form-control"
 										name="maxValue" />
 								</div>
@@ -218,7 +219,7 @@
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="boolean">Distinct:</form:label>
-									<form:checkbox path="isDistinct"/>
+									<form:checkbox path="isDistinct" />
 									<form:errors path="isDistinct" />
 									<!--
 									<form:select path="">
@@ -270,23 +271,41 @@
 						commandName="arrayOfStringsForm">
 						<div class="form-group">
 							<form:label path="" for="number">Test cases</form:label>
-							<form:input path="" type="number" class="form-control"
-								name="noOfTestcases" />
+							<form:input path="noOfTestCases" type="number"
+								class="form-control" name="noOfTestCases" />
 							<form:errors path="" />
 						</div>
 						<!-- Form Fields are placed in a row-->
 						<div class="form-group">
 							<div class="row">
 								<div class="col-xs-6">
+									<form:label path="" for="number">Min Size</form:label>
+									<form:input path="minSize" type="number" class="form-control"
+										name="minSize" />
+									<form:errors path="minSize" type="string" class="form-control"
+										name="minSize" />
+								</div>
+								<div class="col-xs-6">
+									<form:label path="" for="number">Max Size</form:label>
+									<form:input path="maxSize" type="number" class="form-control"
+										name="maxSize" />
+									<form:errors path="maxSize" type="string" class="form-control"
+										name="maxSize" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-6">
 									<form:label path="" for="number">Min length</form:label>
-									<form:input path="" type="number" class="form-control"
-										name="minLen" />
+									<form:input path="minLength" type="number" class="form-control"
+										name="minLength" />
 									<form:errors path="" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max length</form:label>
-									<form:input path="" type="number" class="form-control"
-										name="maxLen" />
+									<form:input path="maxLength" type="number" class="form-control"
+										name="maxLength" />
 									<form:errors path="" />
 								</div>
 							</div>
@@ -296,14 +315,14 @@
 							<div class="row">
 								<div class="col-xs-6">
 									<form:label path="" for="text">MinChar Value</form:label>
-									<form:input path="" type="text" class="form-control"
-										name="minCharValue" />
+									<form:input path="minCharValue" type="text"
+										class="form-control" name="minCharValue" />
 									<form:errors path="" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="text">MaxChar Value</form:label>
-									<form:input path="" type="text" class="form-control"
-										name="maxCharValue" />
+									<form:input path="maxCharValue" type="text"
+										class="form-control" name="maxCharValue" />
 									<form:errors path="" />
 								</div>
 							</div>
@@ -313,41 +332,48 @@
 							<div class="row">
 								<div class="col-xs-6">
 									<form:label path="" for="text">Case:</form:label>
-									<form:select path="">
-										<option value="upper">upper</option>
+									<form:select path="charCase">
+										<option selected="selected" value="upper">upper</option>
 										<option value="lower">lower</option>
 										<option value="mixed">mixed</option>
 									</form:select>
-									<form:errors path="" />
+									<form:errors path="charCase" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="boolean">Palindrome:</form:label>
+									<form:checkbox path="isPalindrome" />
+									<form:errors path="isPalindrome" />
+									<!--
 									<form:select path="">
 										<option value="true">True</option>
 										<option value="false">False</option>
 									</form:select>
 									<form:errors path="" />
+									-->
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-xs-6">
-									<form:label path="" for="boolean">Print length:</form:label>
-									<form:select path="">
-										<option value="true">True</option>
-										<option value="false">False</option>
-									</form:select>
-									<form:errors path="" />
+									<form:label path="" for="boolean">PrintSize:</form:label>
+									<form:checkbox path="printArraySize" />
+									<form:errors path="printArraySize" />
+									<!--  
+                                        <form:select path="">
+                                            <option value="true">True</option>
+                                            <option value="false">False</option>
+                                       </form:select>
+                                       -->
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="text">Sorted:</form:label>
-									<form:select path="">
+									<form:select path="sorted">
 										<option value="ascending">Ascending</option>
 										<option value="descending">Descending</option>
-										<option value="none">None</option>
+										<option selected="selected" value="none">None</option>
 									</form:select>
-									<form:errors path="" />
+									<form:errors path="sorted" />
 								</div>
 							</div>
 						</div>
@@ -359,7 +385,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	var response;
+		var response;
 		$(document).ready(function() {
 			$("#arrayOfNumbersForm").submit(function(event) {
 				var str = $("#arrayOfNumbersForm").serialize();
@@ -371,7 +397,7 @@
 					async : false,
 					dataType : 'json',
 					success : function(data) {
-						response=data;
+						response = data;
 						console.log(JSON.stringify(data));
 						alert("success");
 					},
@@ -391,7 +417,7 @@
 					async : false,
 					dataType : 'json',
 					success : function(data) {
-						response=data;
+						response = data;
 						console.log(JSON.stringify(data));
 						alert("success");
 					},
@@ -415,7 +441,7 @@
 						alert("success");
 					},
 					error : function(data) {
-						response=data;
+						response = data;
 						console.log(data);
 						alert(data.responseJSON.errors);
 					}
