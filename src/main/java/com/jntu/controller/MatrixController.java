@@ -41,11 +41,15 @@ public class MatrixController {
 			}
 			model.put("errors", errors);
 			model.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
-			return ResponseEntity.badRequest().body(model);
+			return ResponseEntity.ok(model);
 		}
 		Object FileData = null;
 		try {
+			long startTime = System.currentTimeMillis();
 			FileData = service.getFileContent(input);
+			long endTime = System.currentTimeMillis();
+			long timeTaken = endTime - startTime;
+			model.put("timeTaken", String.valueOf(timeTaken) + " ms");
 		} catch (Exception e) {
 			model.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
 		}
@@ -66,11 +70,15 @@ public class MatrixController {
 			}
 			model.put("errors", errors);
 			model.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
-			return ResponseEntity.badRequest().body(model);
+			return ResponseEntity.ok(model);
 		}
 		Object FileData = null;
 		try {
+			long startTime = System.currentTimeMillis();
 			FileData = service.getFileContent(input);
+			long endTime = System.currentTimeMillis();
+			long timeTaken = endTime - startTime;
+			model.put("timeTaken", String.valueOf(timeTaken) + " ms");
 		} catch (Exception e) {
 			model.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
 		}
@@ -91,11 +99,15 @@ public class MatrixController {
 			}
 			model.put("errors", errors);
 			model.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
-			return ResponseEntity.badRequest().body(model);
+			return ResponseEntity.ok(model);
 		}
 		Object FileData = null;
 		try {
+			long startTime = System.currentTimeMillis();
 			FileData = service.getFileContent(input);
+			long endTime = System.currentTimeMillis();
+			long timeTaken = endTime - startTime;
+			model.put("timeTaken", String.valueOf(timeTaken) + " ms");
 		} catch (Exception e) {
 			model.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
 		}
