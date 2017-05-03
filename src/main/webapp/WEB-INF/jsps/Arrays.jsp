@@ -268,7 +268,7 @@
 					style="width: 375px; background: lightgreen; border-radius: 10px; padding: 10px; margin-top: 45px;">
 					<h2>Array of Strings</h2>
 					<form:form action="arrays/strings" method="post"
-						commandName="arrayOfStringsForm">
+						modelAttribute="arrayOfStringsForm">
 						<div class="form-group">
 							<form:label path="" for="number">Test cases</form:label>
 							<form:input path="noOfTestCases" type="number"
@@ -385,7 +385,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		var response;
+		var content;
 		$(document).ready(function() {
 			$("#arrayOfNumbersForm").submit(function(event) {
 				var str = $("#arrayOfNumbersForm").serialize();
@@ -397,7 +397,8 @@
 					async : false,
 					dataType : 'json',
 					success : function(data) {
-						response = data;
+						content = data;
+						console.log(data);
 						console.log(JSON.stringify(data));
 						alert("success");
 					},
@@ -417,7 +418,8 @@
 					async : false,
 					dataType : 'json',
 					success : function(data) {
-						response = data;
+						content = data;
+						console.log(data);
 						console.log(JSON.stringify(data));
 						alert("success");
 					},
@@ -437,11 +439,13 @@
 					async : false,
 					dataType : 'json',
 					success : function(data) {
+						content = data;
+						console.log(data);
 						console.log(JSON.stringify(data));
 						alert("success");
 					},
 					error : function(data) {
-						response = data;
+						content = data;
 						console.log(data);
 						alert(data.responseJSON.errors);
 					}

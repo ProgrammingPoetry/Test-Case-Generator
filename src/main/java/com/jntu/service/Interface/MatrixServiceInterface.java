@@ -1,9 +1,15 @@
 package com.jntu.service.Interface;
 
-import java.util.Map;
+import com.jntu.model.MatrixOfCharacters;
+import com.jntu.model.MatrixOfNumbers;
+import com.jntu.model.PathMatrix;
 
 public interface MatrixServiceInterface {
 
-	Map<String, String> getResponse(Map<String, Object> requestParams);
+	Object getFileContent(MatrixOfNumbers input);
+
+	Object getFileContent(MatrixOfCharacters input);
+
+	Object getFileContent(PathMatrix input);
 
 }

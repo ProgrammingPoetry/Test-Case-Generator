@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.jntu.model.ArrayOfCharacters;
 import com.jntu.model.ArrayOfNumbers;
 import com.jntu.model.ArrayOfStrings;
+import com.jntu.model.MatrixOfCharacters;
+import com.jntu.model.MatrixOfNumbers;
+import com.jntu.model.PathMatrix;
 
 // This controller is used to serve jsp pages of our application
 
@@ -19,12 +22,12 @@ public class HomeController {
 	public String homePageController() {
 		return "home";
 	}
-	
+
 	@RequestMapping(value = "/datatypes", method = RequestMethod.GET)
 	public String basicDataTypePageController() {
 		return "datatypes";
 	}
-	
+
 	@RequestMapping(value = "/arrays", method = RequestMethod.GET)
 	public String viewArraysPage(Map<String, Object> model) {
 		model.put("arrayOfNumbersForm", new ArrayOfNumbers());
@@ -32,22 +35,25 @@ public class HomeController {
 		model.put("arrayOfStringsForm", new ArrayOfStrings());
 		return "Arrays";
 	}
-	
+
 	@RequestMapping(value = "/matrix", method = RequestMethod.GET)
-	public String matrixPageController() {
+	public String viewMatrixPage(Map<String, Object> model) {
+		model.put("matrixOfNumbersForm", new MatrixOfNumbers());
+		model.put("matrixOfCharactersForm", new MatrixOfCharacters());
+		model.put("pathMatrixForm", new PathMatrix());
 		return "matrix";
 	}
-	
+
 	@RequestMapping(value = "/trees", method = RequestMethod.GET)
 	public String treePageController() {
 		return "trees";
 	}
-	
+
 	@RequestMapping(value = "/graphs", method = RequestMethod.GET)
 	public String graphPageController() {
 		return "graphs";
 	}
-	
+
 	@RequestMapping(value = "/misc", method = RequestMethod.GET)
 	public String miscPageController() {
 		return "misc";

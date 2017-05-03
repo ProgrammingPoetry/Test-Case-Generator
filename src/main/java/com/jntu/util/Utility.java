@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -224,9 +225,11 @@ public class Utility {
 		int exponent = (int) Math.floor(Math.log10(nodes * 1.0) / Math.log10(2.0)) + 1;
 		int maxArraySizeInWorstCaseIfBalanced = (int) Math.pow(2, exponent) - 1;
 		int[] arrayForm;
-		// If the tree is unbalanced, then in the worst case there can be 'maxArraySizeInWorstCase' nodes possible
-		// Else, if the tree is balanced then number of nodes are 'maxArraySizeInWorstCaseIfBalanced'
-		if(!isBalanced)
+		// If the tree is unbalanced, then in the worst case there can be
+		// 'maxArraySizeInWorstCase' nodes possible
+		// Else, if the tree is balanced then number of nodes are
+		// 'maxArraySizeInWorstCaseIfBalanced'
+		if (!isBalanced)
 			arrayForm = new int[maxArraySizeInWorstCase];
 		else
 			arrayForm = new int[maxArraySizeInWorstCaseIfBalanced];
@@ -234,10 +237,10 @@ public class Utility {
 		Arrays.fill(arrayForm, ApplicationConstants.BST_NODE_EMPTY);
 		return BSTNode.toArray(root, 0, arrayForm);
 	}
-	
+
 	@SuppressWarnings("unused")
 	private static void inorderTraversal(BSTNode root) {
-		if(root != null) {
+		if (root != null) {
 			inorderTraversal(root.getLeftNode());
 			System.out.println("Inorder: " + root.getData() + " Balance: " + root.getBalance());
 			inorderTraversal(root.getRightNode());
@@ -346,6 +349,32 @@ public class Utility {
 		}
 
 		return result.toString();
+	}
+
+	public static <T>List<List<T>> listToMultipleLists( final List<T> list, final int iParts )
+	{
+	    final List<List<T>> lsParts = new ArrayList<List<T>>();
+	    final int iChunkSize = list.size() / iParts;
+	    int iLeftOver = list.size() % iParts;
+	    int iTake = iChunkSize;
+
+	    for( int i = 0, iT = list.size(); i < iT; i += iTake )
+	    {
+	        if( iLeftOver > 0 )
+	        {
+	            iLeftOver--;
+
+	            iTake = iChunkSize + 1;
+	        }
+	        else
+	        {
+	            iTake = iChunkSize;
+	        }
+
+	        lsParts.add( new ArrayList<T>( list.subList( i, Math.min( iT, i + iTake ) ) ) );
+	    }
+
+	    return lsParts;
 	}
 
 }
