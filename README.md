@@ -52,7 +52,7 @@ If you find any problem deploying the project in your machine, please do let us 
 
 Enough of test data! What does test data for competitive-programming-problems means? What does this tool serve?
 <br/><br/>
-Consider that you are a problem setter on a competitive-programming-platform, <a href="hackerrank.com">Hackerrank</a>.
+Consider that you are a problem setter on a competitive-programming-platform, <a href="https://www.hackerrank.com">Hackerrank</a>.
 You want to set a problem similar to <a href="https://www.hackerrank.com/challenges/reduced-string">this</a>.
 You spend your entire time creating the problem statement and then writing an efficient solution (since you do not want each and every brute-force solution to pass). Once these are ready, you should generate test data on which your code runs; .i.e., instead of giving small data sets as input, you give huge amount of data in the form of a file (let us call it <i>input.txt</i>) to your program. You record the results (Assuming your logic to be correct).
 The result of your problem after running on huge amount of test data will be dumped into a file (let us call it <i>output.txt</i>).
@@ -68,7 +68,7 @@ There are several features which can be incorporated into this application.
   <li>Test data for programming problems which involve: finding a path in a matrix, path in a graph, etc are not yet implemented. Basically, we can incorporate several categories into the tool to make it as generic as possible than it is now.</li>
   <li>From the coding point of view, we can still reduce the redundant usage of code and make it efficient.</li>
   <li>The UI can be improved to make the errors even more descriptive.</li>
-  <li>The project can be integrated to several competitive-programming-platforms such as <a href="codechef.com">Codechef</a>, <a href="hackerrank.com">Hackerrank</a>, <a href="topcoder.com">TopCoder</a>, etc. Rather than using UI to make requests to back-end service(which is a RESTful service), it can be consumed by any third-party-application which is capable of making HTTP requests.</li>
+  <li>The project can be integrated to several competitive-programming-platforms such as <a href="https://www.codechef.com">Codechef</a>, <a href="https://www.hackerrank.com">Hackerrank</a>, <a href="https://www.topcoder.com">TopCoder</a>, etc. Rather than using UI to make requests to back-end service(which is a RESTful service), it can be consumed by any third-party-application which is capable of making HTTP requests.</li>
 </ul>
 
 Use this, report bugs, raise issues and Have fun. Do whatever you want! We would love to hear your feedback :)
