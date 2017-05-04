@@ -61,9 +61,6 @@ public class ApplicationConstants {
 	public static final String EDGES = "edges";
 	public static final String IS_DIRECTED = "directed";
 	public static final String MULTIPLE_EDGES = "multipleEdges";
-	public static final String IS_PATH_PROBLEM = "isPathProblem";
-	public static final String SOURCE_NODE = "sourceNode";
-	public static final String DEST_NODE = "destNode";
 	public static final String NODES_IN_FIRST_GROUP = "n1";
 	public static final String NODES_IN_SECOND_GROUP = "n2";
 	

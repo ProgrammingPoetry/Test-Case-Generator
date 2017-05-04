@@ -69,10 +69,7 @@ public class GraphServiceImpl implements GraphServiceInterface {
 				ApplicationConstants.MAX_WEIGHT,
 				ApplicationConstants.IS_DISTINCT,
 				ApplicationConstants.IS_DIRECTED,
-				ApplicationConstants.MULTIPLE_EDGES,
-				ApplicationConstants.IS_PATH_PROBLEM,
-				ApplicationConstants.SOURCE_NODE,
-				ApplicationConstants.DEST_NODE
+				ApplicationConstants.MULTIPLE_EDGES
 		};
 		
 		Map<String, String> validateResponse = Utility.validateRequestParameters(requestParams, requiredParameterNames);
@@ -85,13 +82,11 @@ public class GraphServiceImpl implements GraphServiceInterface {
 		
 		long testCases, nodes, edges;
 		long minWeight = ApplicationConstants.NOT_PRESENT, maxWeight = ApplicationConstants.NOT_PRESENT;
-		long sourceNode = ApplicationConstants.NOT_PRESENT, destNode = ApplicationConstants.NOT_PRESENT;
 		
 		int indexedFrom = 0;
 		
 		boolean isDirected = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_DIRECTED, requestParams);
 		boolean multipleEdges = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.MULTIPLE_EDGES, requestParams);
-		boolean isPathProblem = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_PATH_PROBLEM, requestParams);
 		boolean isWeighted = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_WEIGHTED, requestParams);
 		boolean isDistinct = false;
 		
@@ -141,10 +136,7 @@ public class GraphServiceImpl implements GraphServiceInterface {
 			return jsonResponse;
 		}
 
-		if(!isPathProblem)
-			return generateBasicGraph(testCases,nodes,edges,isWeighted,minWeight,maxWeight,isDistinct,indexedFrom,isDirected,multipleEdges);
-		else
-			return generateBasicGraphWithPathProblem(testCases,nodes,edges,isWeighted,minWeight,maxWeight,isDistinct,indexedFrom,isDirected,multipleEdges,sourceNode,destNode);
+		return generateBasicGraph(testCases,nodes,edges,isWeighted,minWeight,maxWeight,isDistinct,indexedFrom,isDirected,multipleEdges);
 	}
 
 	@Override
@@ -324,9 +316,10 @@ public class GraphServiceImpl implements GraphServiceInterface {
 		
 		String testData = testCases + "\n";
 		
-		Set<Long> set = new HashSet<>();
-		
 		for(long i = 0;i < testCases;++i) {
+			
+			Set<Long> set = new HashSet<>();
+			
 			long nodes = generator.getRandomNumber(minValue, maxValue);
 			long edges = nodes * (nodes - 1) / 2;
 			testData += nodes + " " + edges + "\n";
@@ -376,6 +369,8 @@ public class GraphServiceImpl implements GraphServiceInterface {
 		long distinctWeights = maxWeight - minWeight + 1;
 		
 		for(long i = 0;i < testCases;++i) {
+			
+			System.out.println("Test case: " + i);
 			
 			// This table is used to store the edges which have been generated
 			// This is done in order to keep track of edges generated
@@ -552,13 +547,6 @@ public class GraphServiceImpl implements GraphServiceInterface {
 		return jsonResponse;
 	}
 	
-	private Map<String, String> generateBasicGraphWithPathProblem(long testCases, long nodes, long edges,
-			boolean isWeighted, long minWeight, long maxWeight, boolean isDistinct, int indexedFrom, boolean isDirected,
-			boolean multipleEdges, long sourceNode, long destNode) {
-
-		return null;
-	}
-	
 	private Map<String, String> generateNPartiteGraph(long testCases, long n1, long n2, boolean isWeighted,
 			long minWeight, long maxWeight, boolean isDistinct, int indexedFrom) {
 		
@@ -606,7 +594,5 @@ public class GraphServiceImpl implements GraphServiceInterface {
 		jsonResponse.put(ApplicationConstants.TEST_DATA, testData);
 		return jsonResponse;
 	}
-
-	
 
 }
