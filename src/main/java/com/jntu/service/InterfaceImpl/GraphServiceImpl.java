@@ -36,7 +36,7 @@ public class GraphServiceImpl implements GraphServiceInterface {
 		}
 
 		String category = requestParams.get(ApplicationConstants.CATEGORY).toString();
-
+		
 		switch (category) {
 		case ApplicationConstants.BASIC_GRAPH:
 			return processBasicGraphRequest(requestParams);
@@ -151,8 +151,82 @@ public class GraphServiceImpl implements GraphServiceInterface {
 	public Map<String, String> processNPartiteGraphRequest(Map<String, Object> requestParams) {
 		
 		log.info("N Partite graph subcategory has been selected");
+		Map<String, String> jsonResponse = new HashMap<>();
+
+		// Validate the request parameters by checking the mandatory attributes
+		String[] requiredParameterNames = {
+				ApplicationConstants.TEST_CASES,
+				ApplicationConstants.NODES_IN_FIRST_GROUP,
+				ApplicationConstants.NODES_IN_SECOND_GROUP,
+				ApplicationConstants.IS_WEIGHTED,
+				ApplicationConstants.MIN_WEIGHT,
+				ApplicationConstants.MAX_WEIGHT,
+				ApplicationConstants.IS_DISTINCT,
+				ApplicationConstants.INDEXED_FROM
+		};
+		Map<String, String> validateResponse = Utility.validateRequestParameters(requestParams, requiredParameterNames);
 		
-		return null;
+		// If the request parameters do not contain the mandatory attributes, return error response
+		if(validateResponse.get(ApplicationConstants.STATUS).equals(ApplicationConstants.FAILURE_STATUS))
+			return validateResponse;
+		
+		// Retrieve mandatory parameters from the request
+
+		long testCases, n1, n2;
+		long minWeight = ApplicationConstants.NOT_PRESENT, maxWeight = ApplicationConstants.NOT_PRESENT;
+		
+		int indexedFrom = 0;
+		
+		boolean isWeighted = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_WEIGHTED, requestParams);
+		boolean isDistinct = false;
+		
+		try {			
+			testCases = Long.parseLong(requestParams.get(ApplicationConstants.TEST_CASES).toString());
+			indexedFrom = Integer.parseInt(requestParams.get(ApplicationConstants.INDEXED_FROM).toString());
+			n1 = Long.parseLong(requestParams.get(ApplicationConstants.NODES_IN_FIRST_GROUP).toString());
+			n2 = Long.parseLong(requestParams.get(ApplicationConstants.NODES_IN_SECOND_GROUP).toString());
+			if(testCases < 0) {
+				jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+				jsonResponse.put(ApplicationConstants.DESCRIPTION, "Test cases cannot be less than zero");
+				return jsonResponse;
+			}
+			if(!(indexedFrom == 0 || indexedFrom == 1)) {
+				jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+				jsonResponse.put(ApplicationConstants.DESCRIPTION, "Indexed From attribute should be either 0 or 1");
+				return jsonResponse;
+			}
+			if(n1 <= 0 || n2 <= 0) {
+				jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+				jsonResponse.put(ApplicationConstants.DESCRIPTION, "n1 and n2 must be greater than zero");
+				return jsonResponse;
+			}
+			if(isWeighted) {
+				minWeight = Long.parseLong(requestParams.get(ApplicationConstants.MIN_WEIGHT).toString());
+				maxWeight = Long.parseLong(requestParams.get(ApplicationConstants.MAX_WEIGHT).toString());
+				if(minWeight > maxWeight) {
+					jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+					jsonResponse.put(ApplicationConstants.DESCRIPTION, "MinWeight should be less than or equal to MaxWeight");
+					return jsonResponse;
+				}				
+				isDistinct = Utility.parseBooleanValueFromRequestParam(ApplicationConstants.IS_DISTINCT, requestParams);
+				if(isDistinct) {
+					long distinctWeights = maxWeight - minWeight + 1;
+					long maxEdges = n1 * n2;
+					
+					if(distinctWeights < maxEdges) {
+						jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+						jsonResponse.put(ApplicationConstants.DESCRIPTION, "Distinct weights cannot be generated within the given limits");
+						return jsonResponse;
+					}
+				}
+			}
+		} catch(NumberFormatException e) {
+			jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.FAILURE_STATUS);
+			jsonResponse.put(ApplicationConstants.DESCRIPTION, "Couldn't parse testcases/n1/n2/minWeight/maxWeight/isWeighted/isDistinct/indexedFrom");
+			return jsonResponse;
+		}
+
+		return generateNPartiteGraph(testCases,n1,n2,isWeighted,minWeight,maxWeight,isDistinct,indexedFrom);
 	}
 
 	@Override
@@ -484,5 +558,55 @@ public class GraphServiceImpl implements GraphServiceInterface {
 
 		return null;
 	}
+	
+	private Map<String, String> generateNPartiteGraph(long testCases, long n1, long n2, boolean isWeighted,
+			long minWeight, long maxWeight, boolean isDistinct, int indexedFrom) {
+		
+		Map<String, String> jsonResponse = new HashMap<>();
+		
+		String testData = testCases + "\n";
+		
+		for(long i = 0;i < testCases;++i) {
+			
+			Set<Long> set = new HashSet<>();
+			
+			long nodes = n1 + n2;
+			long edges = n1 * n2;
+			testData += nodes + " " + edges + "\n";
+			long lower1 = indexedFrom;
+			long upper1 = (indexedFrom == 0 ? n1 - 1 : n1);
+			long lower2 = (indexedFrom == 0 ? n1 : n1 + 1);
+			long upper2 = (indexedFrom == 0 ? n1 + n2 - 1 : n1 + n2);
+			for(long j = lower1;j <= upper1;++j) {
+				
+				for(long k = lower2;k <= upper2;++k) {
+					testData += j + " " + k;
+					if(isWeighted) {
+						long weight = generator.getRandomNumber(minWeight, maxWeight);
+						if(isDistinct) {
+							// Until distinct weight hasn't been generated, keep generating weights
+							boolean flag = true;
+							while(flag) {
+								weight = generator.getRandomNumber(minWeight, maxWeight);
+								if(!set.contains(weight))
+									flag = false;
+							}
+							set.add(weight);
+						}
+						testData += " " + weight;
+					}
+					testData += "\n";
+				}
+			}
+		}
+		
+		// Return the response
+		jsonResponse.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
+		jsonResponse.put(ApplicationConstants.DESCRIPTION, ApplicationConstants.SUCCESS_DESC);
+		jsonResponse.put(ApplicationConstants.TEST_DATA, testData);
+		return jsonResponse;
+	}
+
+	
 
 }
