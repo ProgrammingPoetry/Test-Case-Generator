@@ -1,5 +1,6 @@
 package com.jntu.model;
 
+// POJO class which represents a BST Node
 public class BSTNode {
 
 	private int data;
@@ -50,14 +51,24 @@ public class BSTNode {
 		this.rightNode = rightNode;
 	}
 
+	// This function converts the BST to array form
 	public static int[] toArray(BSTNode node, int i, int[] arrayForm) {
+		
+		// Base cases
 		if(node == null)
 			return arrayForm;
 		if(i >= arrayForm.length)
 			return arrayForm;
+		
+		// Put the data into the array
 		arrayForm[i] = node.data;
+		
+		// Convert the left sub tree into array form
 		toArray(node.leftNode, 2 * i + 1, arrayForm);
+		
+		// Convert the right sub tree into array form
 		toArray(node.rightNode, 2 * i + 2, arrayForm);
+		
 		return arrayForm;
 	}
 

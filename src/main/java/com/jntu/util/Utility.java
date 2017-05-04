@@ -194,6 +194,7 @@ public class Utility {
 		return result;
 	}
 
+	// This function returns the number of multiples of 'multipleOf' present in the range [minValue,maxValue]
 	public static long getMultiplesCount(long minValue, long maxValue, long multipleOf) {
 		// Assumes minValue < maxValue
 		double lowerLimit = minValue / (multipleOf * 1.0);
@@ -206,25 +207,40 @@ public class Utility {
 		return result;
 	}
 
+	// This function generates a random binary search tree (balanced and unbalanced)
 	public static int[] generateRandomBinarySearchTree(int nodes, boolean isBalanced) {
+		
+		// Access the random number generator
 		RandomNumberGeneratorInterface generator = new RandomNumberGeneratorImpl();
+		
 		BSTNode root = null;
+		
+		// This Set is used to keep track of nodes generated (In order to make sure there are no duplicate nodes)
 		Set<Integer> set = new HashSet<>();
+		
+		// Generate random nodes and start inserting
 		for (int i = 0; i < nodes; ++i) {
 			int data;
 			do {
 				data = (int) generator.getRandomNumber(0, nodes - 1);
 			} while (set.contains(data));
 			set.add(data);
+			// Insert appropriately based on whether the tree is balanced/unbalanced
 			if (!isBalanced)
 				root = insertIntoBST(root, data);
 			else
 				root = balancedInsertIntoBST(root, data);
 		}
+		
+		// The BST which we generate should be converted into an array
+		
+		// Calculate the array size
 		int maxArraySizeInWorstCase = (int) Math.pow(2, nodes);
 		int exponent = (int) Math.floor(Math.log10(nodes * 1.0) / Math.log10(2.0)) + 1;
 		int maxArraySizeInWorstCaseIfBalanced = (int) Math.pow(2, exponent) - 1;
+		
 		int[] arrayForm;
+		
 		// If the tree is unbalanced, then in the worst case there can be
 		// 'maxArraySizeInWorstCase' nodes possible
 		// Else, if the tree is balanced then number of nodes are
@@ -233,11 +249,15 @@ public class Utility {
 			arrayForm = new int[maxArraySizeInWorstCase];
 		else
 			arrayForm = new int[maxArraySizeInWorstCaseIfBalanced];
+		
 		// Fill the array with empty bst nodes
 		Arrays.fill(arrayForm, ApplicationConstants.BST_NODE_EMPTY);
+		
+		// convert the BST into an array and return
 		return BSTNode.toArray(root, 0, arrayForm);
 	}
 
+	// This method is used for debugging purposes (to traverse the tree in inorder fashion)
 	@SuppressWarnings("unused")
 	private static void inorderTraversal(BSTNode root) {
 		if (root != null) {
@@ -247,6 +267,7 @@ public class Utility {
 		}
 	}
 
+	// This function inserts the data into the balanced tree pointed to by 'root'
 	private static BSTNode balancedInsertIntoBST(BSTNode root, int data) {
 		if (root == null)
 			return new BSTNode(data);
@@ -317,6 +338,7 @@ public class Utility {
 		return root;
 	}
 
+	// This function inserts the data into the tree pointed to by 'root'
 	private static BSTNode insertIntoBST(BSTNode root, int data) {
 		if (root == null)
 			return new BSTNode(data);

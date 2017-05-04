@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jntu.constants.ApplicationConstants;
 import com.jntu.service.Interface.MiscServiceInterface;
 
+/*
+ * This class handles all the end-points for "Miscellaneous" category
+ * Note: For each category use separate controller
+ *  
+ * */
 @Controller
 public class MiscController {
 

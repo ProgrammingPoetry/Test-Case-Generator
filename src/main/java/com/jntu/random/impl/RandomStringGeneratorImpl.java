@@ -12,6 +12,7 @@ import com.jntu.random.interfaces.RandomNumberGeneratorInterface;
 import com.jntu.random.interfaces.RandomStringGeneratorInterface;
 import com.jntu.service.StringSO;
 
+// This class generates random strings
 @Component
 public class RandomStringGeneratorImpl implements RandomStringGeneratorInterface {
 

@@ -6,7 +6,7 @@
 	<groupId>com.jntu</groupId>
 	<artifactId>TestCaseGenerator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>TestCaseGenerator</name>
 	<description>Major Project</description>

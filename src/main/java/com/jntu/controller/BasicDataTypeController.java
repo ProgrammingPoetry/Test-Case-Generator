@@ -14,7 +14,7 @@ import com.jntu.constants.ApplicationConstants;
 import com.jntu.service.Interface.BasicDataTypeServiceInterface;
 
 /*
- * This class handles all the endpoints for "Basic-Data-Type" category
+ * This class handles all the end-points for "Basic-Data-Type" category
  * Note: For each category use separate controller
  *  
  * */
