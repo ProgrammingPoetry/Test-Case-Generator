@@ -13,6 +13,7 @@ import com.jntu.random.interfaces.RandomCharacterGeneratorInterface;
 import com.jntu.random.interfaces.RandomNumberGeneratorInterface;
 import com.jntu.service.CharacterSO;
 
+// This class generates random characters
 @Component
 public class RandomCharacterGeneratorImpl implements RandomCharacterGeneratorInterface {
 

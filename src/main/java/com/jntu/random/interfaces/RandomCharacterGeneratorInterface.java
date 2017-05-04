@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jntu.service.CharacterSO;
 
+// An interface for generating random characters
 public interface RandomCharacterGeneratorInterface {
 	
 	char getRandomCharacter(char minChar,char maxChar);

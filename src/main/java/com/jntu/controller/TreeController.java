@@ -14,7 +14,7 @@ import com.jntu.constants.ApplicationConstants;
 import com.jntu.service.Interface.TreeServiceInterface;
 
 /*
- * This class handles all the endpoints for "Tree" category
+ * This class handles all the end-points for "Tree" category
  * Note: For each category use separate controller
  *  
  * */

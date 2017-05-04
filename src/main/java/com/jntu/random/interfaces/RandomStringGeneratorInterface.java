@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jntu.service.StringSO;
 
+// An interface to generate random strings
 public interface RandomStringGeneratorInterface {
 	
 	String getRandomString(String refString,int length);

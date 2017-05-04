@@ -18,16 +18,19 @@ import com.jntu.model.PathMatrix;
 @Controller
 public class HomeController {
 
+	// This method returns the home page of our application
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String homePageController() {
 		return "home";
 	}
 
+	// This method returns the basic-data-type form page
 	@RequestMapping(value = "/datatypes", method = RequestMethod.GET)
 	public String basicDataTypePageController() {
 		return "datatypes";
 	}
 
+	// This method returns the array form page
 	@RequestMapping(value = "/arrays", method = RequestMethod.GET)
 	public String viewArraysPage(Map<String, Object> model) {
 		model.put("arrayOfNumbersForm", new ArrayOfNumbers());
@@ -36,6 +39,7 @@ public class HomeController {
 		return "Arrays";
 	}
 
+	// This method returns the matrix form page
 	@RequestMapping(value = "/matrix", method = RequestMethod.GET)
 	public String viewMatrixPage(Map<String, Object> model) {
 		model.put("matrixOfNumbersForm", new MatrixOfNumbers());
@@ -44,16 +48,19 @@ public class HomeController {
 		return "matrix";
 	}
 
+	// This method returns the tree form page
 	@RequestMapping(value = "/trees", method = RequestMethod.GET)
 	public String treePageController() {
 		return "trees";
 	}
 
+	// This method returns the graph form page
 	@RequestMapping(value = "/graphs", method = RequestMethod.GET)
 	public String graphPageController() {
 		return "graphs";
 	}
 
+	// This method returns the miscellaneous form page
 	@RequestMapping(value = "/misc", method = RequestMethod.GET)
 	public String miscPageController() {
 		return "misc";

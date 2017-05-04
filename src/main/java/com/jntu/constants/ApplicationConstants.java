@@ -1,7 +1,7 @@
 package com.jntu.constants;
 
 // All constant-strings which will be used in our application should be documented here
-// It's a bad-practise to use hardcoded strings in application.
+// It's a bad-practice to use hard-coded strings in application.
 // Whenever you want to use a string, add a variable here and then use that
 // Place the variables in this class in appropriate comment-section
 // Note: You can this class as a store of constant variables (these variables need not be strings)
