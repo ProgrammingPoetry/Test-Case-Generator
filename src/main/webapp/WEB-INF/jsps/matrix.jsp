@@ -281,84 +281,90 @@
 			<!-- Path Matrix form ended-->
 		</div>
 	</div>
-	</div>
 	<script type="text/javascript">
 		var content;
-		$(document).ready(
-				function() {
-					$("#matrixOfNumbersForm")
-							.submit(
-									function(event) {
-										var str = $("#matrixOfNumbersForm")
-												.serialize();
-										event.preventDefault();
-										$.ajax({
-											type : 'POST',
-											data : str,
-											url : "matrix/numbers",
-											async : false,
-											dataType : 'json',
-											success : function(data) {
-												content = data;
-												console.log(data);
-												if (data.status == "Success") {
-													console.log(JSON.stringify(
-															data.data).split(
-															",[").join("\n")
-															.split("[")
-															.join("")
-															.split("]")
-															.join("")
-															.split(",").join(
-																	" ").split(
-																	"\"").join(
-																	""));
-													alert("success");
-												} else {
-													alert(data.errors);
-												}
-											},
-											error : function(data) {
-												console.log(data);
-												console.log(JSON
-														.stringify(data));
-											}
-										});
-									});
-					$("#matrixOfCharactersForm").submit(
-							function(event) {
-								var str = $("#matrixOfCharactersForm")
-										.serialize();
-								event.preventDefault();
-								$.ajax({
-									type : 'POST',
-									data : str,
-									url : "matrix/characters",
-									async : false,
-									dataType : 'json',
-									success : function(data) {
-										content = data;
-										console.log(data);
-										if (data.status == "Success") {
-											console.log(JSON.stringify(
-													data.data).split(",[")
-													.join("\n").split("[")
-													.join("").split("]").join(
-															"").split(",")
-													.join(" ").split("\"")
-													.join(""));
-											alert("success");
-										} else {
-											alert(data.errors);
-										}
-									},
-									error : function(data) {
-										console.log(data);
-										console.log(JSON.stringify(data));
-									}
-								});
-							});
+		function download(filename, text) {
+			var pom = document.createElement('a');
+			pom.setAttribute('href', 'data:text/plain;charset=utf-8,'
+					+ encodeURIComponent(text));
+			pom.setAttribute('download', filename);
+
+			if (document.createEvent) {
+				var event = document.createEvent('MouseEvents');
+				event.initEvent('click', true, true);
+				pom.dispatchEvent(event);
+			} else {
+				pom.click();
+			}
+		}
+		$(document).ready(function() {
+			$("#matrixOfNumbersForm").submit(function(event) {
+				var str = $("#matrixOfNumbersForm").serialize();
+				event.preventDefault();
+				$.ajax({
+					type : 'POST',
+					data : str,
+					url : "matrix/numbers",
+					async : false,
+					dataType : 'json',
+					success : function(data) {
+						content = data;
+						console.log(data);
+						if (data.status == "Success") {
+							var fileData = JSON.stringify(
+									data.data).split(",[")
+									.join("\r\n").split("[")
+									.join("").split("]").join(
+											"").split(",")
+									.join(" ").split("\"")
+									.join("");
+							console.log(fileData);
+							download('input.txt', fileData);
+							alert("success");
+						} else {
+							alert(data.errors);
+						}
+					},
+					error : function(data) {
+						console.log(data);
+						console.log(JSON.stringify(data));
+					}
 				});
+			});
+			$("#matrixOfCharactersForm").submit(function(event) {
+				var str = $("#matrixOfCharactersForm").serialize();
+				event.preventDefault();
+				$.ajax({
+					type : 'POST',
+					data : str,
+					url : "matrix/characters",
+					async : false,
+					dataType : 'json',
+					success : function(data) {
+						content = data;
+						console.log(data);
+						if (data.status == "Success") {
+							var fileData = JSON.stringify(
+									data.data).split(",[")
+									.join("\r\n").split("[")
+									.join("").split("]").join(
+											"").split(",")
+									.join(" ").split("\"")
+									.join("");
+							console.log(fileData);
+							download('input.txt', fileData);
+							alert("success");
+						} else {
+							alert(data.errors);
+						}
+					},
+					error : function(data) {
+						console.log(data);
+						console.log(JSON.stringify(data));
+					}
+				});
+			});
+		});
 	</script>
 </body>
 </html>

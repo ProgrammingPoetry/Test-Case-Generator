@@ -331,6 +331,20 @@
 	</div>
 	<script type="text/javascript">
 		var content;
+		function download(filename, text) {
+			var pom = document.createElement('a');
+			pom.setAttribute('href', 'data:text/plain;charset=utf-8,'
+					+ encodeURIComponent(text));
+			pom.setAttribute('download', filename);
+
+			if (document.createEvent) {
+				var event = document.createEvent('MouseEvents');
+				event.initEvent('click', true, true);
+				pom.dispatchEvent(event);
+			} else {
+				pom.click();
+			}
+		}
 		$(document).ready(
 				function() {
 					$("#arrayOfNumbersForm").submit(
@@ -347,12 +361,15 @@
 										content = data;
 										console.log(data);
 										if (data.status == "Success") {
-											console.log(JSON.stringify(
+											var fileData = JSON.stringify(
 													data.data).split(",[")
-													.join("\n").split("[")
+													.join("\r\n").split("[")
 													.join("").split("]").join(
 															"").split(",")
-													.join(" ").split("\"").join(""));
+													.join(" ").split("\"")
+													.join("");
+											console.log(fileData);
+											download('input.txt', fileData);
 											alert("success");
 										} else {
 											alert(data.errors);
@@ -379,12 +396,15 @@
 										content = data;
 										console.log(data);
 										if (data.status == "Success") {
-											console.log(JSON.stringify(
+											var fileData = JSON.stringify(
 													data.data).split(",[")
-													.join("\n").split("[")
+													.join("\r\n").split("[")
 													.join("").split("]").join(
 															"").split(",")
-													.join(" ").split("\"").join(""));
+													.join(" ").split("\"")
+													.join("");
+											console.log(fileData);
+											download('input.txt', fileData);
 											alert("success");
 										} else {
 											alert(data.errors);
@@ -410,13 +430,15 @@
 										content = data;
 										console.log(data);
 										if (data.status == "Success") {
-											console.log(JSON.stringify(
+											var fileData = JSON.stringify(
 													data.data).split(",[")
-													.join("\n").split("[")
+													.join("\r\n").split("[")
 													.join("").split("]").join(
 															"").split(",")
 													.join(" ").split("\"")
-													.join(""));
+													.join("");
+											console.log(fileData);
+											download('input.txt', fileData);
 											alert("success");
 										} else {
 											alert(data.errors);
