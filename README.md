@@ -23,6 +23,8 @@ You can run this project in Spring STS or any other IDE of your choice. This pro
   <li>Open up your favorite browser and access this application at <a href="http://localhost:5010/home">localhost:5010/home</a> (Note: If you have changed the port on which the application runs, then change it here too!)</li>
   <li>There <i>'might'</i> be few cross-browser issues since this application has been tested only on Chrome.</li>
   <li>Explore the application (Most of it is self explanatory) and start generating the test data for your problems.</li>
+</ul>
+
 If you find any problem deploying the project in your machine, please do let us know.
 
 <h2>Development</h2>
@@ -40,6 +42,18 @@ If you find any problem deploying the project in your machine, please do let us 
 <!--<img src="screenshots/login_page.png" />-->
 
 <br/><br/>
-Use this, report bugs, raise issues and Have fun. Do whatever you want! I would love to hear your feedback :)
+
+<h2>Examples</h2>
+
+<h2>Scope of the Project</h2>
+There are several features which can be incorporated into this application.
+<ul>
+  <li>This application relies heavily on RandomNumberGenerator class. Currently the generator uses <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadLocalRandom.html">ThreadLocalRandom</a> class present in the Java SE Library for its implementation. We can customize the underlying implementation class to an efficient and pure-random number generator (with Uniform Distribution).</li>
+  <li>Test data for programming problems which involve: finding a path in a matrix, path in a graph, etc are not yet implemented. Basically, we can incorporate several categories into the tool to make it as generic as possible than it is now.</li>
+  <li>From the coding point of view, we can still reduce the redundant usage of code and make it efficient.</li>
+  <li>The UI can be improved to make the errors even more descriptive.</li>
+</ul>
+
+Use this, report bugs, raise issues and Have fun. Do whatever you want! We would love to hear your feedback :)
 
 ~ Happy Coding
