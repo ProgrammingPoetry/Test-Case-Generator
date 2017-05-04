@@ -40,10 +40,26 @@ If you find any problem deploying the project in your machine, please do let us 
 
 <h4>Screenshot heading</h4>
 <!--<img src="screenshots/login_page.png" />-->
-
 <br/><br/>
 
+<h2>Project documents</h2>
+<ul>
+  <li>The project abstract</li>
+  <li>The project report</li>
+</ul>
+
 <h2>Examples</h2>
+
+Enough of test data! What does test data for competitive-programming-problems means? What does this tool serve?
+<br/><br/>
+Consider that you are a problem setter on a competitive-programming-platform, <a href="hackerrank.com">Hackerrank</a>.
+You want to set a problem similar to <a href="https://www.hackerrank.com/challenges/reduced-string">this</a>.
+You spend your entire time creating the problem statement and then writing an efficient solution (since you do not want each and every brute-force solution to pass). Once these are ready, you should generate test data on which your code runs; .i.e., instead of giving small data sets as input, you give huge amount of data in the form of a file (let us call it <i>input.txt</i>) to your program. You record the results (Assuming your logic to be correct).
+The result of your problem after running on huge amount of test data will be dumped into a file (let us call it <i>output.txt</i>).
+<br/><br/>
+Now you submit your files, <i>input.txt</i> and <i>output.txt</i> files to Hackerrank (or any other platform of your choice, on which you would set your problem). Now the platform run's the user's code on <i>input.txt</i> and generates an intermediate file and validates it against <i>output.txt</i> file. If the validation turns out to be true and the user's code runs in a limited amount of time, the platform accepts the user's solution, else it rejects with an appropriate message (either time-out or wrong-answer).
+<br/><br/>
+All of this seems to be well and good. The only area which is inefficient and time consuming is generating the <i>input.txt</i> file, which constitues the test data pertaining to your problem statement. Ideally the problem setter writes code to generate this <i>input.txt</i> file. This is not at all what the problem setter's intention was. He/She must be responsible for creating the problem statement and coming up with an efficient solution. Generating test-data should be automated. <b>Our tool comes to the rescue here.</b>
 
 <h2>Scope of the Project</h2>
 There are several features which can be incorporated into this application.
@@ -52,6 +68,7 @@ There are several features which can be incorporated into this application.
   <li>Test data for programming problems which involve: finding a path in a matrix, path in a graph, etc are not yet implemented. Basically, we can incorporate several categories into the tool to make it as generic as possible than it is now.</li>
   <li>From the coding point of view, we can still reduce the redundant usage of code and make it efficient.</li>
   <li>The UI can be improved to make the errors even more descriptive.</li>
+  <li>The project can be integrated to several competitive-programming-platforms such as <a href="codechef.com">Codechef</a>, <a href="hackerrank.com">Hackerrank</a>, <a href="topcoder.com">TopCoder</a>, etc. Rather than using UI to make requests to back-end service(which is a RESTful service), it can be consumed by any third-party-application which is capable of making HTTP requests.</li>
 </ul>
 
 Use this, report bugs, raise issues and Have fun. Do whatever you want! We would love to hear your feedback :)
