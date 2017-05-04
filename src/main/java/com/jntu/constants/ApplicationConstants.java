@@ -58,6 +58,13 @@ public class ApplicationConstants {
 	public static final String DISTINCT_VALUE = "distinctValue";
 	public static final String IS_BALANCED = "isBalanced";
 	public static final String NUMBER_OF_LEVELS = "numberOfLevels";
+	public static final String EDGES = "edges";
+	public static final String IS_DIRECTED = "directed";
+	public static final String MULTIPLE_EDGES = "multipleEdges";
+	public static final String IS_PATH_PROBLEM = "isPathProblem";
+	public static final String SOURCE_NODE = "sourceNode";
+	public static final String DEST_NODE = "destNode";
+	
 	
 	// Constants which denote the sub-categories in our application (Such as:
 	// Numbers, Characters etc)
