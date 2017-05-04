@@ -31,7 +31,9 @@ public class MatrixServiceImpl implements MatrixServiceInterface {
 		List data = new ArrayList();
 		long noOfTestCases = input.getNoOfTestCases();
 		if (input.getPrintNoOfTestCases()) {
-			data.add(noOfTestCases);
+			List list = new ArrayList<>();
+			list.add(noOfTestCases);
+			data.add(list);
 		}
 		for (int i = 0; i < noOfTestCases; i++) {
 			if (input.getPrintNoOfRowsAndColumns()) {
@@ -66,7 +68,9 @@ public class MatrixServiceImpl implements MatrixServiceInterface {
 		List data = new ArrayList();
 		long noOfTestCases = input.getNoOfTestCases();
 		if (input.getPrintNoOfTestCases()) {
-			data.add(noOfTestCases);
+			List list = new ArrayList<>();
+			list.add(noOfTestCases);
+			data.add(list);
 		}
 		for (int i = 0; i < noOfTestCases; i++) {
 			if (input.getPrintNoOfRowsAndColumns()) {
@@ -105,7 +109,7 @@ public class MatrixServiceImpl implements MatrixServiceInterface {
 		List data = new ArrayList();
 		long noOfTestCases = input.getNoOfTestCases();
 		if (input.getPrintNoOfTestCases()) {
-			data.add(noOfTestCases);
+			data.add(new ArrayList<>().add(noOfTestCases));
 		}
 		for (int i = 0; i < noOfTestCases; i++) {
 			if (input.getPrintNoOfRowsAndColumns()) {

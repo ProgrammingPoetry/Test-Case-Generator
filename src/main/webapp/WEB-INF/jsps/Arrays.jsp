@@ -48,7 +48,7 @@
 							<form:label path="" for="number">Test cases</form:label>
 							<form:input path="noOfTestCases" type="number"
 								class="form-control" />
-							<form:errors path="noOfTestCases" class="form-control" />
+							<form:errors path="noOfTestCases" />
 						</div>
 						<!-- Form Fields are placed in a row-->
 						<div class="form-group">
@@ -57,15 +57,13 @@
 									<form:label path="" for="number">Min Value</form:label>
 									<form:input path="minValue" type="number" class="form-control"
 										name="minVal" />
-									<form:errors path="minValue" type="string" class="form-control"
-										name="minVal" />
+									<form:errors path="minValue" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max Value</form:label>
 									<form:input path="maxValue" type="number" class="form-control"
 										name="maxVal" />
-									<form:errors path="maxValue" type="string" class="form-control"
-										name="maxVal" />
+									<form:errors path="maxValue" />
 								</div>
 							</div>
 						</div>
@@ -75,15 +73,13 @@
 									<form:label path="" for="number">Min Size</form:label>
 									<form:input path="minSize" type="number" class="form-control"
 										name="minSize" />
-									<form:errors path="minSize" type="string" class="form-control"
-										name="minSize" />
+									<form:errors path="minSize" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max Size</form:label>
 									<form:input path="maxSize" type="number" class="form-control"
 										name="maxSize" />
-									<form:errors path="maxSize" type="string" class="form-control"
-										name="maxSize" />
+									<form:errors path="maxSize" />
 								</div>
 							</div>
 						</div>
@@ -92,8 +88,7 @@
 							<form:label path="" for="number">Multipleof</form:label>
 							<form:input path="multipleOf" type="number" class="form-control"
 								name="multipleOf" />
-							<form:errors path="multipleOf" type="string" class="form-control"
-								name="multipleOf" />
+							<form:errors path="multipleOf" />
 						</div>
 						<div class="form-group">
 							<div class="row">
@@ -101,23 +96,11 @@
 									<form:label path="" for="boolean">Prime:</form:label>
 									<form:checkbox path="isPrime" />
 									<form:errors path="isPrime" />
-									<!--
-                                        <form:select path="isPrime">
-                                            <option value="true">True</option>
-                                            <option value="false">False</option>
-                                        </form:select>
-                                        -->
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="boolean">Distinct:</form:label>
 									<form:checkbox path="isDistinct" />
 									<form:errors path="isDistinct" />
-									<!--  
-                                        <form:select path="isDistinct">
-                                            <option value="true">True</option>
-                                            <option value="false">False</option>
-                                        </form:select>
-                                        -->
 								</div>
 							</div>
 						</div>
@@ -136,12 +119,6 @@
 									<form:label path="" for="text">PrintSize:</form:label>
 									<form:checkbox path="printArraySize" />
 									<form:errors path="printArraySize" />
-									<!--  
-                                        <form:select path="">
-                                            <option value="true">True</option>
-                                            <option value="false">False</option>
-                                        </form:select>
-                                        -->
 								</div>
 							</div>
 						</div>
@@ -165,8 +142,7 @@
 							<form:label path="" for="number">Test cases</form:label>
 							<form:input path="noOfTestCases" type="number"
 								class="form-control" name="noOfTestCases" />
-							<form:errors path="noOfTestCases" type="string"
-								class="form-control" name="noOfTestCases" />
+							<form:errors path="noOfTestCases" />
 						</div>
 						<!-- Form Fields are placed in a row-->
 						<div class="form-group">
@@ -175,15 +151,13 @@
 									<form:label path="" for="number">Min Value</form:label>
 									<form:input path="minValue" type="character"
 										class="form-control" name="minValue" />
-									<form:errors path="minValue" type="string" class="form-control"
-										name="minValue" />
+									<form:errors path="minValue" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max Value</form:label>
 									<form:input path="maxValue" type="character"
 										class="form-control" name="maxValue" />
-									<form:errors path="maxValue" type="string" class="form-control"
-										name="maxValue" />
+									<form:errors path="maxValue" />
 								</div>
 							</div>
 						</div>
@@ -193,15 +167,13 @@
 									<form:label path="" for="number">Min Size</form:label>
 									<form:input path="minSize" type="number" class="form-control"
 										name="minSize" />
-									<form:errors path="minSize" type="string" class="form-control"
-										name="minSize" />
+									<form:errors path="minSize" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max Size</form:label>
 									<form:input path="maxSize" type="number" class="form-control"
 										name="maxSize" />
-									<form:errors path="maxSize" type="string" class="form-control"
-										name="maxSize" />
+									<form:errors path="maxSize" />
 								</div>
 							</div>
 						</div>
@@ -221,12 +193,6 @@
 									<form:label path="" for="boolean">Distinct:</form:label>
 									<form:checkbox path="isDistinct" />
 									<form:errors path="isDistinct" />
-									<!--
-									<form:select path="">
-										<option value="true">True</option>
-										<option value="false">False</option>
-									</form:select>
-									-->
 								</div>
 							</div>
 						</div>
@@ -245,12 +211,6 @@
 									<form:label path="" for="text">PrintSize:</form:label>
 									<form:checkbox path="printArraySize" />
 									<form:errors path="printArraySize" />
-									<!--  
-                                        <form:select path="">
-                                            <option value="true">True</option>
-                                            <option value="false">False</option>
-                                       </form:select>
-                                       -->
 								</div>
 							</div>
 						</div>
@@ -273,7 +233,7 @@
 							<form:label path="" for="number">Test cases</form:label>
 							<form:input path="noOfTestCases" type="number"
 								class="form-control" name="noOfTestCases" />
-							<form:errors path="" />
+							<form:errors path="noOfTestCases" />
 						</div>
 						<!-- Form Fields are placed in a row-->
 						<div class="form-group">
@@ -282,15 +242,13 @@
 									<form:label path="" for="number">Min Size</form:label>
 									<form:input path="minSize" type="number" class="form-control"
 										name="minSize" />
-									<form:errors path="minSize" type="string" class="form-control"
-										name="minSize" />
+									<form:errors path="minSize" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max Size</form:label>
 									<form:input path="maxSize" type="number" class="form-control"
 										name="maxSize" />
-									<form:errors path="maxSize" type="string" class="form-control"
-										name="maxSize" />
+									<form:errors path="maxSize" />
 								</div>
 							</div>
 						</div>
@@ -300,13 +258,13 @@
 									<form:label path="" for="number">Min length</form:label>
 									<form:input path="minLength" type="number" class="form-control"
 										name="minLength" />
-									<form:errors path="" />
+									<form:errors path="minLength" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max length</form:label>
 									<form:input path="maxLength" type="number" class="form-control"
 										name="maxLength" />
-									<form:errors path="" />
+									<form:errors path="maxLength" />
 								</div>
 							</div>
 						</div>
@@ -317,13 +275,13 @@
 									<form:label path="" for="text">MinChar Value</form:label>
 									<form:input path="minCharValue" type="text"
 										class="form-control" name="minCharValue" />
-									<form:errors path="" />
+									<form:errors path="minCharValue" />
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="text">MaxChar Value</form:label>
 									<form:input path="maxCharValue" type="text"
 										class="form-control" name="maxCharValue" />
-									<form:errors path="" />
+									<form:errors path="maxCharValue" />
 								</div>
 							</div>
 						</div>
@@ -343,13 +301,6 @@
 									<form:label path="" for="boolean">Palindrome:</form:label>
 									<form:checkbox path="isPalindrome" />
 									<form:errors path="isPalindrome" />
-									<!--
-									<form:select path="">
-										<option value="true">True</option>
-										<option value="false">False</option>
-									</form:select>
-									<form:errors path="" />
-									-->
 								</div>
 							</div>
 						</div>
@@ -359,12 +310,6 @@
 									<form:label path="" for="boolean">PrintSize:</form:label>
 									<form:checkbox path="printArraySize" />
 									<form:errors path="printArraySize" />
-									<!--  
-                                        <form:select path="">
-                                            <option value="true">True</option>
-                                            <option value="false">False</option>
-                                       </form:select>
-                                       -->
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="text">Sorted:</form:label>
@@ -386,72 +331,105 @@
 	</div>
 	<script type="text/javascript">
 		var content;
-		$(document).ready(function() {
-			$("#arrayOfNumbersForm").submit(function(event) {
-				var str = $("#arrayOfNumbersForm").serialize();
-				event.preventDefault();
-				$.ajax({
-					type : 'POST',
-					data : str,
-					url : "arrays/numbers",
-					async : false,
-					dataType : 'json',
-					success : function(data) {
-						content = data;
-						console.log(data);
-						console.log(JSON.stringify(data));
-						alert("success");
-					},
-					error : function(data) {
-						console.log(data);
-						alert(data.responseJSON.errors);
-					}
+		$(document).ready(
+				function() {
+					$("#arrayOfNumbersForm").submit(
+							function(event) {
+								var str = $("#arrayOfNumbersForm").serialize();
+								event.preventDefault();
+								$.ajax({
+									type : 'POST',
+									data : str,
+									url : "arrays/numbers",
+									async : false,
+									dataType : 'json',
+									success : function(data) {
+										content = data;
+										console.log(data);
+										if (data.status == "Success") {
+											console.log(JSON.stringify(
+													data.data).split(",[")
+													.join("\n").split("[")
+													.join("").split("]").join(
+															"").split(",")
+													.join(" ").split("\"").join(""));
+											alert("success");
+										} else {
+											alert(data.errors);
+										}
+									},
+									error : function(data) {
+										console.log(data);
+										console.log(JSON.stringify(data));
+									}
+								});
+							});
+					$("#arrayOfCharactersForm").submit(
+							function(event) {
+								var str = $("#arrayOfCharactersForm")
+										.serialize();
+								event.preventDefault();
+								$.ajax({
+									type : 'POST',
+									data : str,
+									url : "arrays/characters",
+									async : false,
+									dataType : 'json',
+									success : function(data) {
+										content = data;
+										console.log(data);
+										if (data.status == "Success") {
+											console.log(JSON.stringify(
+													data.data).split(",[")
+													.join("\n").split("[")
+													.join("").split("]").join(
+															"").split(",")
+													.join(" ").split("\"").join(""));
+											alert("success");
+										} else {
+											alert(data.errors);
+										}
+									},
+									error : function(data) {
+										console.log(data);
+										console.log(JSON.stringify(data));
+									}
+								});
+							});
+					$("#arrayOfStringsForm").submit(
+							function(event) {
+								var str = $("#arrayOfStringsForm").serialize();
+								event.preventDefault();
+								$.ajax({
+									type : 'POST',
+									data : str,
+									url : "arrays/strings",
+									async : false,
+									dataType : 'json',
+									success : function(data) {
+										content = data;
+										console.log(data);
+										if (data.status == "Success") {
+											console.log(JSON.stringify(
+													data.data).split(",[")
+													.join("\n").split("[")
+													.join("").split("]").join(
+															"").split(",")
+													.join(" ").split("\"")
+													.join(""));
+											alert("success");
+										} else {
+											alert(data.errors);
+										}
+									},
+									error : function(data) {
+										content = data;
+										console.log(data);
+										console.log(JSON.stringify(data));
+									}
+								});
+							});
 				});
-			});
-			$("#arrayOfCharactersForm").submit(function(event) {
-				var str = $("#arrayOfCharactersForm").serialize();
-				event.preventDefault();
-				$.ajax({
-					type : 'POST',
-					data : str,
-					url : "arrays/characters",
-					async : false,
-					dataType : 'json',
-					success : function(data) {
-						content = data;
-						console.log(data);
-						console.log(JSON.stringify(data));
-						alert("success");
-					},
-					error : function(data) {
-						console.log(data);
-						alert(data.responseJSON.errors);
-					}
-				});
-			});
-			$("#arrayOfStringsForm").submit(function(event) {
-				var str = $("#arrayOfStringsForm").serialize();
-				event.preventDefault();
-				$.ajax({
-					type : 'POST',
-					data : str,
-					url : "arrays/strings",
-					async : false,
-					dataType : 'json',
-					success : function(data) {
-						content = data;
-						console.log(data);
-						console.log(JSON.stringify(data));
-						alert("success");
-					},
-					error : function(data) {
-						content = data;
-						console.log(data);
-						alert(data.responseJSON.errors);
-					}
-				});
-			});
-		});
 	</script>
 </body>
 </html>

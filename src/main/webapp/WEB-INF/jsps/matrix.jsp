@@ -30,11 +30,13 @@
 				<div class="center-block"
 					style="width: 375px; background: lightgreen; border-radius: 10px; padding: 10px; margin-top: 45px;">
 					<h2>Matrix of Numbers</h2>
-					<form:form  modelAttribute="matrixOfNumbersForm" id="matrixOfNumbersForm">
+					<form:form modelAttribute="matrixOfNumbersForm"
+						id="matrixOfNumbersForm">
 						<div class="form-group" name="div1">
 							<form:label path="" for="number">Test cases</form:label>
-							<form:input path="noOfTestCases" type="number" class="form-control"
-								name="noOfTestCases"/>
+							<form:input path="noOfTestCases" type="number"
+								class="form-control" name="noOfTestCases" />
+							<form:errors path="noOfTestCases"></form:errors>
 						</div>
 						<!-- Form Fields are placed in a row-->
 						<div class="form-group">
@@ -42,12 +44,14 @@
 								<div class="col-xs-6">
 									<form:label path="" for="number">Rows</form:label>
 									<form:input path="rows" type="number" class="form-control"
-										name="rows"/>
+										name="rows" />
+									<form:errors path="rows"></form:errors>
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Columns</form:label>
 									<form:input path="columns" type="number" class="form-control"
-										name="columns"/>
+										name="columns" />
+									<form:errors path="columns"></form:errors>
 								</div>
 							</div>
 						</div>
@@ -56,12 +60,14 @@
 								<div class="col-xs-6">
 									<form:label path="" for="number">Min Value</form:label>
 									<form:input path="minValue" type="number" class="form-control"
-										name="minValue"/>
+										name="minValue" />
+									<form:errors path="minValue"></form:errors>
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max Value</form:label>
 									<form:input path="maxValue" type="number" class="form-control"
-										name="maxValue"/>
+										name="maxValue" />
+									<form:errors path="maxValue"></form:errors>
 								</div>
 							</div>
 						</div>
@@ -69,7 +75,8 @@
 						<div class="form-group">
 							<form:label path="" for="number">Multipleof</form:label>
 							<form:input path="multipleOf" type="number" class="form-control"
-								name="multipleOf"/>
+								name="multipleOf" />
+							<form:errors path="multipleOf"></form:errors>
 						</div>
 						<div class="form-group">
 							<div class="row">
@@ -100,11 +107,13 @@
 				<div class="center-block"
 					style="width: 375px; background: lightgreen; border-radius: 10px; padding: 10px; margin-top: 45px;">
 					<h2>Matrix of Characters</h2>
-					<form:form modelAttribute="matrixOfCharactersForm" id="matrixOfCharactersForm">
+					<form:form modelAttribute="matrixOfCharactersForm"
+						id="matrixOfCharactersForm">
 						<div class="form-group">
 							<form:label path="" for="number">Test cases</form:label>
-							<form:input path="noOfTestCases" type="number" class="form-control"
-								name="noOfTestCases"/>
+							<form:input path="noOfTestCases" type="number"
+								class="form-control" name="noOfTestCases" />
+							<form:errors path="noOfTestCases"></form:errors>
 						</div>
 						<!-- Form Fields are placed in a row-->
 						<div class="form-group">
@@ -112,12 +121,14 @@
 								<div class="col-xs-6">
 									<form:label path="" for="number">Rows</form:label>
 									<form:input path="rows" type="number" class="form-control"
-										name="rows"/>
+										name="rows" />
+									<form:errors path="rows"></form:errors>
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Columns</form:label>
 									<form:input path="columns" type="number" class="form-control"
-										name="columns"/>
+										name="columns" />
+									<form:errors path="columns"></form:errors>
 								</div>
 							</div>
 						</div>
@@ -125,13 +136,15 @@
 							<div class="row">
 								<div class="col-xs-6">
 									<form:label path="" for="number">Min Value</form:label>
-									<form:input path="minValue" type="number" class="form-control"
-										name="minValue"/>
+									<form:input path="minValue" type="character"
+										class="form-control" name="minValue" />
+									<form:errors path="minValue"></form:errors>
 								</div>
 								<div class="col-xs-6">
 									<form:label path="" for="number">Max Value</form:label>
-									<form:input path="maxValue" type="number" class="form-control"
-										name="maxValue"/>
+									<form:input path="maxValue" type="character"
+										class="form-control" name="maxValue" />
+									<form:errors path="maxValue"></form:errors>
 								</div>
 							</div>
 						</div>
@@ -160,11 +173,12 @@
 				</div>
 				<!-- Matrix of Characters form ended-->
 			</div>
+			<!--  
 			<button type="button" class="btn btn-primary btn-xl"
 				data-toggle="collapse" data-target="#PathMatrix"
 				data-parent="#myAccordion">Path Matrix</button>
 			<div id="PathMatrix" class="collapse" class="container">
-				<!-- Path Matrix  Form-->
+				
 				<div class="center-block"
 					style="width: 375px; background: lightgreen; border-radius: 10px; padding: 10px; margin-top: 45px;">
 					<h2>Path Matrix</h2>
@@ -174,7 +188,7 @@
 							<form:input path="" type="number" class="form-control"
 								name="noOfTestcases"/>
 						</div>
-						<!-- Form Fields are placed in a row-->
+						
 						<div class="form-group">
 							<div class="row">
 								<div class="col-xs-6">
@@ -191,7 +205,7 @@
 						</div>
 
 
-						<!-- Form Fields are placed in a row-->
+						
 
 						<div class="form-group">
 							<form:label path="" for="text">Characters to indicate blocked cell</form:label>
@@ -203,7 +217,7 @@
 							<form:input path="" type="text" class="form-control"
 								name="openCell"/>
 						</div>
-						<!-- call script function when user changes the option-->
+						
 						<div class="form-group">
 							<div class="row">
 								<div class="col-xs-4">
@@ -228,7 +242,7 @@
 							</div>
 						</div>
 						<br>
-						<!-- call script function when user changes the option-->
+						
 						<div class="form-group">
 							<div class="row">
 								<div class="col-xs-4">
@@ -262,57 +276,89 @@
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</form:form>
-				</div>
-				<!-- Path Matrix form ended-->
-			</div>
+				</div> 
+				-->
+			<!-- Path Matrix form ended-->
 		</div>
+	</div>
 	</div>
 	<script type="text/javascript">
 		var content;
-		$(document).ready(function() {
-			$("#matrixOfNumbersForm").submit(function(event) {
-				var str = $("#matrixOfNumbersForm").serialize();
-				event.preventDefault();
-				$.ajax({
-					type : 'POST',
-					data : str,
-					url : "matrix/numbers",
-					async : false,
-					dataType : 'json',
-					success : function(data) {
-						content = data;
-						console.log(data);
-						console.log(JSON.stringify(data));
-						alert("success");
-					},
-					error : function(data) {
-						console.log(data);
-						alert(data.responseJSON.errors);
-					}
+		$(document).ready(
+				function() {
+					$("#matrixOfNumbersForm")
+							.submit(
+									function(event) {
+										var str = $("#matrixOfNumbersForm")
+												.serialize();
+										event.preventDefault();
+										$.ajax({
+											type : 'POST',
+											data : str,
+											url : "matrix/numbers",
+											async : false,
+											dataType : 'json',
+											success : function(data) {
+												content = data;
+												console.log(data);
+												if (data.status == "Success") {
+													console.log(JSON.stringify(
+															data.data).split(
+															",[").join("\n")
+															.split("[")
+															.join("")
+															.split("]")
+															.join("")
+															.split(",").join(
+																	" ").split(
+																	"\"").join(
+																	""));
+													alert("success");
+												} else {
+													alert(data.errors);
+												}
+											},
+											error : function(data) {
+												console.log(data);
+												console.log(JSON
+														.stringify(data));
+											}
+										});
+									});
+					$("#matrixOfCharactersForm").submit(
+							function(event) {
+								var str = $("#matrixOfCharactersForm")
+										.serialize();
+								event.preventDefault();
+								$.ajax({
+									type : 'POST',
+									data : str,
+									url : "matrix/characters",
+									async : false,
+									dataType : 'json',
+									success : function(data) {
+										content = data;
+										console.log(data);
+										if (data.status == "Success") {
+											console.log(JSON.stringify(
+													data.data).split(",[")
+													.join("\n").split("[")
+													.join("").split("]").join(
+															"").split(",")
+													.join(" ").split("\"")
+													.join(""));
+											alert("success");
+										} else {
+											alert(data.errors);
+										}
+									},
+									error : function(data) {
+										console.log(data);
+										console.log(JSON.stringify(data));
+									}
+								});
+							});
 				});
-			});
-			$("#matrixOfCharactersForm").submit(function(event) {
-				var str = $("#matrixOfCharactersForm").serialize();
-				event.preventDefault();
-				$.ajax({
-					type : 'POST',
-					data : str,
-					url : "matrix/characters",
-					async : false,
-					dataType : 'json',
-					success : function(data) {
-						content = data;
-						console.log(data);
-						console.log(JSON.stringify(data));
-						alert("success");
-					},
-					error : function(data) {
-						console.log(data);
-						alert(data.responseJSON.errors);
-					}
-				});
-			});
-		});
 	</script>
 </body>
 </html>

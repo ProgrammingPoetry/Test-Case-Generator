@@ -37,14 +37,18 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 		List data = new ArrayList();
 		long noOfTestCases = input.getNoOfTestCases();
 		if (input.getPrintNoOfTestCases()) {
-			data.add(noOfTestCases);
+			List list = new ArrayList<>();
+			list.add(noOfTestCases);
+			data.add(list);
 		}
 		boolean printArraySize = input.getPrintArraySize();
 		for (int i = 0; i < noOfTestCases; i++) {
 			NumberSO numberSO = new NumberSO();
 			numberSO.setArraySize((int) randomNumbers.getRandomNumber(input.getMinSize(), input.getMaxSize()));
 			if (printArraySize) {
-				data.add(numberSO.getArraySize());
+				List list = new ArrayList<>();
+				list.add(numberSO.getArraySize());
+				data.add(list);
 			}
 			if (input.getMultipleOf() != 0) {
 				numberSO.setMinValue((long) Math.ceil(input.getMinValue() / input.getMultipleOf()));
@@ -79,14 +83,18 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 		List data = new ArrayList();
 		long noOfTestCases = input.getNoOfTestCases();
 		if (input.getPrintNoOfTestCases()) {
-			data.add(noOfTestCases);
+			List list = new ArrayList<>();
+			list.add(noOfTestCases);
+			data.add(list);
 		}
 		boolean printArraySize = input.getPrintArraySize();
 		for (int i = 0; i < noOfTestCases; i++) {
 			CharacterSO characterSO = new CharacterSO();
 			characterSO.setArraySize((int) randomNumbers.getRandomNumber(input.getMinSize(), input.getMaxSize()));
 			if (printArraySize) {
-				data.add(characterSO.getArraySize());
+				List list = new ArrayList<>();
+				list.add(characterSO.getArraySize());
+				data.add(list);
 			}
 			String refString = "";
 			for (char c = input.getMinValue(); c <= input.getMaxValue(); c++) {
@@ -125,14 +133,18 @@ public class ArrayServiceImpl implements ArrayServiceInterface {
 		List data = new ArrayList();
 		long noOfTestCases = input.getNoOfTestCases();
 		if (input.getPrintNoOfTestCases()) {
-			data.add(noOfTestCases);
+			List list = new ArrayList<>();
+			list.add(noOfTestCases);
+			data.add(list);
 		}
 		boolean printArraySize = input.getPrintArraySize();
 		for (int i = 0; i < noOfTestCases; i++) {
 			StringSO stringSO = new StringSO();
 			stringSO.setArraySize((int) randomNumbers.getRandomNumber(input.getMinSize(), input.getMaxSize()));
 			if (printArraySize) {
-				data.add(stringSO.getArraySize());
+				List list = new ArrayList<>();
+				list.add(stringSO.getArraySize());
+				data.add(list);
 			}
 			String refString = "";
 			for (char c = input.getMinCharValue(); c <= input.getMaxCharValue(); c++) {
