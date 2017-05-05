@@ -55,7 +55,7 @@ public class HomeController {
 	}
 
 	// This method returns the tree form page
-	@RequestMapping(value = "/trees", method = RequestMethod.GET)
+	@RequestMapping(value = "/testcasegenerator/trees", method = RequestMethod.GET)
 	public String treePageController() {
 		return "trees";
 	}

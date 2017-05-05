@@ -87,7 +87,7 @@
                           <!--  Trees functionality link wrapped in anchor tag -->
 			                <br><br>
 			                <div   id="list4">
-			                    <a style="display:block" href="">
+			                    <a style="display:block" href="/testcasegenerator/trees">
 				                    <div class="row">
 				                        <div  class="col-md-6" >
 				                               <span class="glyphicon glyphicon-tree-deciduous" style="font-size:70px;color:#26a655;margin-top:40px;margin-left:48px;"> </span>
