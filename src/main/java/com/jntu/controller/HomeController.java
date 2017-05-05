@@ -61,13 +61,13 @@ public class HomeController {
 	}
 
 	// This method returns the graph form page
-	@RequestMapping(value = "/graphs", method = RequestMethod.GET)
+	@RequestMapping(value = "/testcasegenerator/graphs", method = RequestMethod.GET)
 	public String graphPageController() {
 		return "graphs";
 	}
 
 	// This method returns the miscellaneous form page
-	@RequestMapping(value = "/misc", method = RequestMethod.GET)
+	@RequestMapping(value = "/testcasegenerator/miscellaneous", method = RequestMethod.GET)
 	public String miscPageController() {
 		return "misc";
 	}

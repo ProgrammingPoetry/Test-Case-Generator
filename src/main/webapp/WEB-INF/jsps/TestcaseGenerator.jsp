@@ -121,7 +121,7 @@
 		                  <!--  Miscellaneous functionality link wrapped in anchor tag -->
 			                <br><br>
 			                <div   id="list6">
-			                    <a style="display:block" href="">
+			                    <a style="display:block" href="/testcasegenerator/miscellaneous">
 				                    <div class="row">
 				                        <div  class="col-md-6" >
 				                                <img class="img-circle" src="/Images/misc.jpg">
