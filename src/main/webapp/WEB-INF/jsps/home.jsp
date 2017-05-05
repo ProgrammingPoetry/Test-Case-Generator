@@ -31,7 +31,7 @@
                         <a href="#contributorList"><span class="glyphicon glyphicon-user"> </span> CONTRIBUTORS</a>
                     </div>
                     <div class="col-xs-3" id="testcasegen">
-                        <a href=""><span class="glyphicon glyphicon-wrench"></span> TEST CASE GENERATOR</a>
+                        <a href="/testcasegenerator"><span class="glyphicon glyphicon-wrench"></span> TEST CASE GENERATOR</a>
                      </div>
                 </div>  
             </div>

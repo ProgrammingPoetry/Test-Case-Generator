@@ -1,0 +1,28 @@
+header{
+            color:white;
+            background-color: #39424e;
+            height: 100px;
+            padding:10px;
+}
+#list1,#list2,#list3,#list4,#list5,#list6{
+    border:0.5px solid #c2c7d0;
+    width:380px;
+    border-radius:8px;
+    background:#ffffff;
+    height:160px;
+    margin-top:20px;
+}
+#list2,#list3,#list5,#list6{
+    margin-left:20px;
+}
+#list1:hover,#list2:hover,#list3:hover,#list4:hover,#list5:hover,#list6:hover{
+    border:0.5px solid #26a655;
+    transform:scale(1.02);
+    background:#dddddd;
+}
+.img-circle{
+			border-radius:50%;	
+			height:100px;
+            margin-top:30px;
+            margin-left:35px;
+}
