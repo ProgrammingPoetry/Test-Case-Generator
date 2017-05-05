@@ -31,7 +31,7 @@ public class HomeController {
 		}
 
 	// This method returns the basic-data-type form page
-	@RequestMapping(value = "/datatypes", method = RequestMethod.GET)
+	@RequestMapping(value = "/testcasegenerator/datatypes", method = RequestMethod.GET)
 	public String basicDataTypePageController() {
 		return "datatypes";
 	}

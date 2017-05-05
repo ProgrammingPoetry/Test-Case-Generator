@@ -34,7 +34,7 @@
                         
                         <!--  Data types functionality link wrapped in anchor tag -->
 			                <div   id="list1">
-			                    <a style="display:block" href="">
+			                    <a style="display:block" href="/testcasegenerator/datatypes">
 				                    <div class="row">
 				                        <div  class="col-md-6" >    
 				                                <img class="img-circle" src="/Images/datatype.png">
