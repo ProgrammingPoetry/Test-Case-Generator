@@ -1,0 +1,100 @@
+ header{
+            color:white;
+            background-color: #39424e;
+            height: 80px;
+            padding:20px;
+}
+ #home,#about,#team,#testcasegen{
+           font-size:18px;
+           font-family: Arial, Helvetica, sans-serif;
+           background-clip: padding-box;
+           height:50px;
+}
+ #home:hover,#about:hover,#team:hover,#testcasegen:hover{
+            border-bottom: 5px solid #26a655;
+}
+#home > a, #about> a, #team > a, #testcasegen > a{
+            color:white;
+            text-decoration: none;
+}
+#home:hover > a, #about:hover > a, #team:hover > a, #testcasegen:hover > a{
+            color:#26a655;
+            text-decoration: none;
+}
+.container{
+            margin-top:11px;
+
+        }
+#contributorDetails1,#contributorDetails2,#contributorDetails3{
+    border:1px solid #26a655;
+    width:700px;
+    border-radius:6px;
+    background:#dddddd;
+    height:300px;
+    margin-top:20px;
+    margin-left:170px;
+}
+#contributorDetails1:hover,#contributorDetails2:hover,#contributorDetails3:hover{
+    transform:scale(1.04);
+}
+#contributorList > h1{
+    
+    margin-left:450px;
+    color:black;
+    width:300px;
+    font-weight:bold;
+}
+#aboutData > h1{
+     margin-left:630px;
+    color:black;
+    width:300px;
+    font-weight:bold;
+}
+#contributorList > div.border{
+    border-bottom : 2px solid #1080d0;
+    width:180px;
+    margin-left:505px;
+    margin-top:-30px;
+}
+#aboutData > div.border{
+    border-bottom : 2px solid #1080d0;
+    width:90px;
+    margin-left:650px;
+    margin-top:-30px;
+}
+#aboutData h2{
+    color:#39424e;
+    margin-left:500px;
+    font-weight:700;
+}
+#aboutData p{
+    color:#39424e;
+    text-align:center;
+    font-weight:500;
+    width:800px;
+    margin-left:320px;
+    font-size:20px;
+}
+#homePage  h3,p{
+    color:black;
+}
+
+div.backtotop > a{
+position:relative;
+left:600px;
+color:antiquewhite;
+top:20px;
+text-decoration: none;
+}
+div.backtotop{
+border-style:hidden;
+background-color: #39424e;
+height:60px;
+}
+
+.img-circle {
+    border-radius:50%;	
+ 	width:150px;
+    margin-top:42px;
+    margin-left:60px;
+}
