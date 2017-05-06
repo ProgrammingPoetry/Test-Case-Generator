@@ -6,7 +6,7 @@ header{
 }
 #number,#character,#string,#numericTree,#numericTree,#characterTree,#fullBinaryTree,#skewTree,
 #numericGraph,#completeGraph,#nPartiteGraph,#fibonacciSeries,#binarySearchTree,#balancedBST,
-#numberMatrix,#characterMatrix{
+#numberMatrix,#characterMatrix,#numberArray,#characterArray,#stringArray{
     border:1.5px solid #26a655;
     width:200px;
     border-radius:5px;
@@ -23,7 +23,7 @@ header{
 }
 #characterTree p,#fullBinaryTree p,#numericGraph p,#completeGraph p, 
 #nPartiteGraph p,#fibonacciSeries p,#binarySearchTree p,#balancedBST p,
-#numberMatrix p,#characterMatrix p{ 
+#numberMatrix p,#characterMatrix p,#numberArray p,#characterArray p ,#stringArray p{ 
     font-size:24px;
     color:#26a655;
     margin-top:20px;
@@ -37,7 +37,7 @@ h2{
 }
 #numberForm,#characterForm,#stringForm,#numericTreeForm,#characterTreeForm,#fullBinaryTreeForm,#skewTreeForm,
 #numericGraphForm,#completeGraphForm,#nPartiteGraphForm,#fibonacciSeriesForm,#binarySearchTreeForm,#balancedBSTForm,
-#numberMatrixForm,#characterMatrixForm{
+#numberMatrixForm,#characterMatrixForm,#numberArrayForm,#characterArrayForm,#stringArrayForm{
     border:1px solid #7f7f7f;
     width:350px;
     background:#ededed;

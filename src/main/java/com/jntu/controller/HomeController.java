@@ -37,7 +37,7 @@ public class HomeController {
 	}
 
 	// This method returns the array form page
-	@RequestMapping(value = "/arrays", method = RequestMethod.GET)
+	@RequestMapping(value = "/testcasegenerator/arrays", method = RequestMethod.GET)
 	public String viewArraysPage(Map<String, Object> model) {
 		model.put("arrayOfNumbersForm", new ArrayOfNumbers());
 		model.put("arrayOfCharactersForm", new ArrayOfCharacters());

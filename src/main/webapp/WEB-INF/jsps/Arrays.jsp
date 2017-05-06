@@ -6,16 +6,14 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/stylesheet.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-	
-</script>
+<script src="/js/arrays.js"></script>
 <style>
 .error {
 	color: red;
@@ -29,26 +27,42 @@
 	<h1>Arrays</h1>
 	</header>
 	<!--  End of Header Section -->
-	<!-- sliding form when button is clicked-->
 	
-	
-	
-	<div class="accordion" id="myAccordion">
-		<div class="panel">
-			<button type="button" class="btn btn-primary btn-xl"
-				data-toggle="collapse" data-target="#ArrayOfNumbers"
-				data-parent="#myAccordion">Array of Numbers</button>
-			<div id="ArrayOfNumbers" class="collapse" class="container">
-				<!--Array of  Numbers Form-->
-				<div class="center-block"
-					style="width: 375px; background: lightgreen; border-radius: 10px; padding: 10px; margin-top: 45px;">
-					<h2>Array of Numbers</h2>
+	<div class="container">
+		<!--  buttons and their respective Forms are arranged in a row -->
+		<div class="row">
+			<!-- Buttons for different types of Trees  -->
+			<div class="col-xs-2">
+				<a   id="numberArrayLink" href="" >
+					<div id="numberArray">
+						<p>Number   Array</p>
+					</div>
+				</a>
+				<a id="characterArrayLink" href="" >
+					<div id="characterArray">
+						<p>Character Array</p>
+					</div>
+				</a>
+				<a id="stringArrayLink" href="" >
+					<div id="stringArray">
+						<p>String   Array</p>
+					</div>
+				</a>
+			</div>
+			
+			
+			<!--  Forms for Different types of Arrays -->
+			<div class="col-xs-8" style="margin-left:100px">
+			
+				<!--  Array of Numbers Form -->
+				<div id="numberArrayForm"  class="center-block">
+					<h2>Number Array</h2>
 					<form:form modelAttribute="arrayOfNumbersForm"
 						id="arrayOfNumbersForm">
-						<div class="form-group" name="div1">
+						<div class="form-group">
 							<form:errors path="*" cssClass="error" />
 						</div>
-						<div class="form-group" name="div1">
+						<div class="form-group">
 							<form:label path="" for="number">Test cases</form:label>
 							<form:input path="noOfTestCases" type="number"
 								class="form-control" />
@@ -129,17 +143,11 @@
 						<input type="submit" class="btn btn-primary" value="submit" />
 					</form:form>
 				</div>
-				<!-- Array of Numbers Form ends here-->
-			</div>
-
-			<button type="button" class="btn btn-primary btn-xl"
-				data-toggle="collapse" data-target="#ArrayOfCharacters"
-				data-parent="#myAccordion">Array of Characters</button>
-			<div id="ArrayOfCharacters" class="collapse" class="container">
-				<!-- Array of Characters Form-->
-				<div class="center-block"
-					style="width: 375px; background: lightgreen; border-radius: 10px; padding: 10px; margin-top: 45px;">
-					<h2>Array of Characters</h2>
+				
+				<!--  Array of Character Form -->
+				
+				<div id="characterArrayForm"  class="center-block" style="display:none;">
+					<h2>Character Array</h2>
 					<form:form modelAttribute="arrayOfCharactersForm"
 						id="arrayOfCharactersForm">
 						<div class="form-group">
@@ -221,16 +229,10 @@
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</form:form>
 				</div>
-				<!-- Array of Characters form ended-->
-			</div>
-			<button type="button" class="btn btn-primary btn-xl"
-				data-toggle="collapse" data-target="#ArrayOfStrings"
-				data-parent="#myAccordion">Array Of Strings</button>
-			<div id="ArrayOfStrings" class="collapse" class="container">
-				<!-- Array of Strings Form-->
-				<div class="center-block"
-					style="width: 375px; background: lightgreen; border-radius: 10px; padding: 10px; margin-top: 45px;">
-					<h2>Array of Strings</h2>
+				
+				<!--  Array of Strings Form -->
+				<div id="stringArrayForm"  class="center-block" style="display:none;">
+					<h2>String Array</h2>
 					<form:form action="arrays/strings" method="post"
 						modelAttribute="arrayOfStringsForm">
 						<div class="form-group">
@@ -329,10 +331,11 @@
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</form:form>
 				</div>
-				<!-- Array of characters form ended-->
 			</div>
 		</div>
 	</div>
+					
+	<!-- script for ajax call -->	
 	<script type="text/javascript">
 		var content;
 		function download(filename, text) {
