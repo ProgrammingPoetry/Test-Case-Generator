@@ -16,22 +16,15 @@
         	        $("#numberMatrixLink").click(function (e) {
         	            e.preventDefault();
         	            $("#numberMatrixForm").slideDown();
-        				$("#characterMatrixForm,#pathMatrixForm").hide();
+        				$("#characterMatrixForm").hide();
         	            $("#numberMatrix").css('background', '#26a655');  $("#numberMatrix p").css('color', 'white');
-        	            $("#characterMatrix,#pathMatrix").css('background', 'white');  $("#characterMatrix p,#pathMatrix p").css('color', '#26a655');
+        	            $("#characterMatrix").css('background', 'white');  $("#characterMatrix p").css('color', '#26a655');
         	        });
         			 $("#characterMatrixLink").click(function (e) {
         	            e.preventDefault();
-        				$("#numberMatrixForm,#pathMatrixForm").hide();
+        				$("#numberMatrixForm").hide();
         			    $("#characterMatrixForm").slideDown();
         	            $("#characterMatrix").css('background', '#26a655');$("#characterMatrix p").css('color', 'white');
-        	            $("#numberMatrix,#pathMatrix").css('background', 'white');  $("#numberMatrix p,#pathMatrix p").css('color', '#26a655');
-        	        });
-        			 $("#pathMatrixLink").click(function (e) {
-        	             e.preventDefault();
-        				 $("#numberMatrixForm,#characterMatrixForm").hide();
-        	             $("#pathMatrixForm").slideDown();
-        	             $("#pathMatrix").css('background', '#26a655'); $("#pathMatrix p").css('color', 'white');
-        	             $("#numberMatrix,#characterMatrix").css('background', 'white');  $("#numberMatrix p,#characterMatrix p").css('color', '#26a655');
+        	            $("#numberMatrix").css('background', 'white');  $("#numberMatrix p").css('color', '#26a655');
         	        });
         	    });

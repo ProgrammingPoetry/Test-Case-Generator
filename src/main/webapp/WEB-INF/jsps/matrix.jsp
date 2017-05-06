@@ -12,7 +12,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="js/matrix.js"></script>
+<script src="/js/matrix.js"></script>
 </head>
 <body>
 	<!-- Header Section-->
@@ -35,11 +35,6 @@
 				<a id="characterMatrixLink" href="" >
 					<div id="characterMatrix">
 						<p>Character Matrix</p>
-					</div>
-				</a>
-				<a id="pathMatrixLink" href=""	>
-					<div id="pathMatrix">
-						<p>Path Matrix</p>
 					</div>
 				</a>
 			</div>
@@ -191,102 +186,6 @@
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form:form>
 		</div>
-		
-		<!--  Path Matrix Form -->
-		<div id="pathMatrixForm" class="center-block" style="display:none;">
-           	<h2>Path Matrix</h2>
-           	<form:form id="pathMatrixForms" modelAttribute="pathMatrixForms">
-					<div class="form-group">
-						<form:label path="" for="number">Test cases</form:label>
-						<form:input path="" type="number" class="form-control"
-							name="noOfTestcases"/>
-					</div>
-					
-					<div class="form-group">
-						<div class="row">
-							<div class="col-xs-6">
-								<form:label path="" for="number">Rows</form:label>
-								<form:input path="" type="number" class="form-control"
-									name="rows"/>
-							</div>
-							<div class="col-xs-6">
-								<form:label path="" for="number">Columns</form:label>
-								<form:input path="" type="number" class="form-control"
-									name="Columns"/>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<form:label path="" for="text">Characters to indicate blocked cell</form:label>
-						<form:input path="" type="text" class="form-control"
-							name="blockedCell"/>
-					</div>
-					<div class="form-group">
-						<form:label path="" for="text">Characters to indicate open cell</form:label>
-						<form:input path="" type="text" class="form-control"
-							name="openCell"/>
-					</div>
-					
-					<div class="form-group">
-						<div class="row">
-							<div class="col-xs-4">
-								<form:label path="" for="text">Path Start</form:label>
-								<select onchange="setDisplay(this,'displayInvisiblePathStart')">
-									<option value="random">Random</option>
-									<option value="specify" selected>Specify</option>
-								</select>
-							</div>
-							<div id="displayInvisiblePathStart">
-								<div class="col-xs-4">
-									<form:label path="" for="number">Rows</form:label>
-									<form:input path="" type="number" class="form-control"
-										name="rows"/>
-								</div>
-								<div class="col-xs-4">
-									<form:label path="" for="number">Columns</form:label>
-									<form:input path="" type="number" class="form-control"
-										name="Columns"/>
-								</div>
-							</div>
-						</div>
-					</div>
-					<br>
-					
-					<div class="form-group">
-						<div class="row">
-							<div class="col-xs-4">
-								<form:label path="" for="text">Path End</form:label>
-								<select onchange="setDisplay(this,'displayInvisiblePathEnd')">
-									<option value="random">Random</option>
-									<option value="specify" selected>Specify</option>
-								</select>
-							</div>
-							<div id="displayInvisiblePathEnd">
-								<div class="col-xs-4">
-									<form:label path="" for="number">Rows</form:label>
-									<form:input path="" type="number" class="form-control"
-										name="rows"/>
-								</div>
-								<div class="col-xs-4">
-									<form:label path="" for="number">Columns</form:label>
-									<form:input path="" type="number" class="form-control"
-										name="Columns"/>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<form:label path="" for="text">Path Exists</form:label>
-						<select>
-							<option value="true">True</option>
-							<option value="false">False</option>
-							<option value="mixed">Mixed</option>
-						</select>
-					</div>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form:form>
-			</div>
 		</div>
 	</div>
 </div>
@@ -372,7 +271,7 @@
 					},
 					error : function(data) {
 						console.log(data);
-						console.log(JSON.stringify(data));
+	 					console.log(JSON.stringify(data));
 					}
 				});
 			});

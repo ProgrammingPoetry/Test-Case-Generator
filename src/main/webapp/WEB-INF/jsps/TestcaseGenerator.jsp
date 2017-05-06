@@ -68,7 +68,7 @@
 		                <td>
 		                  <!--  Matrix functionality link wrapped in anchor tag -->
 			                <div   id="list3">
-			                    <a style="display:block" href="">
+			                    <a style="display:block" href="/testcasegenerator/matrix">
 				                    <div class="row">
 				                        <div  class="col-md-6" >
 				                               <span class="glyphicon glyphicon-th" style="font-size:70px;color:#26a655;margin-top:40px;margin-left:48px;"> </span>

@@ -46,11 +46,10 @@ public class HomeController {
 	}
 
 	// This method returns the matrix form page
-	@RequestMapping(value = "/matrix", method = RequestMethod.GET)
+	@RequestMapping(value = "/testcasegenerator/matrix", method = RequestMethod.GET)
 	public String viewMatrixPage(Map<String, Object> model) {
 		model.put("matrixOfNumbersForm", new MatrixOfNumbers());
 		model.put("matrixOfCharactersForm", new MatrixOfCharacters());
-		model.put("pathMatrixForms", new PathMatrix());
 		return "matrix";
 	}
 
