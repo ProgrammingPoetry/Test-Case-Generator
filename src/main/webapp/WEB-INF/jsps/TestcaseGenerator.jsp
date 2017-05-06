@@ -104,7 +104,7 @@
 		                  <!--  Graphs functionality link wrapped in anchor tag -->
 		                    <br><br>
 			                <div   id="list5">
-			                    <a style="display:block" href="">
+			                    <a style="display:block" href="/testcasegenerator/graphs">
 				                    <div class="row">
 				                        <div  class="col-md-6" >
 				                             <span class="glyphicon glyphicon-asterisk" style="font-size:70px;color:#26a655;margin-top:40px;margin-left:48px;"> </span>   

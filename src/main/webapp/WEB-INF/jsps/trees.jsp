@@ -54,7 +54,7 @@
 	</head>
 	<body>
 		<!-- Header Section-->
-		<header class="container-fluid text-center" >
+		<header class="container-fluid text-center">
 				<h1>Trees</h1>
 		</header>
 		<!--  End of Header section -->
