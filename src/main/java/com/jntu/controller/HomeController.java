@@ -50,7 +50,7 @@ public class HomeController {
 	public String viewMatrixPage(Map<String, Object> model) {
 		model.put("matrixOfNumbersForm", new MatrixOfNumbers());
 		model.put("matrixOfCharactersForm", new MatrixOfCharacters());
-		model.put("pathMatrixForm", new PathMatrix());
+		model.put("pathMatrixForms", new PathMatrix());
 		return "matrix";
 	}
 

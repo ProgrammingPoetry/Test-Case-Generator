@@ -28,7 +28,11 @@
 	<header class="container-fluid text-center">
 	<h1>Arrays</h1>
 	</header>
+	<!--  End of Header Section -->
 	<!-- sliding form when button is clicked-->
+	
+	
+	
 	<div class="accordion" id="myAccordion">
 		<div class="panel">
 			<button type="button" class="btn btn-primary btn-xl"
