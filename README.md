@@ -38,9 +38,22 @@ If you find any problem deploying the project in your machine, please do let us 
 
 <h2>Screenshots</h2>
 
-<h4>Screenshot heading</h4>
-<!--<img src="screenshots/login_page.png" />-->
-<br/><br/>
+<h4>Home Page</h4>
+<img src="screenshots/homePage.png" /><br/>
+
+<h4>About Page</h4>
+<img src="screenshots/aboutPage.png" /><br/>
+
+<h4>Contributors Page</h4>
+<img src="screenshots/contributorsPage.png" /><br/>
+
+<h4>Test Case Generator Page</h4>
+<img src="screenshots/testcasegeneratorPage.png" /><br/>
+
+<h4>Form Page</h4>
+<img src="screenshots/formPage.png" /><br/>
+
+<br/>
 
 <h2>Project documents</h2>
 <ul>
