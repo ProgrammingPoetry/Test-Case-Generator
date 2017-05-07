@@ -146,8 +146,8 @@
                         <div  class="col-md-6" >
                             <br>
                                 <p style="font-size:24px;color:green">Rakesh Nukapeyyi </p><br>
-                                <p style="font-size:16 px">A fourth year Undergraduate student of Computer Science & Engg at Jawaharlal Nehru Technological University Hyderabad.
-                                Passionate about Spring & other web frameworks.</p>
+                                <p style="font-size:16 px">A B.Tech student[2013-17] of Computer Science & Engg at Jawaharlal Nehru Technological University Hyderabad.
+                                Passionate about data structures and algorithms.</p>
                                 <br><br>
                                 <a type="button" style="font-size:40px;color:#3b5998" href="https://www.facebook.com/Rakesh882" class="fa fa-facebook-official"></a>
                                 <a type="button" style="font-size:40px;color:#24292e; margin-left:40px;" href="https://github.com/Rakesh882" class="fa fa-github"></a>
