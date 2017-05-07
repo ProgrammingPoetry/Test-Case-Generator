@@ -8,7 +8,190 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/js/graphs.js"></script>      
+    <script src="/js/graphs.js"></script>    
+    <script>
+    function validateCompleteGraph(testCases,minValue,maxValue,indexedFrom,weighted,minWeight,maxWeight,distinct){
+    	var status="";
+		   if(testCases.value=="" || testCases.value < 1 || testCases.value > 50 ){
+	       		document.getElementById('errorinfo_completegraph_testCases').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+		   if(minValue.value=="" || minValue.value < 2 || minValue.value > 50 ){
+	       		document.getElementById('errorinfo_completegraph_minValue').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+		   if(maxValue.value=="" || maxValue.value < 1 || maxValue.value > 50 ){
+	       		document.getElementById('errorinfo_completegraph_maxValue').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+		   
+	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
+	       		document.getElementById('errorinfo_completegraph_minWeight').innerHTML="enter valid value"; 
+	       		status="failure";
+	        }
+	         
+	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
+	       		document.getElementById('errorinfo_completegraph_maxWeight').innerHTML="enter valid value";
+	       		status="failure";
+	        }
+			
+	        // ajax call for Complete Graph Tree Form
+	        
+	        if(status!="failure"){
+	        	
+	        	if(weighted.value=="false"){
+	        		minWeight.value=0;
+	        		maxWeight.value=0;
+	        		distinct.value="false";
+	        	}
+	            $.ajax({ 
+	                type: "POST",
+	                url: "/graphService",
+	                data: { category: "completeGraph", testCases:testCases.value,minValue:minValue.value,maxValue:maxValue.value,
+	                	indexedFrom:indexedFrom.value,weighted:weighted.value,minWeight:minWeight.value,
+	                	maxWeight:maxWeight.value,distinct:distinct.value
+	                },
+	                success: successFunc,
+	                error: errorFunc
+	            });
+	            function successFunc(data) {
+	            	if(data["status"]==="Success"){
+	            		download(data["testData"]);
+	            	}
+	            	console.log(data);
+	            	document.getElementById('completegraph_results').innerHTML=data["status"]+":"+data["description"];
+	               console.log(data);
+	            }
+
+	            function errorFunc() {
+	                alert('error');
+	            }
+	            }
+    }
+    
+    function validateBasicGraph(testCases,nodes,edges,indexedFrom,weighted,minWeight,maxWeight,distinct,directed,multipleEdges){
+    	var status="";
+		   if(testCases.value=="" || testCases.value < 1 || testCases.value > 50 ){
+	       		document.getElementById('errorinfo_basicgraph_testCases').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+		   if(nodes.value=="" || nodes.value < 1 || nodes.value > 50 ){
+	       		document.getElementById('errorinfo_basicgraph_nodes').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+		   if(edges.value=="" || edges.value < 0 || edges.value > 2450 ){
+	       		document.getElementById('errorinfo_basicgraph_edges').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
+	       		document.getElementById('errorinfo_basicgraph_minWeight').innerHTML="enter valid value"; 
+	       		status="failure";
+	        }
+	         
+	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
+	       		document.getElementById('errorinfo_basicgraph_maxWeight').innerHTML="enter valid value";
+	       		status="failure";
+	        }
+			
+	        // ajax call for Numeric Tree Form
+	        
+	        if(status!="failure"){
+	        	
+	        	if(weighted.value=="false"){
+	        		minWeight.value=0;
+	        		maxWeight.value=0;
+	        		distinct.value="false";
+	        	}
+	            $.ajax({ 
+	                type: "POST",
+	                url: "/graphService",
+	                data: { category: "basicGraph", testCases:testCases.value,nodes:nodes.value,edges:edges.value,
+	                	indexedFrom:indexedFrom.value,weighted:weighted.value,minWeight:minWeight.value,
+	                	maxWeight:maxWeight.value,distinct:distinct.value,directed:directed.value,multipleEdges:multipleEdges.value
+	                },
+	                success: successFunc,
+	                error: errorFunc
+	            });
+	            function successFunc(data) {
+	            	if(data["status"]==="Success"){
+	            		download(data["testData"]);
+	            	}
+	            	document.getElementById('completegraph_results').innerHTML=data["status"]+":"+data["description"];
+	               console.log(data);
+	            }
+
+	            function errorFunc() {
+	                alert('error');
+	            }
+	            }
+		   
+    }
+    
+    //validation for npartite graph
+   function  validateNPartiteGraph(testCases,n1,n2,indexedFrom,weighted,minWeight,maxWeight,distinct){
+	   
+	   var status="";
+	   if(testCases.value=="" || testCases.value < 1 || testCases.value > 50 ){
+       		document.getElementById('errorinfo_npartitegraph_testCases').innerHTML="Enter valid value";
+       		status="failure";
+    	}
+	   
+	   if(n1.value=="" || n1.value < 1 || n1.value > 50 ){
+      		document.getElementById('errorinfo_npartitegraph_n1').innerHTML="Enter valid value";
+      		status="failure";
+   		}
+	   
+	   if(n2.value=="" || n2.value < 1 || n2.value > 50 ){
+     		document.getElementById('errorinfo_npartitegraph_n2').innerHTML="Enter valid value";
+     		status="failure";
+  		}
+	   if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
+      		document.getElementById('errorinfo_npartitegraph_minWeight').innerHTML="enter valid value"; 
+      		status="failure";
+       }
+        
+       if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
+      		document.getElementById('errorinfo_npartitegraph_maxWeight').innerHTML="enter valid value";
+      		status="failure";
+       }
+		
+       // ajax call for NPartite Tree Form
+       
+       if(status!="failure"){
+       	
+       	if(weighted.value=="false"){
+       		minWeight.value=0;
+       		maxWeight.value=0;
+       		distinct.value="false";
+       	}
+           $.ajax({ 
+               type: "POST",
+               url: "/graphService",
+               data: { category: "nPartiteGraph", testCases:testCases.value,n1:n1.value,n2:n2.value,
+               	indexedFrom:indexedFrom.value,weighted:weighted.value,minWeight:minWeight.value,
+               	maxWeight:maxWeight.value,distinct:distinct.value
+               },
+               success: successFunc,
+               error: errorFunc
+           });
+           function successFunc(data) {
+           	if(data["status"]==="Success"){
+           		download(data["testData"]);
+           	}
+           	document.getElementById('npartitegraph_results').innerHTML=data["status"]+":"+data["description"];
+              console.log(data);
+           }
+
+           function errorFunc() {
+               alert('error');
+           }
+           }
+	   
+	   
+	   
+	   
+   }
+    </script>  
 </head>
 	<body>
 		<!-- Header Section-->
@@ -24,7 +207,7 @@
 				<div class="col-xs-2">
 					<a   id="numericGraphLink" href="" >
 						<div id="numericGraph">
-							<p>Numeric Graph</p>
+							<p>Basic Graph</p>
 						</div>
 					</a>
 					<a id="completeGraphLink" href="" >
@@ -43,11 +226,12 @@
 				<div class="col-xs-8" style="margin-left:100px;">
 					<!--  Number Graph form  -->
 					<div id="numericGraphForm"  class="center-block">
-						<h2>Numeric Graph</h2>
+						<h2> Basic Graph</h2>
 						<form action="" method='post'>
 	                            <div class="form-group">
 	                                <label for="number">Test cases</label>
-	                                <input type="number" class="form-control"  name="noOfTestcases">
+	                                <input type="number" class="form-control"  name="testCases">
+	                                 <span id="errorinfo_basicgraph_testCases"></span>
 	                            </div>
 	                            
 	                            <!-- Form Fields are placed in a row-->
@@ -55,18 +239,25 @@
 	                                <div class="row">
 	                                    <div class="col-xs-6">
 	                                        <label for="number">No Of Nodes</label>
-	                                        <input type="number" class="form-control"  name="noOfNodes" >
+	                                        <input type="number" class="form-control"  name="nodes" >
+	                                          <span id="errorinfo_basicgraph_nodes"></span>
+	                                        
 	                                    </div>
-	                                    <div class="col-xs-6">
-	                                        <label for="number">Indexed From</label>
-	                                        <input type="number" class="form-control"  name="indexedFrom">
+	                                    <div class="col-xs-6">  
+			                                <label for="number">Indexed From</label>
+			                                <select name="indexedFrom">
+			                                    <option value="0">0</option>
+			                                    <option value="1">1</option>
+			                                </select>   
+	    									 <span id="errorinfo_basicgraph_indexedFrom"></span>				
 	                                    </div>
 	                                </div>
 	                            </div>
 	                            
 	                            <div class="form-group">
 	                                 <label for="number">No Of Edges</label>
-	                                 <input type="number" class="form-control"  name="noOfEdges">
+	                                 <input type="number" class="form-control"  name="edges">
+	                                  <span id="errorinfo_basicgraph_edges"></span>	
 	                            </div>
 	                            
 	                            <!-- Form Fields are placed in a row-->
@@ -74,7 +265,7 @@
 	                                <div class="row">
 	                                    <div class="col-xs-4">
 	                                        <label for="text">Weighted</label>
-	                                        <select onchange="setDisplay(this,'SetDisplayForWeighted')">
+	                                        <select onchange="setDisplay(this,'SetDisplayForWeighted')" name="weighted">
 	                                            <option value="true" selected>True</option>
 	                                            <option value="false">False</option>
 	                                        </select>
@@ -83,10 +274,12 @@
 	                                        <div class="col-xs-4">
 	                                            <label for="number">Min Weight</label>
 	                                            <input type="number" class="form-control"  name="minWeight">
+	                                             <span id="errorinfo_basicgraph_minWeight"></span>	
 	                                        </div>
 	                                        <div class="col-xs-4">
 	                                            <label for="number">Max Weight</label>
 	                                            <input type="number" class="form-control"  name="maxWeight"> 
+	                                             <span id="errorinfo_basicgraph_maxWeight"></span>	
 	                                        </div>
 	                                    </div>
 	                                </div>
@@ -97,14 +290,14 @@
 	                                 <div class="row">
 	                                    <div class="col-xs-6">
 	                                        <label for="boolean">Directed:</label>
-	                                        <select>
+	                                        <select name="directed">
 	                                            <option value="true">True</option>
 	                                            <option value="false">False</option>
 	                                        </select>
 	                                    </div>
 	                                    <div class="col-xs-6">
 	                                        <label for="boolean">Distinct:</label>
-	                                        <select>
+	                                        <select name="distinct">
 	                                            <option value="true">True</option>
 	                                            <option value="false">False</option>
 	                                        </select>
@@ -114,43 +307,13 @@
 	                            
 	                             <div class="form-group">
 	                                 <label for="boolean">Multiple Edges</label>
-	                                <select>
+	                                <select name="multipleEdges">
 	                                    <option value="true">True</option>
 	                                    <option value="false">False</option>
 	                                </select>
 	                            </div>
-	                            
-	                            <div class="form-group">
-	                                <div class="row">
-	                                    <div class="col-xs-4">
-	                                        <label for="text">Path Problem</label>
-	                                        <select onchange="setDisplay(this,'SetDisplayForPathProblem')">
-	                                            <option value="true" selected>True</option>
-	                                            <option value="false">False</option>
-	                                        </select>
-	                                    </div>
-	                                    <div id="SetDisplayForPathProblem">
-	                                        <div class="col-xs-4">
-	                                            <label for="number">Source Node </label>
-	                                            <input type="number" class="form-control"  name="sourceNode">
-	                                        </div>
-	                                        <div class="col-xs-4">
-	                                            <label for="number">Dest Node</label>
-	                                            <input type="number" class="form-control"  name="destNode"> 
-	                                        </div>
-	                                        <div class="col-xs-4">
-	                                            <label for="number">Path Present</label>
-	                                            <select>
-	                                            <option value="true">True</option>
-	                                            <option value="false">False</option>
-	                                            <option value="random">random</option>
-	                                        </select>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            
-	                            <button type="submit" class="btn btn-primary">Submit</button>
+	                             <span id="completegraph_results"></span><br>	
+	                            <button type="button" class="btn btn-primary" onclick="validateBasicGraph(testCases,nodes,edges,indexedFrom,weighted,minWeight,maxWeight,distinct,directed,multipleEdges)">Submit</button>
 	                      </form>
 					</div>
 					
@@ -160,13 +323,62 @@
 	                        <form action="" method=''>
 	                            <div class="form-group">
 	                                <label for="number">Test cases</label>
-	                                <input type="number" class="form-control"  name="noOfTestcases">
+	                                <input type="number" class="form-control"  name="testCases">
+	                                <span id="errorinfo_completegraph_testCases"></span>
 	                            </div>
 	                            <div class="form-group">
-	                                <label for="number">N</label>
-	                                <input type="number" class="form-control"  name="n">
+	                            	<div class="row">
+	                            		<div class="col-xs-6">
+	                                            <label for="number">Min Value</label>
+	                                            <input type="number" class="form-control"  name="minValue">
+	                                            <span id="errorinfo_completegraph_minValue"></span>
+	                                        </div>
+	                                        <div class="col-xs-6">
+	                                            <label for="number">Max Value</label>
+	                                            <input type="number" class="form-control"  name="maxValue">
+	                                             <span id="errorinfo_completegraph_maxValue"></span>
+	                                        </div>
+	                            	</div>
 	                            </div>
-	                            <button type="submit" class="btn btn-primary">Submit</button>
+	                            <div class="form-group">
+	                                <label for="number">Indexed From</label>
+	                                <select name="indexedFrom">
+	                                    <option value="0">0</option>
+	                                    <option value="1">1</option>
+	                                </select>   
+	                            </div>
+	                            <!-- Form Fields are placed in a row call script function when user changes option-->
+	                           <div class="form-group">
+	                                        <label for="text">Weighted</label>
+	                                        <select onchange="setDisplay(this,'SetDisplayForWeighted3')" name="weighted">
+	                                            <option value="true" selected>True</option>
+	                                            <option value="false">False</option>
+	                                        </select>
+	                                    <div class="row">
+	                                    <div id="SetDisplayForWeighted3">
+	                                        <br />
+	                                        <div class="col-xs-4">
+	                                            <label for="number">Min Weight</label>
+	                                            <input type="number" class="form-control"  name="minWeight">
+	                                            <span id="errorinfo_completegraph_minWeight"></span>
+	                                        </div>
+	                                        <div class="col-xs-4">
+	                                            <label for="number">Max Weight</label>
+	                                            <input type="number" class="form-control"  name="maxWeight">
+	                                             <span id="errorinfo_completegraph_maxWeight"></span>
+	                                        </div>
+	                                        <div class="col-xs-4">
+	                                             <label for="boolean">Distinct:</label>
+	                                            <select name="distinct">
+	                                                <option value="true">True</option>
+	                                                <option value="false">False</option>
+	                                            </select>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                          <span id="completegraph_results"></span><br>
+	                            <button type="button" class="btn btn-primary" onclick="validateCompleteGraph(testCases,minValue,maxValue,indexedFrom,weighted,minWeight,maxWeight,distinct)">Submit</button>
 	                        </form>
 	                </div>
 	                
@@ -177,39 +389,40 @@
                         
                               <!-- Form Fields are placed in a row-->
                             <div class="form-group">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <label for="number">Test cases</label>
-                                        <input type="number" class="form-control"  name="noOfTestcases">
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <label for="number">N</label>
-                                        <input type="number" class="form-control"  name="n">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                             <div class="form-group">
-                                <label for="number">No Of Nodes in group1</label>
-                                <input type="number" class="form-control"  name="group1Nodes">
-                            </div>
-                            
-                             <div class="form-group">
-                                <label for="number">No Of Nodes in group2</label>
-                                <input type="number" class="form-control"  name="group2Nodes">
+                                <label for="number">Test cases</label>
+                               	<input type="number" class="form-control"  name="testCases">
+                               	<span id="errorinfo_npartitegraph_testCases"></span>
                             </div>
                             
                             <div class="form-group">
-                                <label for="number">Indexed From</label>
-                                <input type="number" class="form-control"  name="indexedFrom">
+                            	<div class="row">
+                            		<div class="col-xs-6">
+                            			<label for="number">N1</label>
+                                        <input type="number" class="form-control"  name="n1">
+                                        	<span id="errorinfo_npartitegraph_n1"></span>
+                            		</div>
+                            		<div class="col-xs-6">
+                            			<label for="number">N2</label>
+                                        <input type="number" class="form-control"  name="n2">
+                                        	<span id="errorinfo_npartitegraph_n2"></span>
+                            		</div>
+                            	</div>
                             </div>
+                            
+                              <div class="form-group">
+	                                <label for="number">Indexed From</label>
+	                                <select name="indexedFrom">
+	                                    <option value="0">0</option>
+	                                    <option value="1">1</option>
+	                                </select>   
+	                            </div>
                             
                             <!-- call script function when user changes the option-->
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-xs-4">
                                         <label for="text">Weighted</label>
-                                        <select onchange="setDisplay(this,'SetDisplayForWeighted1')">
+                                        <select onchange="setDisplay(this,'SetDisplayForWeighted1')" name="weighted">
                                             <option value="true" selected>True</option>
                                             <option value="false">False</option>
                                         </select>
@@ -218,10 +431,12 @@
                                         <div class="col-xs-4">
                                             <label for="number">Min Weight</label>
                                             <input type="number" class="form-control"  name="minWeight">
+                                            <span id="errorinfo_npartitegraph_minWeight"></span>
                                         </div>
                                         <div class="col-xs-4">
                                             <label for="number">Max Weight</label>
                                             <input type="number" class="form-control"  name="maxWeight"> 
+                                            <span id="errorinfo_npartitegraph_maxWeight"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -231,12 +446,12 @@
                             
                             <div class="form-group">
                                 <label for="text">Distinct</label>
-                                <select>
+                                <select name="distinct">
                                     <option value="true">True</option>
                                     <option value="false">False</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-primary" onclick="validateNPartiteGraph(testCases,n1,n2,indexedFrom,weighted,minWeight,maxWeight,distinct)">Submit</button>
                         </form>   
                     </div>
 				</div>
