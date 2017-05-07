@@ -8,7 +8,7 @@ header{
 #numericGraph,#completeGraph,#nPartiteGraph,#fibonacciSeries,
 #numberMatrix,#characterMatrix,#numberArray,#characterArray,#stringArray{
     border:1.5px solid #26a655;
-    width:200px;
+    width:220px;
     border-radius:5px;
     background:white;
     height:110px;
@@ -21,14 +21,28 @@ header{
     margin-top:33px;
     margin-left:45px;
 }
-#binarysearchTree p,#fullBinaryTree p,#numericGraph p,#completeGraph p, 
-#nPartiteGraph p,#fibonacciSeries p,
-#numberMatrix p,#characterMatrix p,#numberArray p,#characterArray p ,#stringArray p{ 
+#numberArray p,#characterArray p ,#stringArray p,#numberMatrix p,#characterMatrix p,
+#fullBinaryTree p,#numericGraph p,#nPartiteGraph p{
+	font-size:24px;
+    color:#26a655;
+	margin-top:32px;
+    margin-left:27px;
+	
+}
+#binarysearchTree p{
+	font-size:24px;
+    color:#26a655;
+	margin-top:22px;
+    margin-left:33px;
+}
+#completeGraph p, 
+#fibonacciSeries p{ 
     font-size:24px;
     color:#26a655;
     margin-top:20px;
     margin-left:45px;
 }
+
 div.container a{
     text-decoration:none;
 }
