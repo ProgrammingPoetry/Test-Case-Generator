@@ -51,7 +51,7 @@
                         <td>
                           <!--  Arrays functionality link wrapped in anchor tag -->
 			                <div   id="list2">
-			                    <a style="display:block" href="/testcasegenerator/arrays">
+			                    <a style="display:block" href="/arrays">
 				                    <div class="row">
 				                        <div  class="col-md-6" >
 				                                <span class="glyphicon glyphicon-th" style="font-size:70px;color:#26a655;margin-top:40px;margin-left:48px;"> </span>
@@ -68,7 +68,7 @@
 		                <td>
 		                  <!--  Matrix functionality link wrapped in anchor tag -->
 			                <div   id="list3">
-			                    <a style="display:block" href="/testcasegenerator/matrix">
+			                    <a style="display:block" href="/matrix">
 				                    <div class="row">
 				                        <div  class="col-md-6" >
 				                               <span class="glyphicon glyphicon-th" style="font-size:70px;color:#26a655;margin-top:40px;margin-left:48px;"> </span>
