@@ -19,7 +19,7 @@ import com.jntu.model.PathMatrix;
 public class HomeController {
 
 	// This method returns the home page of our application
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String homePageController() {
 		return "home";
 	}
@@ -72,7 +72,7 @@ public class HomeController {
 	}
 
 	// Dummy Controller
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/dummy", method = RequestMethod.GET)
 	public String dummyPage() {
 		return "dummy";
 	}

@@ -5,6 +5,7 @@
     <head>
         <title>Test case Generator </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="icon" href="/Images/testcase-icon.ico" type="image/x-icon">
         <link rel="stylesheet" href="/css/TestcaseGenerator.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,7 +17,7 @@
     <body>
     	<!--  Header Tag with Test case Generator logo  -->
     	
-        <header class = "container-fluid text-center" >
+        <header class = "container-fluid text-center">
             <img src="/Images/TestcaseGeneratorLogo.png" style="height:140%;margin-top:-10px;width:300px" alt="TG">
             <h1>Test Case Generator</h1>
         </header>
