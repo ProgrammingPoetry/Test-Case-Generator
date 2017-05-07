@@ -8,7 +8,51 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/js/misc.js"></script>      
+    <script src="/js/misc.js"></script>
+    <script>
+    
+    //Fibonacci Form Validation
+    function validateFibonacciForm(testCases,minValue,maxValue){
+    	var status="";
+    	if(testCases.value=="" || testCases.value < 1 || testCases.value >  2500 ){
+       		document.getElementById('errorinfo_fibonacci_testCases').innerHTML="Enter valid value";
+       		status="failure";
+    	}
+
+        if(minValue.value=="" || minValue.value < 1 || minValue.value > 86 ){
+       		document.getElementById('errorinfo_fibonacci_minValue').innerHTML="enter valid value"; 
+       		status="failure";
+        }
+         
+        if(maxValue.value=="" || maxValue.value < 1 || maxValue.value > 86 ){
+       		document.getElementById('errorinfo_fibonacci_maxValue').innerHTML="enter valid value";
+       		status="failure";
+        }
+        
+      //ajax call for character Form
+   	 if(status!="failure"){
+   	        $.ajax({ 
+   	            type: "POST",
+   	            url: "/miscellaneousService",
+   	            data: { category: "fibonacci", testCases:testCases.value,minValue:minValue.value,
+   	            	maxValue:maxValue.value} ,
+   	            success: successFunc,
+   	            error: errorFunc
+   	        });
+   	        function successFunc(data) {
+   	        	if(data["status"]==="Success"){
+   	        		download(data["testData"]);
+   	        	}
+   	        	document.getElementById('fibonacci_results').innerHTML=data["status"]+":"+data["description"];
+   	           console.log(data);
+   	        }
+
+   	        function errorFunc() {
+   	            alert('error');
+   	        }
+   	 }
+   	 }
+    </script>      
 </head>
 	<body>
 		<!-- Header Section-->
@@ -27,18 +71,6 @@
 							<p>Fibonacci Series</p>
 						</div>
 					</a>
-					
-					<a id="binarySearchTreeLink" href="" >
-						<div id="binarySearchTree">
-							<p>Binary Search Tree</p>
-						</div>
-					</a>
-					
-					<a id="balancedBSTLink" href=""	>
-						<div id="balancedBST">
-							<p>Balanced BST</p>
-						</div>
-					</a>
 				</div>
 				
 				<div class="col-xs-8" style="margin-left:100px">
@@ -48,51 +80,24 @@
 						
 	                            <div class="form-group">
 	                                <label for="number">Test cases</label>
-	                                <input type="number" class="form-control"  name="noOfTestcases">
+	                                <input type="number" class="form-control"  name="testCases">
+	                                <span id="errorinfo_fibonacci_testCases"></span>
 	                            </div>
 	                            
 	                            <div class="form-group">
-	                                <label for="number">N</label>
-	                                <input type="number" class="form-control"  name="n">
+	                                <label for="number">min Value</label>
+	                                <input type="number" class="form-control"  name="minValue">
+	                                <span id="errorinfo_fibonacci_minValue"></span>
 	                            </div>
-	                            <button type="submit" class="btn btn-primary">Submit</button>
+	                            <div class="form-group">
+	                                <label for="number">max Value</label>
+	                                <input type="number" class="form-control"  name="maxValue">
+	                                <span id="errorinfo_fibonacci_maxValue"></span>
+	                            </div>
+	                            <span id="fibonacci_results"></span><br>
+	                            <button type="button" class="btn btn-primary" onclick="validateFibonacciForm(testCases,minValue,maxValue)">Submit</button>
 	                        </form>
 					</div>
-					
-					<!--  Binary search Tree Form -->
-					<div id="binarySearchTreeForm" class="center-block" style="display:none;">
-	                        <h2>Binary Search Tree</h2>
-	                       <form action="" method=''>
-	                       
-	                            <div class="form-group">
-	                                <label for="number">Test cases</label>
-	                                <input type="number" class="form-control"  name="noOfTestcases">
-	                            </div>
-	                            
-	                           <div class="form-group">
-	                                <label for="number">N</label>
-	                                <input type="number" class="form-control"  name="n">
-	                            </div>
-	                            <button type="submit" class="btn btn-primary">Submit</button>
-	                        </form>
-	               </div>
-                    <!--  Balanced binary search tree -->
-					<div id="balancedBSTForm" class="center-block" style="display:none;">
-                        <h2>Balanced BST</h2>
-                        <form action="" method=''>
-                        
-                            <div class="form-group">
-                                <label for="number">Test cases</label>
-                                <input type="number" class="form-control"  name="noOfTestcases">
-                            </div>
-                            
-                             <div class="form-group">
-                                <label for="number">N</label>
-                                <input type="number" class="form-control"  name="n">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
 				</div>
 			</div>
 		</div>

@@ -54,7 +54,6 @@
             success: successFunc,
             error: errorFunc
         });
-        }
         function successFunc(data) {
         	if(data["status"]==="Success"){
         		download(data["testData"]);
@@ -65,6 +64,7 @@
 
         function errorFunc() {
             alert('error');
+        }
         }
     }
     
@@ -118,7 +118,6 @@
     	            success: successFunc,
     	            error: errorFunc
     	        });
-    	        }
     	        function successFunc(data) {
     	        	if(data["status"]==="Success"){
     	        		download(data["testData"]);
@@ -130,6 +129,7 @@
     	        function errorFunc() {
     	            alert('error');
     	        }
+    }
     }
     
     //string Form Validation
