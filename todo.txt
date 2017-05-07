@@ -3,3 +3,4 @@ Change the success description to nice UI friendly description.
 Change the arrays symbol icon in testcasegenerator page
 Change the header in testcasegenerator page
 Put placeholders in all sub category forms
+Remove the errors from span tags, as soon as user presses on any field/button
