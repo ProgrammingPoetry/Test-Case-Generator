@@ -184,7 +184,7 @@
         <!--  Back to top button to scroll to Top -->
         
         <div class="backtotop">
-             <a  href="/home">Back to top</a><br><br>
+             <a  href="/">Back to top</a><br><br>
         </div>
         
         <!--  End of button  -->
