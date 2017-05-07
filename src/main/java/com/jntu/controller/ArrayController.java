@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -36,7 +35,7 @@ public class ArrayController {
 		if (result.hasErrors()) {
 			List<String> errors = new ArrayList<>();
 			List<ObjectError> allErrors = result.getAllErrors();
-			for(ObjectError error:allErrors){
+			for (ObjectError error : allErrors) {
 				errors.add(error.getDefaultMessage());
 			}
 			model.put("errors", errors);
@@ -57,15 +56,15 @@ public class ArrayController {
 		model.put("data", FileData);
 		return ResponseEntity.ok(model);
 	}
-	
+
 	@RequestMapping(value = "/characters", method = RequestMethod.POST)
-	public ResponseEntity<?> getArrayOfCharacters(@Valid @ModelAttribute("arrayOfCharactersForm") ArrayOfCharacters input,
-			BindingResult result) {
+	public ResponseEntity<?> getArrayOfCharacters(
+			@Valid @ModelAttribute("arrayOfCharactersForm") ArrayOfCharacters input, BindingResult result) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		if (result.hasErrors()) {
 			List<String> errors = new ArrayList<>();
 			List<ObjectError> allErrors = result.getAllErrors();
-			for(ObjectError error:allErrors){
+			for (ObjectError error : allErrors) {
 				errors.add(error.getDefaultMessage());
 			}
 			model.put("errors", errors);
@@ -86,7 +85,7 @@ public class ArrayController {
 		model.put("data", FileData);
 		return ResponseEntity.ok(model);
 	}
-	
+
 	@RequestMapping(value = "/strings", method = RequestMethod.POST)
 	public ResponseEntity<?> getArrayOfStrings(@Valid @ModelAttribute("arrayOfStringsForm") ArrayOfStrings input,
 			BindingResult result) {
@@ -94,7 +93,7 @@ public class ArrayController {
 		if (result.hasErrors()) {
 			List<String> errors = new ArrayList<>();
 			List<ObjectError> allErrors = result.getAllErrors();
-			for(ObjectError error:allErrors){
+			for (ObjectError error : allErrors) {
 				errors.add(error.getDefaultMessage());
 			}
 			model.put("errors", errors);
@@ -114,6 +113,6 @@ public class ArrayController {
 		model.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS_STATUS);
 		model.put("data", FileData);
 		return ResponseEntity.ok(model);
-	} 
+	}
 
 }

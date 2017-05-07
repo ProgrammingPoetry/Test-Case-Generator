@@ -2,6 +2,12 @@ package com.jntu.service;
 
 public class NumberSO<T> {
 	
+	@Override
+	public String toString() {
+		return "NumberSO [arraySize=" + arraySize + ", minValue=" + minValue + ", maxValue=" + maxValue
+				+ ", multipleOf=" + multipleOf + ", sorted=" + sorted + "]";
+	}
+
 	private int arraySize;
 	
 	private T minValue;

@@ -7,17 +7,23 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class MatrixOfCharacters extends MatrixCommon {
 
+	@Override
+	public String toString() {
+		return "MatrixOfCharacters [minValue=" + minValue + ", maxValue=" + maxValue + ", isDistinct=" + isDistinct
+				+ ", charCase=" + charCase + ", " + super.toString() + "]";
+	}
+
 	@NotNull(message = "MINIMUM CHAR VALUE MUST NOT BE NULL")
 	private char minValue = 'A';
 
 	@NotNull(message = "MAXIMUM CHAR VALUE MUST NOT BE NULL")
 	private char maxValue = 'Z';
-	
+
 	@NotNull(message = "DISTINCT GENERATION MUST BE ENABLED OR DISABLED")
 	private Boolean isDistinct = false;
 
 	@NotEmpty(message = "CASE MUST HOLD A VALUE FROM DROP DOWN")
-	private String charCase="upper";// TODO :MAKE ENUM
+	private String charCase = "upper";// TODO :MAKE ENUM
 
 	public char getMinValue() {
 		return minValue;
@@ -50,7 +56,7 @@ public class MatrixOfCharacters extends MatrixCommon {
 	public void setCharCase(String charCase) {
 		this.charCase = charCase;
 	}
-	
+
 	@AssertTrue(message = "MAXIMUM CHAR VALUE MUST BE GREATER OR EQUAL TO MINIMUM CHAR VALUE")
 	public boolean isValueCheckSatisfied() {
 		return this.minValue <= this.maxValue;
@@ -79,11 +85,11 @@ public class MatrixOfCharacters extends MatrixCommon {
 	public boolean isAlphabet() {
 		return (Character.isLetter(this.minValue) && Character.isLetter(this.maxValue));
 	}
-	
+
 	@AssertTrue(message = "GIVEN MATRIX DIMENSIONS CAN NOT HAVE ENOUGH DISTINCT NUMBERS")
 	public boolean isRangeValidIfDistinctIsChecked() {
 		if (!this.isDistinct)
 			return true;
-		return (this.getColumns()*this.getRows()) <= (this.maxValue - this.minValue + 1);
+		return (this.getColumns() * this.getRows()) <= (this.maxValue - this.minValue + 1);
 	}
 }

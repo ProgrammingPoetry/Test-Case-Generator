@@ -11,6 +11,12 @@ import com.jntu.util.Utility;
 
 public class ArrayOfNumbers extends ArraysCommon {
 
+	@Override
+	public String toString() {
+		return "ArrayOfNumbers [minValue=" + minValue + ", maxValue=" + maxValue + ", multipleOf=" + multipleOf
+				+ ", isPrime=" + isPrime + ", isDistinct=" + isDistinct + ", sorted=" + sorted + ", " + super.toString() + "]";
+	}
+
 	// TODO : AS OF NOW ALL THE MESSAGES HAVE BEEN HARDCODED. SET THEM FROM PROP
 	@NotNull(message = "MINIMUM VALUE MUST NOT BE NULL")
 	private long minValue = 1;

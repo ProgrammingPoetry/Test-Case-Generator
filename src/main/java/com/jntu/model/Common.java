@@ -6,6 +6,11 @@ import javax.validation.constraints.NotNull;
 
 public class Common {
 	
+	@Override
+	public String toString() {
+		return "Common [noOfTestCases=" + noOfTestCases + ", printNoOfTestCases=" + printNoOfTestCases + "]";
+	}
+
 	@NotNull(message="NO OF TESTCASES CAN'T BE EMPTY")
 	@Min(value=1,message="NO OF TESTCASES MUST BE GREATER THAN OR EQUAL TO 1")
 	private long noOfTestCases=1;

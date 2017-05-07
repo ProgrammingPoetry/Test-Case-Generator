@@ -5,5 +5,6 @@ Change the colors of buttons when user hover's over them (in each of the categor
 Increase the width of sub-category-buttons in tree's page
 Graphs category not yet completed
 Change Aditya's photo
+change Rakesh's photo
 Change Contributor's description
 Fix Aditya's LinkedIn URL
