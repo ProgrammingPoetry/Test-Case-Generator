@@ -12,7 +12,7 @@
     <script src="/js/validationconstants_datatypes.js"></script>  
     <script>
     function validateNumberForm(testCases,minValue,maxValue,multipleOf,distinct,prime){
-    	if(testCases.value < 1 || testCases.value >1000 )
+    /*	if(testCases.value < 1 || testCases.value >1000 )
        		document.getElementById('errorinfo_testCases').innerHTML="range is "+number_min_testCases+"-"+number_max_testCases;
 
         if(minValue.value < 1 || minValue.value > 1000 )
@@ -29,13 +29,19 @@
        		document.getElementById('errorinfo_minValue').innerHTML="min should be less than max "; 
        		document.getElementById('errorinfo_maxValue').innerHTML="min should be less than max "; 
            }
-        
+        */
         $.ajax({ 
             type: "POST",
-            url: '/datatypeService',
-            data: { "category": "numbers", testCases:testCases.value,minValue:minValue.value,
-            	maxValue:maxValue.value,multipleOf:multipleOf.value,distinct:distinct.value,
-            	prime:prime.value} ,
+            url: "/datatypeService",
+            data: {
+	        	category: "numbers",
+	        	testCases: "5",
+	        	minValue: 1,
+	        	maxValue: 10,
+	        	multipleOf: "",
+	        	distinct: "false",
+	        	prime: "false"
+	        },
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: successFunc,
