@@ -550,7 +550,6 @@ public class TreeServiceImpl implements TreeServiceInterface {
 		// Start generating test data
 		for(long i = 0;i < testCases;++i) {
 			
-			System.out.println("Test case : " + i);
 			// Before generating the tree, we need to print the number of nodes in the testData
 			testData += nodes + "\n";
 			

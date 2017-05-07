@@ -370,8 +370,6 @@ public class GraphServiceImpl implements GraphServiceInterface {
 		
 		for(long i = 0;i < testCases;++i) {
 			
-			System.out.println("Test case: " + i);
-			
 			// This table is used to store the edges which have been generated
 			// This is done in order to keep track of edges generated
 			// (So that we don't generate the same edges again when the user selects multipleEdges)
