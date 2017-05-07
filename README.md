@@ -20,7 +20,7 @@ You can run this project in Spring STS or any other IDE of your choice. This pro
   <li>This application is configured to run on port 5010. Make sure you do not have any application running on port 5010 on your local machine.</li>
   <li>If you would like to change the port on which this application runs, then navigate to the file <i>src/main/resources/application.properties</i> and change the <i>server.port</i> property to the port of your choice.</li>
   <li>In order to run the application, go the file <i>src/main/java/com/jntu/TestCaseGeneratorApplication.java</i> and <i>Right Click > Run As > Java Application</i></li>
-  <li>Open up your favorite browser and access this application at <a href="http://localhost:5010/home">localhost:5010/home</a> (Note: If you have changed the port on which the application runs, then change it here too!)</li>
+  <li>Open up your favorite browser and access this application at <a href="http://localhost:5010/">localhost:5010</a> (Note: If you have changed the port on which the application runs, then change it here too!)</li>
   <li>There <i>'might'</i> be few cross-browser issues since this application has been tested only on Chrome.</li>
   <li>Explore the application (Most of it is self explanatory) and start generating the test data for your problems.</li>
 </ul>
