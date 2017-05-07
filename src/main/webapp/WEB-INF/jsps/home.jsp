@@ -128,7 +128,7 @@
                             <br>
                                 <p style="font-size:24px;color:green">Teja Kiran Reddy Sirivella </p><br>
                                 <p style="font-size:16 px">Final-year Computer Science undergraduate student at Jawaharlal Nehru Technological University Hyderabad.
-                                Currently interning at Aurora e-Labs. Passionate about Spring and other frameworks.</p>
+                                Currently interning at Aurora e-Labs. Passionate about Coding and Research .</p>
                                 <br><br>
                                 <a type="button" style="font-size:40px;color:#3b5998 " href="https://www.facebook.com/tejakiran.reddysirivella" class="fa fa-facebook-official"></a>
                                 <a type="button" style="font-size:40px;color:#24292e; margin-left:40px;" href="https://github.com/tejakiran123" class="fa fa-github"></a>
