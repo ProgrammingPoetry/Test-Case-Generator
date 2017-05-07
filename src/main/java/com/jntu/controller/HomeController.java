@@ -23,12 +23,12 @@ public class HomeController {
 	public String homePageController() {
 		return "home";
 	}
-	
+
 	// This method returns the Test case Generator main functionality page
-		@RequestMapping(value = "/testcasegenerator", method = RequestMethod.GET)
-		public String testcaseGeneratorPageController() {
-			return "TestcaseGenerator";
-		}
+	@RequestMapping(value = "/testcasegenerator", method = RequestMethod.GET)
+	public String testcaseGeneratorPageController() {
+		return "TestcaseGenerator";
+	}
 
 	// This method returns the basic-data-type form page
 	@RequestMapping(value = "/testcasegenerator/datatypes", method = RequestMethod.GET)
@@ -71,4 +71,9 @@ public class HomeController {
 		return "misc";
 	}
 
+	// Dummy Controller
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String dummyPage() {
+		return "dummy";
+	}
 }
