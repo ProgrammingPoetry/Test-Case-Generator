@@ -1,9 +1,3 @@
-Increase the speed of sliding in the home page
-Change the heading in TestCaseGenerator Page
+Change the header in TestCaseGeneratorPage to make it look nice
 Change the icon of Arrays in TestCaseGenerator Page
-Change the colors of buttons when user hover's over them (in each of the category pages)
-Increase the width of sub-category-buttons in tree's page
-Graphs category not yet completed
-Change Aditya's photo
-Change Contributor's description
-Fix Aditya's LinkedIn URL
+Change Aditya's photo to Oval shape (not circle)
