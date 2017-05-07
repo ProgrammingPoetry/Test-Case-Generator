@@ -5,3 +5,5 @@ Change the header in testcasegenerator page
 Put placeholders in all sub category forms
 Remove the errors from span tags, as soon as user presses on any field/button
 Add whiteSpaceCharacter input field to strings category
+Remove placeholders in arrays and matrix categories (Rakesh)
+Remove the alert function call in JS when arrays and matrix return successful json response (Rakesh)
