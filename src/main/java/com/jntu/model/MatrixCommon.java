@@ -4,6 +4,12 @@ import javax.validation.constraints.Min;
 
 public class MatrixCommon extends Common {
 
+	@Override
+	public String toString() {
+		return "MatrixCommon [rows=" + rows + ", columns=" + columns + ", printNoOfRowsAndColumns="
+				+ printNoOfRowsAndColumns + ", " + super.toString() + "]";
+	}
+
 	@Min(value=1,message="NO OF ROWS MUST BE GREATER THAN OR EQUAL TO 1")
 	private int rows = 3;
 

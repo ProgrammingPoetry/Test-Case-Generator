@@ -7,6 +7,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class ArrayOfCharacters extends ArraysCommon {
 
+	@Override
+	public String toString() {
+		return "ArrayOfCharacters [minValue=" + minValue + ", maxValue=" + maxValue + ", isDistinct=" + isDistinct
+				+ ", sorted=" + sorted + ", charCase=" + charCase + ", " + super.toString() + "]";
+	}
+
 	@NotNull(message = "MINIMUM CHAR VALUE MUST NOT BE NULL")
 	private char minValue = 'A';
 
@@ -20,7 +26,7 @@ public class ArrayOfCharacters extends ArraysCommon {
 	private String sorted = "none";// TODO :MAKE ENUM
 
 	@NotEmpty(message = "CASE MUST HOLD A VALUE FROM DROP DOWN")
-	private String charCase="upper";// TODO :MAKE ENUM
+	private String charCase = "upper";// TODO :MAKE ENUM
 
 	public String getCharCase() {
 		return charCase;
@@ -90,7 +96,7 @@ public class ArrayOfCharacters extends ArraysCommon {
 	public boolean isAlphabet() {
 		return (Character.isLetter(this.minValue) && Character.isLetter(this.maxValue));
 	}
-	
+
 	@AssertTrue(message = "GIVEN ARRAY SIZE CAN NOT HAVE ENOUGH DISTINCT NUMBERS")
 	public boolean isRangeValidIfDistinctIsChecked() {
 		if (!this.isDistinct)

@@ -2,6 +2,11 @@ package com.jntu.service;
 
 public class CharacterSO {
 
+	@Override
+	public String toString() {
+		return "CharacterSO [arraySize=" + arraySize + ", refString=" + refString + ", isDistinct=" + isDistinct + "]";
+	}
+
 	private int arraySize;
 	
 	private String refString;

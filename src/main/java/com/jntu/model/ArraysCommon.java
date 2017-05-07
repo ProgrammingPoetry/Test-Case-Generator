@@ -6,6 +6,12 @@ import javax.validation.constraints.NotNull;
 
 public class ArraysCommon extends Common {
 
+	@Override
+	public String toString() {
+		return "ArraysCommon [printArraySize=" + printArraySize + ", minSize=" + minSize + ", maxSize=" + maxSize
+				+ ", " + super.toString() + "]";
+	}
+
 	@NotNull(message = "PRINT ARRAY SIZE MUST BE EITHER TRUE OR FALSE")
 	private Boolean printArraySize=true;
 

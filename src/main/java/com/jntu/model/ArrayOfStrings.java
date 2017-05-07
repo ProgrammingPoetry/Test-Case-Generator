@@ -8,6 +8,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class ArrayOfStrings extends ArraysCommon {
 
+	@Override
+	public String toString() {
+		return "ArrayOfStrings [minLength=" + minLength + ", maxLength=" + maxLength + ", minCharValue=" + minCharValue
+				+ ", maxCharValue=" + maxCharValue + ", sorted=" + sorted + ", charCase=" + charCase + ", isPalindrome="
+				+ isPalindrome + ", " +super.toString() + "]";
+	}
+
 	@NotNull(message = "MINIMUM LENGTH OF THE STRING MUST NOT BE NULL")
 	@Min(value = 1, message = "MINIMUM LENGTH OF THE STRING MUST BE GREATER THAN OR EQUAL TO 1")
 	private int minLength = 1;

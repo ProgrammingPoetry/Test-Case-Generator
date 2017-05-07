@@ -2,6 +2,12 @@ package com.jntu.service;
 
 public class StringSO {
 
+	@Override
+	public String toString() {
+		return "StringSO [arraySize=" + arraySize + ", refString=" + refString + ", minLength=" + minLength
+				+ ", maxLength=" + maxLength + "]";
+	}
+
 	private int arraySize;
 
 	private String refString;
