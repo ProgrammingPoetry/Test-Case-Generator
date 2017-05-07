@@ -146,13 +146,10 @@
                         <div  class="col-md-6" >
                             <br>
                                 <p style="font-size:24px;color:green">Rakesh Nukapeyyi </p><br>
-<<<<<<< HEAD
-                                <p style="font-size:16 px">Final-year undergraduate student at Jawaharlal Nehru Technological University Hyderabad.
-                                Currently interning at Yatra. Passionate about algorithms.</p>
-=======
+
                                 <p style="font-size:16 px">A B.Tech student[2013-17] of Computer Science & Engg at Jawaharlal Nehru Technological University Hyderabad.
                                 Passionate about data structures and algorithms.</p>
->>>>>>> a5be47da844aeebc65d003b4801e90429d5c170a
+
                                 <br><br>
                                 <a type="button" style="font-size:40px;color:#3b5998" href="https://www.facebook.com/Rakesh882" class="fa fa-facebook-official"></a>
                                 <a type="button" style="font-size:40px;color:#24292e; margin-left:40px;" href="https://github.com/Rakesh882" class="fa fa-github"></a>
