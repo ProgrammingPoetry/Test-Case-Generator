@@ -17,7 +17,7 @@
     	<!--  Header Tag with Test case Generator logo  -->
     	
         <header class = "container-fluid text-center" >
-            <img src="/Images/TestcaseGeneratorLogo.png" style="height:120%" alt="TG">
+            <img src="/Images/TestcaseGeneratorLogo.png" style="height:140%;margin-top:-10px;width:300px" alt="TG">
             <h1>Test Case Generator</h1>
         </header>
         

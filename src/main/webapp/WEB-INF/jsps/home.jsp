@@ -170,7 +170,7 @@
                                 <br><br>
                                 <a type="button" style="font-size:40px;color:#3b5998 " href="https://www.facebook.com/adi96coder" class="fa fa-facebook-official"></a>
                                 <a type="button" style="font-size:40px;color:#24292e; margin-left:40px;" href="https://github.com/aditya-code-blooded" class="fa fa-github"></a>
-                                <a type="button" style="font-size:40px;color:#0177b5; margin-left:40px;" href="https://www/linkedin.com/in/adi96coder" class="fa fa-linkedin-square"></a>
+                                <a type="button" style="font-size:40px;color:#0177b5; margin-left:40px;" href="https://www.linkedin.com/in/adi96coder" class="fa fa-linkedin-square"></a>
                         </div>
                     </div>
                 </div>
