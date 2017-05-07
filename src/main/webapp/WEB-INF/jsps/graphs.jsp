@@ -12,26 +12,26 @@
     <script>
     function validateCompleteGraph(testCases,minValue,maxValue,indexedFrom,weighted,minWeight,maxWeight,distinct){
     	var status="";
-		   if(testCases.value=="" || testCases.value < 1 || testCases.value > 50 ){
-	       		document.getElementById('errorinfo_completegraph_testCases').innerHTML="Enter valid value";
+		   if(testCases.value=="" || testCases.value < 1 || testCases.value > 100 ){
+	       		document.getElementById('errorinfo_completegraph_testCases').innerHTML="testcases range : 1-100";
 	       		status="failure";
 	    	}
 		   if(minValue.value=="" || minValue.value < 2 || minValue.value > 50 ){
-	       		document.getElementById('errorinfo_completegraph_minValue').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_completegraph_minValue').innerHTML="min value range : 2-50";
 	       		status="failure";
 	    	}
 		   if(maxValue.value=="" || maxValue.value < 1 || maxValue.value > 50 ){
-	       		document.getElementById('errorinfo_completegraph_maxValue').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_completegraph_maxValue').innerHTML="min value range : 1-50";
 	       		status="failure";
 	    	}
 		   
-	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
-	       		document.getElementById('errorinfo_completegraph_minWeight').innerHTML="enter valid value"; 
+	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -1000000000 || minWeight.value > 1000000000 )){
+	       		document.getElementById('errorinfo_completegraph_minWeight').innerHTML="min weight range : -10^9 - 10^9"; 
 	       		status="failure";
 	        }
 	         
-	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
-	       		document.getElementById('errorinfo_completegraph_maxWeight').innerHTML="enter valid value";
+	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -1000000000  || maxWeight.value > 1000000000 )){
+	       		document.getElementById('errorinfo_completegraph_maxWeight').innerHTML="max weight range : -10^9 - 10^9";
 	       		status="failure";
 	        }
 			
@@ -72,24 +72,24 @@
     function validateBasicGraph(testCases,nodes,edges,indexedFrom,weighted,minWeight,maxWeight,distinct,directed,multipleEdges){
     	var status="";
 		   if(testCases.value=="" || testCases.value < 1 || testCases.value > 50 ){
-	       		document.getElementById('errorinfo_basicgraph_testCases').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_basicgraph_testCases').innerHTML="testcases range : 1-100";
 	       		status="failure";
 	    	}
 		   if(nodes.value=="" || nodes.value < 1 || nodes.value > 50 ){
-	       		document.getElementById('errorinfo_basicgraph_nodes').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_basicgraph_nodes').innerHTML="nodes value range : 1-50";
 	       		status="failure";
 	    	}
 		   if(edges.value=="" || edges.value < 0 || edges.value > 2450 ){
-	       		document.getElementById('errorinfo_basicgraph_edges').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_basicgraph_edges').innerHTML="edges range : 0-2450";
 	       		status="failure";
 	    	}
-	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
-	       		document.getElementById('errorinfo_basicgraph_minWeight').innerHTML="enter valid value"; 
+	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -1000000000 || minWeight.value > 1000000000 )){
+	       		document.getElementById('errorinfo_basicgraph_minWeight').innerHTML="min weight range : -10^9 - 10^9"; 
 	       		status="failure";
 	        }
 	         
-	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
-	       		document.getElementById('errorinfo_basicgraph_maxWeight').innerHTML="enter valid value";
+	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -1000000000  || maxWeight.value > 1000000000 )){
+	       		document.getElementById('errorinfo_basicgraph_maxWeight').innerHTML="max weight range : -10^9 - 10^9";
 	       		status="failure";
 	        }
 			
@@ -132,26 +132,26 @@
 	   
 	   var status="";
 	   if(testCases.value=="" || testCases.value < 1 || testCases.value > 50 ){
-       		document.getElementById('errorinfo_npartitegraph_testCases').innerHTML="Enter valid value";
+       		document.getElementById('errorinfo_npartitegraph_testCases').innerHTML="testcases range : 1-50";
        		status="failure";
     	}
 	   
 	   if(n1.value=="" || n1.value < 1 || n1.value > 50 ){
-      		document.getElementById('errorinfo_npartitegraph_n1').innerHTML="Enter valid value";
+      		document.getElementById('errorinfo_npartitegraph_n1').innerHTML="n1 value range : 1-50";
       		status="failure";
    		}
 	   
 	   if(n2.value=="" || n2.value < 1 || n2.value > 50 ){
-     		document.getElementById('errorinfo_npartitegraph_n2').innerHTML="Enter valid value";
+     		document.getElementById('errorinfo_npartitegraph_n2').innerHTML="n2 value range : 1-50";
      		status="failure";
   		}
-	   if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
-      		document.getElementById('errorinfo_npartitegraph_minWeight').innerHTML="enter valid value"; 
+	   if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -1000000000 || minWeight.value > 1000000000 )){
+      		document.getElementById('errorinfo_npartitegraph_minWeight').innerHTML="min weight range : -10^9 - 10^9"; 
       		status="failure";
        }
         
-       if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
-      		document.getElementById('errorinfo_npartitegraph_maxWeight').innerHTML="enter valid value";
+       if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -1000000000  || maxWeight.value > 1000000000 )){
+      		document.getElementById('errorinfo_npartitegraph_maxWeight').innerHTML="max weight range : -10^9 - 10^9";
       		status="failure";
        }
 		
@@ -244,6 +244,7 @@
 	                                        
 	                                    </div>
 	                                    <div class="col-xs-6">  
+	                                    <br>
 			                                <label for="number">Indexed From</label>
 			                                <select name="indexedFrom">
 			                                    <option value="0">0</option>

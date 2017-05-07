@@ -16,23 +16,23 @@
     function validateNumberForm(testCases,minValue,maxValue,multipleOf,distinct,prime){
     	var status="";
     	if(testCases.value=="" || testCases.value < 1 || testCases.value > 100000 ){
-       		document.getElementById('errorinfo_number_testCases').innerHTML="Enter valid value";
+       		document.getElementById('errorinfo_number_testCases').innerHTML="testcases range : 1-100000";
        		status="failure";
     	}
 
-        if(minValue.value=="" || minValue.value < -100000 || minValue.value > 100000 ){
-       		document.getElementById('errorinfo_number_minValue').innerHTML="enter valid value"; 
+        if(minValue.value=="" || minValue.value < -1000000000 || minValue.value > 1000000000 ){
+       		document.getElementById('errorinfo_number_minValue').innerHTML="minvalue range : -10^9 - 10^9"; 
        		status="failure";
         }
          
-        if(maxValue.value=="" || maxValue.value < -100000  || maxValue.value > 100000 ){
-       		document.getElementById('errorinfo_number_maxValue').innerHTML="enter valid value";
+        if(maxValue.value=="" || maxValue.value < -1000000000  || maxValue.value > 1000000000 ){
+       		document.getElementById('errorinfo_number_maxValue').innerHTML="minvalue range : -10^9 - 10^9";
        		status="failure";
         }
 
        		
         if(multipleOf.value!="" &&(multipleOf.value < 1 || multipleOf.value > 1000)){
-            document.getElementById('errorinfo_number_multipleOf').innerHTML="enter valid value";
+            document.getElementById('errorinfo_number_multipleOf').innerHTML="multipleof range : 1-1000";
             status="failure";
         }
 		console.log(minValue.value - maxValue.value);
@@ -73,36 +73,36 @@
     	
     	var status="";
     	if(testCases.value=="" || testCases.value < 1 || testCases.value > 100000 ){
-       		document.getElementById('errorinfo_character_testCases').innerHTML="Enter valid value";
+       		document.getElementById('errorinfo_character_testCases').innerHTML="testcases range : 1-100000";
        		status="failure";
     	}
     	
     	if(minValue.value.length!=1){
     		console.log(minValue.value.length);
-    		document.getElementById('errorinfo_character_minValue').innerHTML="Enter valid value";
+    		document.getElementById('errorinfo_character_minValue').innerHTML="only one character is allowed";
        		status="failure";
     	}
     	if(caseValue.value==="lower" && (minValue.value <'a' || minValue.value > 'z')){
-    		document.getElementById('errorinfo_character_minValue').innerHTML="Enter valid value";
+    		document.getElementById('errorinfo_character_minValue').innerHTML="minvalue range : a-z";
        		status="failure";
     	}
     	if(caseValue.value==="upper" && (minValue.value <'A' || minValue.value > 'Z')){
-    		document.getElementById('errorinfo_character_minValue').innerHTML="Enter valid value";
+    		document.getElementById('errorinfo_character_minValue').innerHTML="minvalue range : A-Z";
        		status="failure";
     	}
     	
     	if(maxValue.value.length!=1){
     		console.log(maxValue.value.length);
-    		document.getElementById('errorinfo_character_maxValue').innerHTML="Enter valid value";
+    		document.getElementById('errorinfo_character_maxValue').innerHTML="only one character is allowed";
        		status="failure";
     	}
     	
     	if(caseValue.value==="lower" && (maxValue.value <'a' || maxValue.value > 'z')){
-    		document.getElementById('errorinfo_character_maxValue').innerHTML="Enter valid value";
+    		document.getElementById('errorinfo_character_maxValue').innerHTML="maxvalue range : a-z";
        		status="failure";
     	}
     	if(caseValue.value==="upper" && (maxValue.value <'A' || maxValue.value > 'Z')){
-    		document.getElementById('errorinfo_character_maxValue').innerHTML="Enter valid value";
+    		document.getElementById('errorinfo_character_maxValue').innerHTML="maxvalue range : A-Z";
        		status="failure";
     	}
     	
@@ -138,45 +138,45 @@
     	
 	var status="";
    	if(testCases.value=="" || testCases.value < 1 || testCases.value > 100000 ){
-      		document.getElementById('errorinfo_string_testCases').innerHTML="Enter valid value";
+      		document.getElementById('errorinfo_string_testCases').innerHTML="testcases range : 1-100000";
       		status="failure";
    	}
    	
    	if(minValue.value.length!=1){
 		console.log(minValue.value.length);
-		document.getElementById('errorinfo_string_minValue').innerHTML="Enter valid value";
+		document.getElementById('errorinfo_string_minValue').innerHTML="only one character is allowed";
    		status="failure";
 	}
 	if(caseValue.value==="lower" && (minValue.value <'a' || minValue.value > 'z')){
-		document.getElementById('errorinfo_string_minValue').innerHTML="Enter valid value";
+		document.getElementById('errorinfo_string_minValue').innerHTML="min value range : a-z";
    		status="failure";
 	}
 	if(caseValue.value==="upper" && (minValue.value <'A' || minValue.value > 'Z')){
-		document.getElementById('errorinfo_string_minValue').innerHTML="Enter valid value";
+		document.getElementById('errorinfo_string_minValue').innerHTML="min value range : A-Z";
    		status="failure";
 	}
 	
 	if(maxValue.value.length!=1){
 		console.log(maxValue.value.length);
-		document.getElementById('errorinfo_string_maxValue').innerHTML="Enter valid value";
+		document.getElementById('errorinfo_string_maxValue').innerHTML="only one character is allowed";
    		status="failure";
 	}
 	
 	if(caseValue.value==="lower" && (maxValue.value <'a' || maxValue.value > 'z')){
-		document.getElementById('errorinfo_string_maxValue').innerHTML="Enter valid value";
+		document.getElementById('errorinfo_string_maxValue').innerHTML="max value range : a-z";
    		status="failure";
 	}
 	if(caseValue.value==="upper" && (maxValue.value <'A' || maxValue.value > 'Z')){
-		document.getElementById('errorinfo_string_maxValue').innerHTML="Enter valid value";
+		document.getElementById('errorinfo_string_maxValue').innerHTML="max value range : A-Z";
    		status="failure";
 	}
 	
 	if(minStringLength.value < 1 || minStringLength.value > 1000){
-		document.getElementById('errorinfo_string_minStringLength').innerHTML="Enter valid value";
+		document.getElementById('errorinfo_string_minStringLength').innerHTML="min string length range : 1-1000";
 		status="failure";
     }
    if(maxStringLength.value < 1 || maxStringLength.value > 1000){
-		document.getElementById('errorinfo_string_maxStringLength').innerHTML="Enter valid value";
+		document.getElementById('errorinfo_string_maxStringLength').innerHTML="max string length range : 1-1000";
 		status="failure";
    }
    

@@ -15,17 +15,17 @@
     function validateFibonacciForm(testCases,minValue,maxValue){
     	var status="";
     	if(testCases.value=="" || testCases.value < 1 || testCases.value >  2500 ){
-       		document.getElementById('errorinfo_fibonacci_testCases').innerHTML="Enter valid value";
+       		document.getElementById('errorinfo_fibonacci_testCases').innerHTML="testcases range : 1-2500";
        		status="failure";
     	}
 
         if(minValue.value=="" || minValue.value < 1 || minValue.value > 86 ){
-       		document.getElementById('errorinfo_fibonacci_minValue').innerHTML="enter valid value"; 
+       		document.getElementById('errorinfo_fibonacci_minValue').innerHTML="minvalue range : 1-86"; 
        		status="failure";
         }
          
         if(maxValue.value=="" || maxValue.value < 1 || maxValue.value > 86 ){
-       		document.getElementById('errorinfo_fibonacci_maxValue').innerHTML="enter valid value";
+       		document.getElementById('errorinfo_fibonacci_maxValue').innerHTML="maxvalue range : 1-86";
        		status="failure";
         }
         

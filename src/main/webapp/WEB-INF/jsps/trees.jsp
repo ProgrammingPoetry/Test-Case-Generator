@@ -15,20 +15,20 @@
 	   function validateNumericTree(testCases,nodes,indexedFrom,weighted,minWeight,maxWeight,distinct){
 	    	var status="";
 		   if(testCases.value=="" || testCases.value < 1 || testCases.value > 100 ){
-	       		document.getElementById('errorinfo_numerictree_testCases').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_numerictree_testCases').innerHTML="test cases range : 1-100";
 	       		status="failure";
 	    	}
 		   if(nodes.value=="" || nodes.value < 1 || nodes.value > 1000 ){
-	       		document.getElementById('errorinfo_numerictree_nodes').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_numerictree_nodes').innerHTML="Node Values ranges : 1-1000";
 	       		status="failure";
 	    	}
-	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
-	       		document.getElementById('errorinfo_numerictree_minWeight').innerHTML="enter valid value"; 
+	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -1000000000 || minWeight.value > 1000000000 )){
+	       		document.getElementById('errorinfo_numerictree_minWeight').innerHTML="min weight range : -10^9 - 10^9"; 
 	       		status="failure";
 	        }
 	         
-	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
-	       		document.getElementById('errorinfo_numerictree_maxWeight').innerHTML="enter valid value";
+	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -1000000000  || maxWeight.value > 1000000000 )){
+	       		document.getElementById('errorinfo_numerictree_maxWeight').innerHTML="max weight range : -10^9 - 10^9";
 	       		status="failure";
 	        }
 			
@@ -71,24 +71,24 @@
 	   function validateFullBinaryTree(testCases,numberOfLevels,indexedFrom,weighted,minWeight,maxWeight,distinct){
 	    	var status="";
 		   if(testCases.value=="" || testCases.value < 1 || testCases.value > 100 ){
-	       		document.getElementById('errorinfo_fullbinarytree_testCases').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_fullbinarytree_testCases').innerHTML="testcases range : 1-100";
 	       		status="failure";
 	    	}
 		   if(numberOfLevels.value=="" || numberOfLevels.value < 1 || numberOfLevels.value > 10 ){
-	       		document.getElementById('errorinfo_fullbinarytree_numberOfLevels').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_fullbinarytree_numberOfLevels').innerHTML="Numbers of Levels range : 1-10";
 	       		status="failure";
 	    	}
-	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
-	       		document.getElementById('errorinfo_fullbinarytree_minWeight').innerHTML="enter valid value"; 
+	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -1000000000 || minWeight.value > 1000000000 )){
+	       		document.getElementById('errorinfo_fullbinarytree_minWeight').innerHTML="min weight range : -10^9 - 10^9"; 
 	       		status="failure";
 	        }
 	         
-	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
-	       		document.getElementById('errorinfo_fullbinarytree_maxWeight').innerHTML="enter valid value";
+	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -1000000000  || maxWeight.value > 1000000000 )){
+	       		document.getElementById('errorinfo_fullbinarytree_maxWeight').innerHTML="max weight range : -10^9 - 10^9";
 	       		status="failure";
 	        }
 			
-	        // ajax call for Numeric Tree Form
+	        // ajax call for Full Binary Tree Form
 	        
 	        if(status!="failure"){
 	        	
@@ -123,28 +123,28 @@
 	    }
 	   
 	   
-	   //validation of full binary Tree
+	   //validation of Skew Tree
 	   function validateskewTree(testCases,numberOfLevels,indexedFrom,weighted,minWeight,maxWeight,distinct){
 	    	var status="";
-		   if(testCases.value=="" || testCases.value < 1 || testCases.value > 100 ){
-	       		document.getElementById('errorinfo_fullbinarytree_testCases').innerHTML="Enter valid value";
+		   if(testCases.value=="" || testCases.value < 1 || testCases.value > 200 ){
+	       		document.getElementById('errorinfo_skewtree_testCases').innerHTML="testcases range : 1-200";
 	       		status="failure";
 	    	}
-		   if(numberOfLevels.value=="" || numberOfLevels.value < 1 || numberOfLevels.value > 10 ){
-	       		document.getElementById('errorinfo_fullbinarytree_numberOfLevels').innerHTML="Enter valid value";
+		   if(numberOfLevels.value=="" || numberOfLevels.value < 1 || numberOfLevels.value > 10000 ){
+	       		document.getElementById('errorinfo_skewtree_numberOfLevels').innerHTML="No of levels : 1-1000";
 	       		status="failure";
 	    	}
-	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
-	       		document.getElementById('errorinfo_fullbinarytree_minWeight').innerHTML="enter valid value"; 
+	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -1000000000 || minWeight.value > 1000000000 )){
+	       		document.getElementById('errorinfo_skewtree_minWeight').innerHTML="min weight range : -10^9 - 10^9"; 
 	       		status="failure";
 	        }
 	         
-	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
-	       		document.getElementById('errorinfo_fullbinarytree_maxWeight').innerHTML="enter valid value";
+	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -1000000000  || maxWeight.value > 1000000000 )){
+	       		document.getElementById('errorinfo_skewtree_maxWeight').innerHTML="max weight range : -10^9 - 10^9";
 	       		status="failure";
 	        }
 			
-	        // ajax call for Numeric Tree Form
+	        // ajax call skew Tree Form
 	        
 	        if(status!="failure"){
 	        	
@@ -182,28 +182,28 @@
 	   function validateBinarySearchTree(testCases,nodes,indexedFrom,weighted,minWeight,maxWeight,distinct,isBalanced){
 	    	var status="";
 		   if(isBalanced.value=="true" && (testCases.value=="" || testCases.value < 1 || testCases.value > 500 )){
-	       		document.getElementById('errorinfo_binarysearchtree_testCases').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_binarysearchtree_testCases').innerHTML="testcases range : 1-500";
 	       		status="failure";
 	    	}
 		   if(isBalanced.value=="false" && (testCases.value=="" || testCases.value < 1 || testCases.value > 1000 )){
-	       		document.getElementById('errorinfo_binarysearchtree_testCases').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_binarysearchtree_testCases').innerHTML="testcases range : 1-1000";
 	       		status="failure";
 	    	}
 		   if(isBalanced.value=="true" && (nodes.value=="" || nodes.value < 2 || nodes.value > 500) ){
-	       		document.getElementById('errorinfo_binarysearchtree_nodes').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_binarysearchtree_nodes').innerHTML="Node range : 2-500";
 	       		status="failure";
 	    	}
 		   if(isBalanced.value=="false" && (nodes.value=="" || nodes.value < 2 || nodes.value > 20) ){
-	       		document.getElementById('errorinfo_binarysearchtree_nodes').innerHTML="Enter valid value";
+	       		document.getElementById('errorinfo_binarysearchtree_nodes').innerHTML="Node range : 2-20";
 	       		status="failure";
 	    	}
-	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
-	       		document.getElementById('errorinfo_binarysearchtree_minWeight').innerHTML="enter valid value"; 
+	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -1000000000 || minWeight.value > 1000000000 )){
+	       		document.getElementById('errorinfo_binarysearchtree_minWeight').innerHTML="min weight range : -10^9 - 10^9"; 
 	       		status="failure";
 	        }
 	         
-	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
-	       		document.getElementById('errorinfo_binarysearchtree_maxWeight').innerHTML="enter valid value";
+	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -1000000000  || maxWeight.value > 1000000000 )){
+	       		document.getElementById('errorinfo_binarysearchtree_maxWeight').innerHTML="max weight range : -10^9 - 10^9";
 	       		status="failure";
 	        }
 			
@@ -509,7 +509,7 @@
 		                            
 		                            <div class="form-group">
 		                                <label for="number">Indexed From</label>
-		                                <select>
+		                                <select name="indexedFrom">
 		                                    <option value="0">0</option>
 		                                    <option value="1">1</option>
 		                                </select>   
@@ -518,7 +518,7 @@
 		                            <!-- Form Fields are placed in a row call script function when user changes option-->
 		                           <div class="form-group">
 		                                        <label for="text">Weighted</label>
-		                                        <select onchange="setDisplay(this,'SetDisplayForWeighted3')">
+		                                        <select onchange="setDisplay(this,'SetDisplayForWeighted3')" name="weighted">
 		                                            <option value="true" selected>True</option>
 		                                            <option value="false">False</option>
 		                                        </select>
@@ -537,8 +537,8 @@
 		                                        </div>
 		                                        <div class="col-xs-4">
 		                                             <label for="boolean">Distinct:</label><br />
-		                                            <select>
-		                                                <option value="true">True</option>
+		                                            <select name="distinct">
+		                                                <option value="true" selected>True</option>
 		                                                <option value="false">False</option>
 		                                            </select>
 		                                        </div>
