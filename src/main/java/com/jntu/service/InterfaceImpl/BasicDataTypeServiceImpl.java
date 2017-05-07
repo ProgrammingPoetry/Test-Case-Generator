@@ -340,6 +340,7 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		/*
 		 * In the request, whiteSpaceCharacter is selected by the user.
 		 * We parse them into the appropriate character: '\n' or ' '
+		 * (Default is a space character)
 		 * */
 		char whiteSpaceCharacter;
 		String whiteSpace = requestParams.get(ApplicationConstants.WHITE_SPACE_CHARACTER).toString();
@@ -348,7 +349,7 @@ public class BasicDataTypeServiceImpl implements BasicDataTypeServiceInterface {
 		else if(whiteSpace.equals(ApplicationConstants.SPACE_CHARACTER))
 			whiteSpaceCharacter = ' ';
 		else
-			whiteSpaceCharacter = '\0';
+			whiteSpaceCharacter = ' ';
 		
 		/*
 		 * The below function handles all cases which may arise depending upon the user's form input.
