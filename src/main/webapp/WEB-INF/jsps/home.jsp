@@ -106,7 +106,7 @@
                This project attempts to automate the generation of test cases and thereby saving time for the problem setter.
 
             <p>Our tool attempts to cater to the multi-disciplinary nature of programming problems spanning several domains such as Arrays, Trees, Graphs, etc.
-                What are you waiting for? Start generating test data for your problems: </p>
+                What are you waiting for? Start generating test data for your problems <a href="/testcasegenerator">here</a>! </p>
         </div>
 
 		<!--  End of about Section -->
@@ -127,7 +127,7 @@
                         <div  class="col-md-6" >
                             <br>
                                 <p style="font-size:24px;color:green">Teja Kiran Reddy Sirivella </p><br>
-                                <p style="font-size:16 px">Final-year undergraduate student at Jawaharlal Nehru Technological University Hyderabad.
+                                <p style="font-size:16 px">Final-year Computer Science undergraduate student at Jawaharlal Nehru Technological University Hyderabad.
                                 Currently interning at Aurora e-Labs. Passionate about Spring and other frameworks.</p>
                                 <br><br>
                                 <a type="button" style="font-size:40px;color:#3b5998 " href="https://www.facebook.com/tejakiran.reddysirivella" class="fa fa-facebook-official"></a>
@@ -166,8 +166,8 @@
                         <div  class="col-md-6" >
                             <br>
                                 <p style="font-size:24px;color:green">Aditya Ch </p><br>
-                                <p style="font-size:16 px">Final-year undergraduate student at Jawaharlal Nehru Technological University Hyderabad.
-                                Currently interning at VMware. Strong areas include Data Structures and Algorithms. Interested to work on Machine Learning and Distributed Computing.</p>
+                                <p style="font-size:16 px">Final-year Computer Science Undergraduate student at Jawaharlal Nehru Technological University Hyderabad.
+                                Currently interning at VMware. Strong areas include Data Structures and Algorithms.</p>
                                 <br><br>
                                 <a type="button" style="font-size:40px;color:#3b5998 " href="https://www.facebook.com/adi96coder" class="fa fa-facebook-official"></a>
                                 <a type="button" style="font-size:40px;color:#24292e; margin-left:40px;" href="https://github.com/aditya-code-blooded" class="fa fa-github"></a>
