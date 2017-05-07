@@ -92,4 +92,9 @@ public class BSTNode {
 		return a > b ? a : b;
 	}
 	
+	@Override
+	public String toString() {
+		return "\n[Data: " + data + " Left Node: " + leftNode + " Right Node: " + rightNode + "]\n";
+	}
+	
 }
