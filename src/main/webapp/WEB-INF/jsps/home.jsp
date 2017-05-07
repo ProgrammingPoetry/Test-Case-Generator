@@ -120,15 +120,15 @@
                 <div class="border"></div><br><br>
 
                 <div   id="contributorDetails1">
-                    <div class="row">
+                    <div class="row" style="padding: 5px">
                         <div  class="col-md-6" >
                                 <img id="img1" class="img-circle" src="/Images/tejakiran.jpg">
                         </div>
                         <div  class="col-md-6" >
                             <br>
                                 <p style="font-size:24px;color:green">Teja Kiran Reddy Sirivella </p><br>
-                                <p style="font-size:16 px">A fourth year Undergraduate student of Computer Science & Engg at Jawaharlal Nehru Technological University Hyderabad.
-                                Passionate about Spring & other web frameworks.</p>
+                                <p style="font-size:16 px">Final-year undergraduate student at Jawaharlal Nehru Technological University Hyderabad.
+                                Currently interning at Aurora e-Labs. Passionate about Spring and other frameworks.</p>
                                 <br><br>
                                 <a type="button" style="font-size:40px;color:#3b5998 " href="https://www.facebook.com/tejakiran.reddysirivella" class="fa fa-facebook-official"></a>
                                 <a type="button" style="font-size:40px;color:#24292e; margin-left:40px;" href="https://github.com/tejakiran123" class="fa fa-github"></a>
@@ -139,15 +139,15 @@
                 <br><br>
 
                 <div    id="contributorDetails2">
-                    <div class="row">
+                    <div class="row" style="padding: 5px">
                         <div  class="col-md-6" >
                                 <img class="img-circle" src="/Images/rakesh.jpg">
                         </div>
                         <div  class="col-md-6" >
                             <br>
                                 <p style="font-size:24px;color:green">Rakesh Nukapeyyi </p><br>
-                                <p style="font-size:16 px">A fourth year Undergraduate student of Computer Science & Engg at Jawaharlal Nehru Technological University Hyderabad.
-                                Passionate about Spring & other web frameworks.</p>
+                                <p style="font-size:16 px">Final-year undergraduate student at Jawaharlal Nehru Technological University Hyderabad.
+                                Currently interning at Yatra. Passionate about algorithms.</p>
                                 <br><br>
                                 <a type="button" style="font-size:40px;color:#3b5998" href="https://www.facebook.com/Rakesh882" class="fa fa-facebook-official"></a>
                                 <a type="button" style="font-size:40px;color:#24292e; margin-left:40px;" href="https://github.com/Rakesh882" class="fa fa-github"></a>
@@ -155,18 +155,17 @@
                         </div>
                     </div>
                 </div>
-
-                <br><br>
-                    <div id="contributorDetails3">
-                    <div class="row">
+                
+                <div    id="contributorDetails3">
+                    <div class="row" style="padding: 5px">
                         <div  class="col-md-6" >
                                 <img class="img-circle" src="/Images/aditya.jpg">
                         </div>
                         <div  class="col-md-6" >
                             <br>
                                 <p style="font-size:24px;color:green">Aditya Ch </p><br>
-                                <p style="font-size:16 px">A fourth year Undergraduate student of Computer Science & Engg at Jawaharlal Nehru Technological University Hyderabad.
-                                Passionate about Spring & other web frameworks.</p>
+                                <p style="font-size:16 px">Final-year undergraduate student at Jawaharlal Nehru Technological University Hyderabad.
+                                Currently interning at VMware. Strong areas include Data Structures and Algorithms. Interested to work on Machine Learning and Distributed Computing.</p>
                                 <br><br>
                                 <a type="button" style="font-size:40px;color:#3b5998 " href="https://www.facebook.com/adi96coder" class="fa fa-facebook-official"></a>
                                 <a type="button" style="font-size:40px;color:#24292e; margin-left:40px;" href="https://github.com/aditya-code-blooded" class="fa fa-github"></a>
@@ -174,7 +173,8 @@
                         </div>
                     </div>
                 </div>
-                <br><br><br>
+
+                <br><br><br><br><br>
         </div>
         
         <!--  End of contributor list -->
