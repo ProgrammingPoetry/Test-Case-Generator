@@ -11,44 +11,55 @@
     <script src="/js/datatypes.js"></script>   
     <script src="/js/validationconstants_datatypes.js"></script>  
     <script>
+    
+    //validation for Number Form
     function validateNumberForm(testCases,minValue,maxValue,multipleOf,distinct,prime){
-    /*	if(testCases.value < 1 || testCases.value >1000 )
-       		document.getElementById('errorinfo_testCases').innerHTML="range is "+number_min_testCases+"-"+number_max_testCases;
+    	var status="";
+    	if(testCases.value=="" || testCases.value < 1 || testCases.value > 100000 ){
+       		document.getElementById('errorinfo_number_testCases').innerHTML="Enter valid value";
+       		status="failure";
+    	}
 
-        if(minValue.value < 1 || minValue.value > 1000 )
-       		document.getElementById('errorinfo_minValue').innerHTML="range is "+number_min_minValue+"-"+number_max_minValue; 
+        if(minValue.value=="" || minValue.value < -100000 || minValue.value > 100000 ){
+       		document.getElementById('errorinfo_number_minValue').innerHTML="enter valid value"; 
+       		status="failure";
+        }
          
-        if(maxValue.value < 1  || maxValue.value > 1000 )
-       		document.getElementById('errorinfo_maxValue').innerHTML="range is "+number_min_maxValue+"-"+number_max_maxValue;  
+        if(maxValue.value=="" || maxValue.value < -100000  || maxValue.value > 100000 ){
+       		document.getElementById('errorinfo_number_maxValue').innerHTML="enter valid value";
+       		status="failure";
+        }
 
-        if(multipleOf.value < 1 || multipleOf.value > 1000 )
-            document.getElementById('errorinfo_multipleOf').innerHTML="range is "+number_min_multipleOf+"-"+number_max_multipleOf; 
-    	
-       
+       		
+        if(multipleOf.value!="" &&(multipleOf.value < 1 || multipleOf.value > 1000)){
+            document.getElementById('errorinfo_number_multipleOf').innerHTML="enter valid value";
+            status="failure";
+        }
+		console.log(minValue.value - maxValue.value);
         if((minValue.value - maxValue.value)>0){
-       		document.getElementById('errorinfo_minValue').innerHTML="min should be less than max "; 
-       		document.getElementById('errorinfo_maxValue').innerHTML="min should be less than max "; 
+       		document.getElementById('errorinfo_number_minValue').innerHTML="min should be less than max "; 
+       		document.getElementById('errorinfo_number_maxValue').innerHTML="min should be less than max "; 
+       		status="failure";
            }
-        */
+        
+        
+        // ajax call for Number Form
+        if(status!="failure"){
         $.ajax({ 
             type: "POST",
             url: "/datatypeService",
-            data: {
-	        	category: "numbers",
-	        	testCases: "5",
-	        	minValue: 1,
-	        	maxValue: 10,
-	        	multipleOf: "",
-	        	distinct: "false",
-	        	prime: "false"
-	        },
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
+            data: { category: "numbers", testCases:testCases.value,minValue:minValue.value,
+            	maxValue:maxValue.value,multipleOf:multipleOf.value,distinct:distinct.value,
+            	prime:prime.value} ,
             success: successFunc,
             error: errorFunc
         });
-
-        function successFunc(data, status) {
+        }
+        function successFunc(data) {
+        	if(data["status"]==="Success"){
+        		download(data["testData"]);
+        	}
+        	document.getElementById('number_results').innerHTML=data["status"]+":"+data["description"];
            console.log(data);
         }
 
@@ -56,25 +67,148 @@
             alert('error');
         }
     }
-    function validateCharacterForm(testCases,minValue,maxValue,multipleOf,distinct,prime){
+    
+    // character Form validation
+    function validateCharacterForm(testCases,minValue,maxValue,caseValue,distinct){
     	
-    	if(minValue.value > maxValue.value){  
-       		document.getElementById('errorinfo_minValue').innerHTML="min should be less than max "; 
-       		document.getElementById('errorinfo_maxValue').innerHTML="min should be less than max "; 
-       	}
+    	var status="";
+    	if(testCases.value=="" || testCases.value < 1 || testCases.value > 100000 ){
+       		document.getElementById('errorinfo_character_testCases').innerHTML="Enter valid value";
+       		status="failure";
+    	}
     	
-    	if(testCases.value==""||minValue.value=="" || maxValue.value==""|| multipleOf.value=="")
-    		document.getElementById('errorinfo_empty').innerHTML="Fields should not be empty";
+    	if(minValue.value.length!=1){
+    		console.log(minValue.value.length);
+    		document.getElementById('errorinfo_character_minValue').innerHTML="Enter valid value";
+       		status="failure";
+    	}
+    	if(caseValue.value==="lower" && (minValue.value <'a' || minValue.value > 'z')){
+    		document.getElementById('errorinfo_character_minValue').innerHTML="Enter valid value";
+       		status="failure";
+    	}
+    	if(caseValue.value==="upper" && (minValue.value <'A' || minValue.value > 'Z')){
+    		document.getElementById('errorinfo_character_minValue').innerHTML="Enter valid value";
+       		status="failure";
+    	}
+    	
+    	if(maxValue.value.length!=1){
+    		console.log(maxValue.value.length);
+    		document.getElementById('errorinfo_character_maxValue').innerHTML="Enter valid value";
+       		status="failure";
+    	}
+    	
+    	if(caseValue.value==="lower" && (maxValue.value <'a' || maxValue.value > 'z')){
+    		document.getElementById('errorinfo_character_maxValue').innerHTML="Enter valid value";
+       		status="failure";
+    	}
+    	if(caseValue.value==="upper" && (maxValue.value <'A' || maxValue.value > 'Z')){
+    		document.getElementById('errorinfo_character_maxValue').innerHTML="Enter valid value";
+       		status="failure";
+    	}
+    	
+    	
+    	//ajax call for character Form
+    	 if(status!="failure"){
+    	        $.ajax({ 
+    	            type: "POST",
+    	            url: "/datatypeService",
+    	            data: { category: "characters", testCases:testCases.value,minValue:minValue.value,
+    	            	maxValue:maxValue.value,case:caseValue.value,
+    	            	distinct:distinct.value} ,
+    	            success: successFunc,
+    	            error: errorFunc
+    	        });
+    	        }
+    	        function successFunc(data) {
+    	        	if(data["status"]==="Success"){
+    	        		download(data["testData"]);
+    	        	}
+    	        	document.getElementById('character_results').innerHTML=data["status"]+":"+data["description"];
+    	           console.log(data);
+    	        }
 
-        	if(testCases.value < number_min_testCases || testcases.value > number_max_testCases)
-           		document.getElementById('errorinfo_testCases').innerHTML="range is "+number_min_testCases+"-"+number_max_testCases;
-         	if(minValue.value < number_min_minValue || minValue.value > number_max_minValue )
-           		document.getElementById('errorinfo_minValue').innerHTML="range is "+number_min_minValue+"-"+number_max_minValue; 
-            if(maxValue.value < number_min_maxValue  || maxValue.value > number_max_maxValue )
-           		document.getElementById('errorinfo_maxValue').innerHTML="range is "+number_min_maxValue+"-"+number_max_maxValue;  
-           	if(multipleOf.value < number_min_multipleOf || multipleOf.value > number_max_multipleOf )
-           		document.getElementById('errorinfo_multipleOf').innerHTML="range is "+number_min_multipleOf+"-"+number_max_multipleOf;  
+    	        function errorFunc() {
+    	            alert('error');
+    	        }
     }
+    
+    //string Form Validation
+    
+   function validationStringForm(testCases,minValue,maxValue,caseValue,minStringLength,maxStringLength,printLength,isPalindrome,sorted){
+    	
+	var status="";
+   	if(testCases.value=="" || testCases.value < 1 || testCases.value > 100000 ){
+      		document.getElementById('errorinfo_string_testCases').innerHTML="Enter valid value";
+      		status="failure";
+   	}
+   	
+   	if(minValue.value.length!=1){
+		console.log(minValue.value.length);
+		document.getElementById('errorinfo_string_minValue').innerHTML="Enter valid value";
+   		status="failure";
+	}
+	if(caseValue.value==="lower" && (minValue.value <'a' || minValue.value > 'z')){
+		document.getElementById('errorinfo_string_minValue').innerHTML="Enter valid value";
+   		status="failure";
+	}
+	if(caseValue.value==="upper" && (minValue.value <'A' || minValue.value > 'Z')){
+		document.getElementById('errorinfo_string_minValue').innerHTML="Enter valid value";
+   		status="failure";
+	}
+	
+	if(maxValue.value.length!=1){
+		console.log(maxValue.value.length);
+		document.getElementById('errorinfo_string_maxValue').innerHTML="Enter valid value";
+   		status="failure";
+	}
+	
+	if(caseValue.value==="lower" && (maxValue.value <'a' || maxValue.value > 'z')){
+		document.getElementById('errorinfo_string_maxValue').innerHTML="Enter valid value";
+   		status="failure";
+	}
+	if(caseValue.value==="upper" && (maxValue.value <'A' || maxValue.value > 'Z')){
+		document.getElementById('errorinfo_string_maxValue').innerHTML="Enter valid value";
+   		status="failure";
+	}
+	
+	if(minStringLength.value < 1 || minStringLength.value > 1000){
+		document.getElementById('errorinfo_string_minStringLength').innerHTML="Enter valid value";
+		status="failure";
+    }
+   if(maxStringLength.value < 1 || maxStringLength.value > 1000){
+		document.getElementById('errorinfo_string_maxStringLength').innerHTML="Enter valid value";
+		status="failure";
+   }
+   
+   
+   // ajax call for String Form
+   if(status!="failure"){
+	   
+	   $.ajax({ 
+           type: "POST",
+           url: "/datatypeService",
+           data: { category: "strings", testCases:testCases.value,minValue:minValue.value,
+           	maxValue:maxValue.value,case:caseValue.value,minStringLength:minStringLength.value,
+           	maxStringLength:maxStringLength.value,printLength:printLength.value,whiteSpaceCharacter:"",
+           	isPalindrome:isPalindrome.value,sorted:sorted.value
+           	} ,
+           success: successFunc,
+           error: errorFunc
+       });
+       function successFunc(data) {
+       	if(data["status"]==="Success"){
+       		download(data["testData"]);
+       	}
+       	document.getElementById('string_results').innerHTML=data["status"]+":"+data["description"];
+          console.log(data);
+       }
+
+       function errorFunc() {
+           alert('error');
+       }
+   }
+   }
+    
     </script> 
 </head>
 	<body>
@@ -116,7 +250,7 @@
 							<div class="form-group" name="div1">
 								<label for="number">Test cases</label>
 								<input type="number" class="form-control"  name="testCases">
-								<span id="errorinfo_testCases"></span>
+								<span id="errorinfo_number_testCases"></span>
 							</div>
 							
 							<!-- Form Fields are placed in a row-->
@@ -125,12 +259,12 @@
 									<div class="col-xs-6">
 										<label for="number">Min Value</label>
 										<input type="number" class="form-control"  name="minValue" >
-										<span id="errorinfo_minValue"></span>
+										<span id="errorinfo_number_minValue"></span>
 									</div>
 									<div class="col-xs-6">
 										<label for="number">Max Value</label>
 										<input type="number" class="form-control"  name="maxValue">
-										<span  id="errorinfo_maxValue"></span>
+										<span  id="errorinfo_number_maxValue"></span>
 									</div>
 								</div>
 						   </div>
@@ -139,7 +273,7 @@
 							<div class="form-group">
 								<label for="number">Multiple Of</label>
 								<input type="number" class="form-control"  name="multipleOf">
-								<span  id="errorinfo_multipleOf"></span>
+								<span  id="errorinfo_number_multipleOf"></span>
 							</div>
 							
 							<div class="form-group">
@@ -156,7 +290,8 @@
 									<option value="true">True</option>
 									<option value="false">False</option>
 								</select>
-							</div>							
+							</div>		
+							<span id="number_results"></span>	<br>				
 							<button type="button" class="btn btn-primary" onclick="validateNumberForm(testCases,minValue,maxValue,multipleOf,distinct,prime)">Submit</button>
 						</form>
 					</div>
@@ -166,19 +301,22 @@
 	                        <form action="" method=''>
 	                            <div class="form-group">
 	                                <label for="number">Test cases</label>
-	                                <input type="number" class="form-control"  name="noOfTestcases">
+	                                <input type="number" class="form-control"  name="testCases">
+	                                <span  id="errorinfo_character_testCases"></span>
 	                            </div>
 	                            
 	                             <!-- Form Fields are placed in a row-->
 	                            <div class="form-group">
 	                                <div class="row">
 	                                    <div class="col-xs-6">   
-	                                        <label for="number">Min Value</label>
-	                                        <input type="number" class="form-control"  name="minVal" >
+	                                        <label for="text">Min Value</label>
+	                                        <input type="text" class="form-control"  name="minValue" >
+	                                        <span  id="errorinfo_character_minValue"></span>
 	                                    </div>
 	                                    <div class="col-xs-6">  
-	                                        <label for="number">Max Value</label>
-	                                        <input type="number" class="form-control"  name="maxVal">
+	                                        <label for="text">Max Value</label>
+	                                        <input type="text" class="form-control"  name="maxValue">
+	                                        <span  id="errorinfo_character_maxValue"></span>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -186,7 +324,7 @@
 	                            
 	                            <div class="form-group">
 	                                <label for="text">Case:</label>
-	                                <select>
+	                                <select name="caseValue">
 	                                    <option value="upper">upper</option>
 	                                    <option value="lower">lower</option>
 	                                    <option value="mixed">mixed</option>
@@ -194,14 +332,15 @@
 	                            </div>
 	                            
 	                             <div class="form-group">
-	                                <label for="boolean">Dsitinct:</label>
-	                                <select>
+	                                <label for="boolean">Distinct:</label>
+	                                <select name="distinct">
 	                                    <option value="true">True</option>
 	                                    <option value="false">False</option>
 	                                </select>
 	                            </div>
+	                            <span id="character_results"></span><br>
 	                            
-	                            <button type="submit" class="btn btn-primary">Submit</button>
+	                            <button type="button" class="btn btn-primary" onclick="validateCharacterForm(testCases,minValue,maxValue,caseValue,distinct)">Submit</button>
 	                        </form>
 	                    </div>
 						<div id="stringForm" class="center-block" style="display:none;">
@@ -210,7 +349,8 @@
 	                        <form action="" method=''>
 	                            <div class="form-group">
 	                                <label for="number">Test cases</label>
-	                                <input type="number" class="form-control"  name="noOfTestcases">
+	                                <input type="number" class="form-control"  name="testCases">
+	                                 <span  id="errorinfo_string_testCases"></span>
 	                            </div>
 	                            
 	                             <!-- Form Fields are placed in a row-->
@@ -218,11 +358,13 @@
 	                                <div class="row">
 	                                    <div class="col-xs-6">
 	                                        <label for="number">Min length</label>
-	                                        <input type="number" class="form-control"  name="minLen" >
+	                                        <input type="number" class="form-control"  name="minStringLength" >
+	                                         <span  id="errorinfo_string_minStringLength"></span>
 	                                    </div>
 	                                    <div class="col-xs-6">
 	                                        <label for="number">Max length</label>
-	                                        <input type="number" class="form-control"  name="maxLen">
+	                                        <input type="number" class="form-control"  name="maxStringLength">
+	                                          <span  id="errorinfo_string_maxStringLength"></span>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -232,11 +374,13 @@
 	                                <div class="row">
 	                                    <div class="col-xs-6">
 	                                        <label for="text">MinChar Value</label>
-	                                        <input type="text" class="form-control"  name="minCharValue">
+	                                        <input type="text" class="form-control"  name="minValue">
+	                                          <span  id="errorinfo_string_minValue"></span>
 	                                    </div>
 	                                    <div class="col-xs-6"> 
 	                                        <label for="text">MaxChar Value</label>
-	                                        <input type="text" class="form-control"  name="maxCharValue">
+	                                        <input type="text" class="form-control"  name="maxValue">
+	                                          <span  id="errorinfo_string_maxValue"></span>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -244,7 +388,7 @@
 	                            
 	                            <div class="form-group">
 	                                <label for="text">Case:</label>
-	                                <select>
+	                                <select name="caseValue">
 	                                    <option value="upper">upper</option>
 	                                    <option value="lower">lower</option>
 	                                    <option value="mixed">mixed</option>
@@ -253,7 +397,7 @@
 	                            
 	                            <div class="form-group">
 	                                <label for="boolean">Palindrome:</label>
-	                                <select>
+	                                <select name="isPalindrome">
 	                                    <option value="true">True</option>
 	                                    <option value="false">False</option>
 	                                </select>
@@ -261,7 +405,7 @@
 	                            
 	                            <div class="form-group">
 	                                <label for="boolean">Print length:</label>
-	                                <select>
+	                                <select name="printLength">
 	                                    <option value="true">True</option>
 	                                    <option value="false">False</option>
 	                                </select>
@@ -269,13 +413,15 @@
 	                            
 	                             <div class="form-group">
 	                                <label for="boolean">Sorted:</label>
-	                                <select>
+	                                <select name="sorted">
 	                                    <option value="true">True</option>
 	                                    <option value="false">False</option>
 	                                </select>
 	                            </div>
 	                            
-	                            <button type="submit" class="btn btn-primary">Submit</button>
+	                            <span id="string_results"></span><br>
+	                            <button type="button" class="btn btn-primary" onclick="validationStringForm(
+	                            		testCases,minValue,maxValue,caseValue,minStringLength,maxStringLength,printLength,isPalindrome,sorted)">Submit</button>
 	                        </form>
 	                    </div>
 					</div>
