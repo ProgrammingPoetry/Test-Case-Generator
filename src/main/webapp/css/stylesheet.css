@@ -4,8 +4,8 @@ header{
             height: 100px;
             padding:10px;
 }
-#number,#character,#string,#numericTree,#numericTree,#characterTree,#fullBinaryTree,#skewTree,
-#numericGraph,#completeGraph,#nPartiteGraph,#fibonacciSeries,#binarySearchTree,#balancedBST,
+#number,#character,#string,#numericTree,#binarysearchTree,#fullBinaryTree,#skewTree,
+#numericGraph,#completeGraph,#nPartiteGraph,#fibonacciSeries,
 #numberMatrix,#characterMatrix,#numberArray,#characterArray,#stringArray{
     border:1.5px solid #26a655;
     width:200px;
@@ -21,8 +21,8 @@ header{
     margin-top:33px;
     margin-left:45px;
 }
-#characterTree p,#fullBinaryTree p,#numericGraph p,#completeGraph p, 
-#nPartiteGraph p,#fibonacciSeries p,#binarySearchTree p,#balancedBST p,
+#binarysearchTree p,#fullBinaryTree p,#numericGraph p,#completeGraph p, 
+#nPartiteGraph p,#fibonacciSeries p,
 #numberMatrix p,#characterMatrix p,#numberArray p,#characterArray p ,#stringArray p{ 
     font-size:24px;
     color:#26a655;
@@ -35,8 +35,8 @@ div.container a{
 h2{
     text-align: center; 
 }
-#numberForm,#characterForm,#stringForm,#numericTreeForm,#characterTreeForm,#fullBinaryTreeForm,#skewTreeForm,
-#numericGraphForm,#completeGraphForm,#nPartiteGraphForm,#fibonacciSeriesForm,#binarySearchTreeForm,#balancedBSTForm,
+#numberForm,#characterForm,#stringForm,#numericTreeForm,#binarysearchTreeForm,#fullBinaryTreeForm,#skewTreeForm,
+#numericGraphForm,#completeGraphForm,#nPartiteGraphForm,#fibonacciSeriesForm,
 #numberMatrixForm,#characterMatrixForm,#numberArrayForm,#characterArrayForm,#stringArrayForm{
     border:1px solid #7f7f7f;
     width:350px;

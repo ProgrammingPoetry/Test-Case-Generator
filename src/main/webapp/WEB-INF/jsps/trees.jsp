@@ -65,6 +65,182 @@
 	            }
 		   
 	    }
+	    
+	    
+	   //validation of full binary Tree
+	   function validateFullBinaryTree(testCases,numberOfLevels,indexedFrom,weighted,minWeight,maxWeight,distinct){
+	    	var status="";
+		   if(testCases.value=="" || testCases.value < 1 || testCases.value > 100 ){
+	       		document.getElementById('errorinfo_fullbinarytree_testCases').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+		   if(numberOfLevels.value=="" || numberOfLevels.value < 1 || numberOfLevels.value > 10 ){
+	       		document.getElementById('errorinfo_fullbinarytree_numberOfLevels').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
+	       		document.getElementById('errorinfo_fullbinarytree_minWeight').innerHTML="enter valid value"; 
+	       		status="failure";
+	        }
+	         
+	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
+	       		document.getElementById('errorinfo_fullbinarytree_maxWeight').innerHTML="enter valid value";
+	       		status="failure";
+	        }
+			
+	        // ajax call for Numeric Tree Form
+	        
+	        if(status!="failure"){
+	        	
+	        	if(weighted.value=="false"){
+	        		minWeight.value=0;
+	        		maxWeight.value=0;
+	        		distinct.value="false";
+	        	}
+	            $.ajax({ 
+	                type: "POST",
+	                url: "/treeService",
+	                data: { category: "fullBinaryTree", testCases:testCases.value,numberOfLevels:numberOfLevels.value,
+	                	indexedFrom:indexedFrom.value,weighted:weighted.value,minWeight:minWeight.value,
+	                	maxWeight:maxWeight.value,distinct:distinct.value
+	                },
+	                success: successFunc,
+	                error: errorFunc
+	            });
+	            function successFunc(data) {
+	            	if(data["status"]==="Success"){
+	            		download(data["testData"]);
+	            	}
+	            	document.getElementById('fullbinarytree_results').innerHTML=data["status"]+":"+data["description"];
+	               console.log(data);
+	            }
+
+	            function errorFunc() {
+	                alert('error');
+	            }
+	            }
+		   
+	    }
+	   
+	   
+	   //validation of full binary Tree
+	   function validateskewTree(testCases,numberOfLevels,indexedFrom,weighted,minWeight,maxWeight,distinct){
+	    	var status="";
+		   if(testCases.value=="" || testCases.value < 1 || testCases.value > 100 ){
+	       		document.getElementById('errorinfo_fullbinarytree_testCases').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+		   if(numberOfLevels.value=="" || numberOfLevels.value < 1 || numberOfLevels.value > 10 ){
+	       		document.getElementById('errorinfo_fullbinarytree_numberOfLevels').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
+	       		document.getElementById('errorinfo_fullbinarytree_minWeight').innerHTML="enter valid value"; 
+	       		status="failure";
+	        }
+	         
+	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
+	       		document.getElementById('errorinfo_fullbinarytree_maxWeight').innerHTML="enter valid value";
+	       		status="failure";
+	        }
+			
+	        // ajax call for Numeric Tree Form
+	        
+	        if(status!="failure"){
+	        	
+	        	if(weighted.value=="false"){
+	        		minWeight.value=0;
+	        		maxWeight.value=0;
+	        		distinct.value="false";
+	        	}
+	            $.ajax({ 
+	                type: "POST",
+	                url: "/treeService",
+	                data: { category: "skewTree", testCases:testCases.value,numberOfLevels:numberOfLevels.value,
+	                	indexedFrom:indexedFrom.value,weighted:weighted.value,minWeight:minWeight.value,
+	                	maxWeight:maxWeight.value,distinct:distinct.value
+	                },
+	                success: successFunc,
+	                error: errorFunc
+	            });
+	            function successFunc(data) {
+	            	if(data["status"]==="Success"){
+	            		download(data["testData"]);
+	            	}
+	            	document.getElementById('skewtree_results').innerHTML=data["status"]+":"+data["description"];
+	               console.log(data);
+	            }
+
+	            function errorFunc() {
+	                alert('error');
+	            }
+	            }
+		   
+	    }
+	   
+	   //validation of Binary Search Tree
+	   function validateBinarySearchTree(testCases,nodes,indexedFrom,weighted,minWeight,maxWeight,distinct,isBalanced){
+	    	var status="";
+		   if(isBalanced.value=="true" && (testCases.value=="" || testCases.value < 1 || testCases.value > 500 )){
+	       		document.getElementById('errorinfo_binarysearchtree_testCases').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+		   if(isBalanced.value=="false" && (testCases.value=="" || testCases.value < 1 || testCases.value > 1000 )){
+	       		document.getElementById('errorinfo_binarysearchtree_testCases').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+		   if(isBalanced.value=="true" && (nodes.value=="" || nodes.value < 2 || nodes.value > 500) ){
+	       		document.getElementById('errorinfo_binarysearchtree_nodes').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+		   if(isBalanced.value=="false" && (nodes.value=="" || nodes.value < 2 || nodes.value > 20) ){
+	       		document.getElementById('errorinfo_binarysearchtree_nodes').innerHTML="Enter valid value";
+	       		status="failure";
+	    	}
+	        if(weighted.value=="true" && ( minWeight.value=="" || minWeight.value < -100000 || minWeight.value > 100000 )){
+	       		document.getElementById('errorinfo_binarysearchtree_minWeight').innerHTML="enter valid value"; 
+	       		status="failure";
+	        }
+	         
+	        if(weighted.value=="true" && ( maxWeight.value=="" || maxWeight.value < -100000  || maxWeight.value > 100000 )){
+	       		document.getElementById('errorinfo_binarysearchtree_maxWeight').innerHTML="enter valid value";
+	       		status="failure";
+	        }
+			
+	        // ajax call for BinarySearch  Tree Form
+	        
+	        if(status!="failure"){
+	        	
+	        	if(weighted.value=="false"){
+	        		minWeight.value=0;
+	        		maxWeight.value=0;
+	        		distinct.value="false";
+	        	}
+	            $.ajax({ 
+	                type: "POST",
+	                url: "/treeService",
+	                data: { category: "binarySearchTree", testCases:testCases.value,nodes:nodes.value,
+	                	indexedFrom:indexedFrom.value,weighted:weighted.value,minWeight:minWeight.value,
+	                	maxWeight:maxWeight.value,distinct:distinct.value,isBalanced:isBalanced.value
+	                },
+	                success: successFunc,
+	                error: errorFunc
+	            });
+	            function successFunc(data) {
+	            	if(data["status"]==="Success"){
+	            		download(data["testData"]);
+	            	}
+	            	document.getElementById('binarysearchtree_results').innerHTML=data["status"]+":"+data["description"];
+	               console.log(data);
+	            }
+
+	            function errorFunc() {
+	                alert('error');
+	            }
+	            }
+		   
+	    }
+	    
 	    </script>  
 	</head>
 	<body>
@@ -86,9 +262,9 @@
 						</div>
 					</a>
 					
-					<a id="characterTreeLink" href="" >
-						<div id="characterTree">
-							<p>Character Tree</p>
+					<a id="binarysearchTreeLink" href="" >
+						<div id="binarysearchTree">
+							<p> Binary Search Tree</p>
 						</div>
 					</a>
 					
@@ -172,116 +348,103 @@
 	                            <button type="button" class="btn btn-primary" onclick="validateNumericTree(testCases,nodes,indexedFrom,weighted,minWeight,maxWeight,distinct)">Submit</button>
 	                        </form>
 						</div>
-						<!--  Numeric Tree Form Ended -->
+						<!--  Numeric Tree  Form Ended -->
 						
-						<!--  Character Tree Form  -->
-						<div id="characterTreeForm" class="center-block" style="display:none;">
-		                        <h2>Character Tree </h2>
-		                        <form action="" method=''>
-		                        
-		                            <div class="form-group">
-		                                <div class="row">
-		                                    <div class="col-xs-6">
-		                                        <label for="number">Test cases</label>
-		                                        <input type="number" class="form-control"  name="noOfTestcases">
-		                                    </div>
-		                                    <div class="col-xs-6">
-		                                        <label for="number">No Of Nodes</label>
-		                                        <input type="number" class="form-control"  name="noOfNodes">
-		                                    </div>
-		                                </div>
-		                            </div>
-		                            
-		                            <div class="form-group">
-		                                <label for="number">Min Node Char value</label>
-		                                <input type="number" class="form-control"  name="minNodeCharValue">
-		                            </div>
-		                            
-		                             <div class="form-group">
-		                                <label for="number">Max Node Char value</label>
-		                                <input type="number" class="form-control"  name="maxNodeCharValue">
-		                            </div>
-		                            
-		                            <div class="form-group">
-                                        <label for="text">Weighted</label>
-                                        <select onchange="setDisplay(this,'SetDisplayForWeighted1')">
-                                            <option value="true" selected>True</option>
-                                            <option value="false">False</option>
-                                        </select>
+						<!-- Binary SearchTree  Form -->
+					<div id="binarysearchTreeForm"  class="center-block" style="display:none";>
+						<h2>  Binary Search Tree </h2>
+	                        <form action="" method="post">
+	                        
+	                            <div class="form-group">
+	                                <div class="row">
+	                                    <div class="col-xs-6">
+	                                        <label for="number">Test cases</label>
+	                                        <input type="number" class="form-control"  name="testCases">
+	                                        <span id="errorinfo_binarysearchtree_testCases"></span>
+	                                    </div>
+	                                    <div class="col-xs-6">
+	                                        <label for="number">No Of Nodes</label>
+	                                        <input type="number" class="form-control"  name="nodes">
+	                                        <span id="errorinfo_binarysearchtree_nodes"></span>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            
+	                            <div class="form-group">
+	                                <label for="number">Indexed From</label>
+	                                <select name="indexedFrom">
+	                                    <option value="0">0</option>
+	                                    <option value="1">1</option>
+	                                </select>   
+	                            </div>
+	                            
+	                            <!-- Form Fields are placed in a row call script function when user changes option-->
+	                           <div class="form-group">
+	                                        <label for="text">Weighted</label>
+	                                        <select onchange="setDisplay(this,'SetDisplayForWeighted')" name="weighted">
+	                                            <option value="true" selected>True</option>
+	                                            <option value="false">False</option>
+	                                        </select>
 	                                    <div class="row">
-	                                    <div id="SetDisplayForWeighted1">
+	                                    <div id="SetDisplayForWeighted">
 	                                        <br />
 	                                        <div class="col-xs-4">
 	                                            <label for="number">Min Weight</label>
 	                                            <input type="number" class="form-control"  name="minWeight">
+	                                            <span id="errorinfo_binarysearchtree_minWeight"></span>
 	                                        </div>
 	                                        <div class="col-xs-4">
 	                                            <label for="number">Max Weight</label>
-	                                            <input type="number" class="form-control"  name="maxWeight"> 
+	                                            <input type="number" class="form-control"  name="maxWeight">
+	                                             <span id="errorinfo_binarysearchtree_maxWeight"></span>
 	                                        </div>
 	                                        <div class="col-xs-4">
 	                                             <label for="boolean">Distinct:</label>
-	                                            <select>
+	                                            <select name="distinct">
 	                                                <option value="true">True</option>
 	                                                <option value="false">False</option>
 	                                            </select>
 	                                        </div>
+	                                        <br>
+	                                       </div>
+	                                      </div>
 	                                    </div>
-	                                </div>
-		                            </div>
-		                            
-		                            <div class="form-group">
-		                                <div class="row">
-		                                    <div class="col-xs-5">
-		                                        <label for="text">No Of Children</label>
-		                                        <select onchange="setDisplay(this,'SetDisplayForChildren1')">
-		                                            <option value="random">random</option>
-		                                            <option value="specify" selected>specify</option>
-		                                        </select>
-		                                    </div>
-		                                    <div id="SetDisplayForChildren1">
-		                                        <div class="col-xs-5">
-		                                            <br />
-		                                            <input type="number" class="form-control"  name="noOfChildren">
-		                                        </div>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                            
-		                            <div class="form-group">
-		                                <label for="text">Directed</label>
-		                                <select>
-		                                    <option value="true">True</option>
-		                                    <option value="false">False</option>
-		                                </select>
-		                            </div>
-		                            
-		                            <button type="submit" class="btn btn-primary">Submit</button>
-		                        </form>
+                                        <div class="form-group">
+                                        	 <label for="boolean">is Balanced:</label>
+                                            <select name="isBalanced">
+                                                <option value="true">True</option>
+                                                <option value="false">False</option>
+                                            </select>
+                                        </div>	                          
+	                            <span id="binarysearchtree_results"></span><br>
+	                            <button type="button" class="btn btn-primary" onclick="validateBinarySearchTree(testCases,nodes,indexedFrom,weighted,minWeight,maxWeight,distinct,isBalanced)">Submit</button>
+	                        </form>
 		                    </div>
 		                    
 		                    <!--  Full Binary Tree Form -->
 							<div id="fullBinaryTreeForm" class="center-block" style="display:none;">
 		                        <h2> FullBinary Tree</h2>
-		                        <form action="" method=''>
+		                        <form action="" method='post'>
 		                        
 		                              <!-- Form Fields are placed in a row-->
 		                             <div class="form-group">
 		                                <div class="row">
 		                                    <div class="col-xs-6">
 		                                        <label for="number">Test cases</label>
-		                                        <input type="number" class="form-control"  name="noOfTestcases">
+		                                        <input type="number" class="form-control"  name="testCases">
+		                                        <span id="errorinfo_fullbinarytree_testCases"></span>
 		                                    </div>
 		                                    <div class="col-xs-6">
 		                                        <label for="number">No Of Levels</label>
-		                                        <input type="number" class="form-control"  name="noOfLevels">
+		                                        <input type="number" class="form-control"  name="numberOfLevels">
+		                                        <span id="errorinfo_fullbinarytree_numberOfLevels"></span>
 		                                    </div>
 		                                </div>
 		                            </div>
 		                            
 		                            <div class="form-group">
 		                                <label for="number">Indexed From</label>
-		                                <select>
+		                                <select name="indexedFrom">
 		                                    <option value="0">0</option>
 		                                    <option value="1">1</option>
 		                                </select>   
@@ -290,7 +453,7 @@
 		                            <!-- Form Fields are placed in a row call script function when user changes option-->
 		                           <div class="form-group">
 		                                        <label for="text">Weighted</label>
-		                                        <select onchange="setDisplay(this,'SetDisplayForWeighted2')">
+		                                        <select onchange="setDisplay(this,'SetDisplayForWeighted2')" name=weighted>
 		                                            <option value="true" selected>True</option>
 		                                            <option value="false">False</option>
 		                                        </select>
@@ -300,14 +463,16 @@
 		                                        <div class="col-xs-4">
 		                                            <label for="number">Min Weight</label>
 		                                            <input type="number" class="form-control"  name="minWeight">
+		                                             <span id="errorinfo_fullbinarytree_minWeight"></span>
 		                                        </div>
 		                                        <div class="col-xs-4">
 		                                            <label for="number">Max Weight</label>
 		                                            <input type="number" class="form-control"  name="maxWeight"> 
+		                                             <span id="errorinfo_fullbinarytree_maxWeight"></span>
 		                                        </div>
 		                                        <div class="col-xs-4">
 		                                             <label for="boolean">Distinct:</label><br />
-		                                            <select>
+		                                            <select name="distinct">
 		                                                <option value="true">True</option>
 		                                                <option value="false">False</option>
 		                                            </select>
@@ -315,7 +480,8 @@
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <button type="submit" class="btn btn-primary">Submit</button>
+		                             <span id="fullbinarytree_results"></span><br>
+		                            <button type="button" class="btn btn-primary" onclick="validateFullBinaryTree(testCases,numberOfLevels,indexedFrom,weighted,minWeight,maxWeight,distinct)">Submit</button>
 		                        </form>
 		                    </div>
 		                    
@@ -330,11 +496,13 @@
 		                                <div class="row">
 		                                    <div class="col-xs-6">
 		                                        <label for="number">Test cases</label>
-		                                        <input type="number" class="form-control"  name="noOfTestcases">
+		                                        <input type="number" class="form-control"  name="testCases">
+		                                         <span id="errorinfo_skewtree_testCases"></span>
 		                                    </div>
 		                                    <div class="col-xs-6">
 		                                        <label for="number">No Of Levels</label>
-		                                        <input type="number" class="form-control"  name="noOfLevels">
+		                                        <input type="number" class="form-control"  name="numberOfLevels">
+		                                        <span id="errorinfo_skewtree_numberOfLevels"></span>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -360,10 +528,12 @@
 		                                        <div class="col-xs-4">
 		                                            <label for="number">Min Weight</label>
 		                                            <input type="number" class="form-control"  name="minWeight">
+		                                            <span id="errorinfo_skewtree_minWeight"></span>
 		                                        </div>
 		                                        <div class="col-xs-4">
 		                                            <label for="number">Max Weight</label>
-		                                            <input type="number" class="form-control"  name="maxWeight"> 
+		                                            <input type="number" class="form-control"  name="maxWeight">
+		                                              <span id="errorinfo_skewtree_maxWeight"></span>
 		                                        </div>
 		                                        <div class="col-xs-4">
 		                                             <label for="boolean">Distinct:</label><br />
@@ -375,7 +545,8 @@
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <button type="submit" class="btn btn-primary">Submit</button>
+		                            <span id="skewtree_results"></span><br>
+		                            <button type="button" class="btn btn-primary" onclick="validateskewTree(testCases,numberOfLevels,indexedFrom,weighted,minWeight,maxWeight,distinct)">Submit</button>
 		                        </form>
 					        </div>
                    		</div>

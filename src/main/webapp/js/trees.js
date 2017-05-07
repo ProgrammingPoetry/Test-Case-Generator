@@ -14,30 +14,30 @@
 	        $("#numericTreeLink").click(function (e) {
 	            e.preventDefault();
 	            $("#numericTreeForm").slideDown();
-				$("#characterTreeForm,#fullBinaryTreeForm,#skewTreeForm").hide();
+				$("#binarysearchTreeForm,#fullBinaryTreeForm,#skewTreeForm").hide();
 	            $("#numericTree").css('background', '#26a655');  $("#numericTree p").css('color', 'white');
-	            $("#characterTree,#fullBinaryTree,#skewTree").css('background', 'white');  $("#characterTree p,#fullBinaryTree p,#skewTree p").css('color', '#26a655');
+	            $("#binarysearchTree,#fullBinaryTree,#skewTree").css('background', 'white');  $("#binarysearchTree p,#fullBinaryTree p,#skewTree p").css('color', '#26a655');
 	        });
-			 $("#characterTreeLink").click(function (e) {
+			 $("#binarysearchTreeLink").click(function (e) {
 	            e.preventDefault();
 				$("#numericTreeForm,#fullBinaryTreeForm,#skewTreeForm").hide();
-			    $("#characterTreeForm").slideDown();
-	            $("#characterTree").css('background', '#26a655');$("#characterTree p").css('color', 'white');
+			    $("#binarysearchTreeForm").slideDown();
+	            $("#binarysearchTree").css('background', '#26a655');$("#binarysearchTree p").css('color', 'white');
 	            $("#numericTree,#fullBinaryTree,#skewTree").css('background', 'white');  $("#numericTree p,#fullBinaryTree p,#skewTree p").css('color', '#26a655');
 	        });
 			 $("#fullBinaryTreeLink").click(function (e) {
 	             e.preventDefault();
-				 $("#numericTreeForm,#characterTreeForm,#skewTreeForm").hide();
+				 $("#numericTreeForm,#binarysearchTreeForm,#skewTreeForm").hide();
 	             $("#fullBinaryTreeForm").slideDown();
 	             $("#fullBinaryTree").css('background', '#26a655'); $("#fullBinaryTree p").css('color', 'white');
-	             $("#numericTree,#characterTree,#skewTree").css('background', 'white');  $("#numericTree p,#characterTree p,#skewTree p").css('color', '#26a655');
+	             $("#numericTree,#binarysearchTree,#skewTree").css('background', 'white');  $("#numericTree p,#binarysearchTree p,#skewTree p").css('color', '#26a655');
 	        });
 	         $("#skewTreeLink").click(function (e) { 
 	             e.preventDefault();
-				 $("#numericTreeForm,#characterTreeForm,#fullBinaryTreeForm").hide();
+				 $("#numericTreeForm,#binarysearchrTreeForm,#fullBinaryTreeForm").hide();
 	             $("#skewTreeForm").slideDown();
 	             $("#skewTree").css('background', '#26a655'); $("#skewTree p").css('color', 'white');
-	             $("#numericTree,#characterTree,#fullBinaryTree").css('background', 'white');  $("#numericTree p,#characterTree p,#fullBinaryTree p").css('color', '#26a655');
+	             $("#numericTree,#binarysearchTree,#fullBinaryTree").css('background', 'white');  $("#numericTree p,#binarysearchTree p,#fullBinaryTree p").css('color', '#26a655');
 	        });
 	    });
 			
