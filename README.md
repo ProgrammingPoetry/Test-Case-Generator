@@ -53,12 +53,6 @@ If you find any problem deploying the project in your machine, please do let us 
 <h4>Form Page</h4>
 <img src="screenshots/formPage.png" /><br/>
 
-<h2>Project documents</h2>
-<ul>
-  <li><a href="https://docs.google.com/document/d/1t2LjJEOPW28V1HYOzkQTLyz4PBy685qETeyOySXcLv4/export?format=pdf">Project abstract</a></li>
-  <li><a href="https://docs.google.com/presentation/d/1B8ifA14LJn0UXVX2YNSmhmrxpNWqUupM8S_3ZyczXWQ/export/pptx" download>Project presentation</a></li>
-</ul>
-
 <h2>Examples</h2>
 
 Enough of test data! What does test data for competitive-programming-problems means? What does this tool serve?
