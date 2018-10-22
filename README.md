@@ -1,5 +1,5 @@
 # Test-Case-Generator
-Test Case Generator is a tool which helps in generating test cases for several competitive programming problems. Nowadays the data-set for test cases are being generated manually by the problem setters. This project attempts to automate the generation of test cases and thereby saving time for the problem setter. This is our Final-Year Major-Project.
+Test Case Generator is a tool which helps in generating test cases for several competitive programming problems. Nowadays the data-set for test cases are being generated manually by the problem setters. This project attempts to automate the generation of test cases and thereby saving time for the problem setter. This is our Final-Year Mini-Project.
 
 <h2>Features</h2>
 <ul>
